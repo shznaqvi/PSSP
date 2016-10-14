@@ -1,13 +1,14 @@
 package edu.aku.hassannaqvi.pssp;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -20,6 +21,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SectionAActivity extends Activity {
+
+    private static final String TAG = SectionAActivity.class.getSimpleName();
+
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
@@ -38,7 +42,7 @@ public class SectionAActivity extends Activity {
     @BindView(R.id.ageDob)
     Switch ageDob;
     @BindView(R.id.ssA9)
-    DatePicker ssA9;
+    DatePickerDialog ssA9;
     @BindView(R.id.ssA10m)
     EditText ssA10m;
     @BindView(R.id.ssA10d)
@@ -147,7 +151,8 @@ public class SectionAActivity extends Activity {
                 }
             }
         });
-
+        ssA9.getDatePicker().setMaxDate(System.currentTimeMillis() - 1000);
+        ssA9.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         ssA14.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -182,22 +187,98 @@ public class SectionAActivity extends Activity {
                 Toast.makeText(this, "Starting Section B", Toast.LENGTH_SHORT).show();
                 Intent secB = new Intent(this, SectionBActivity.class);
                 startActivity(secB);
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Starting Database Processing", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     private void SaveDraft() {
-        Toast.makeText(this, "Saving Draft...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Validation Successfull! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
     private boolean formValidation() {
         Toast.makeText(this, "Validating Section A", Toast.LENGTH_SHORT).show();
-        return false;
+
+        if (ssA2.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.ssA2), Toast.LENGTH_LONG).show();
+            ssA2.setError("This data is Required!");
+            Log.i(TAG, "ssA2: This data is Required!");
+            return false;
+        } else {
+            ssA2.setError(null);
+        }
+
+        if (ssA4.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.ssA4), Toast.LENGTH_LONG).show();
+            ssA4.setError("This data is Required!");
+            Log.i(TAG, "ssA4: This data is Required!");
+            return false;
+        } else {
+            ssA4.setError(null);
+        }
+
+        if (ssA5.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.ssA5), Toast.LENGTH_LONG).show();
+            ssA5.setError("This data is Required!");
+            Log.i(TAG, "ssA5: This data is Required!");
+            return false;
+        } else {
+            ssA5.setError(null);
+        }
+
+        if (ssA6.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.ssA6), Toast.LENGTH_LONG).show();
+            ssA6.setError("This data is Required!");
+            Log.i(TAG, "ssA6: This data is Required!");
+            return false;
+        } else {
+            ssA6.setError(null);
+        }
+
+        if (ssA7.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.ssA7), Toast.LENGTH_LONG).show();
+            ssA7.setError("This data is Required!");
+            Log.i(TAG, "ssA7: This data is Required!");
+            return false;
+        } else {
+            ssA7.setError(null);
+        }
+
+        if (ssA8.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.ssA8), Toast.LENGTH_LONG).show();
+            ssA8.setError("This data is Required!");
+            Log.i(TAG, "ssA8: This data is Required!");
+            return false;
+        } else {
+            if (ssA8.length() == 15) {
+                String[] cp = ssA8.toString().split("-");
+                if (cp.length != 3 || cp[0].length() != 5 || cp[1].length() != 7 || cp[2].length() != 1) {
+                    Toast.makeText(this, "ERROR(incorrect): " + getResources().getResourceTypeName(R.string.ssA8), Toast.LENGTH_LONG).show();
+                    ssA8.setError("CNIC is incorrect");
+                    Log.i(TAG, "ssA8: CNIC is incorrect");
+                    return false;
+                } else {
+                    ssA8.setError(null);
+                }
+            } else {
+                Toast.makeText(this, "ERROR(incomplete): " + getResources().getResourceTypeName(R.string.ssA8), Toast.LENGTH_LONG).show();
+                ssA8.setError("CNIC is incomplete");
+                Log.i(TAG, "ssA8: CNIC is incomplete");
+                return false;
+            }
+        }
+
+        if (ageDob.isChecked()) {
+            ssA9.getDatePicker().getDayOfMonth();
+        }
+
+        return true;
     }
 
 }
