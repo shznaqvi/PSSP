@@ -17,7 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SectionAActivity"></activity>
+        <activity android:name=".SectionAActivity" />
+        <activity android:name=".SectionBActivity" />
+        <activity android:name=".SectionCActivity" />
+        <activity android:name=".SectionDActivity" />
+        <activity android:name=".SectionEActivity" />
+        <activity android:name=".SectionFActivity"></activity>
     </application>
 
 </manifest>

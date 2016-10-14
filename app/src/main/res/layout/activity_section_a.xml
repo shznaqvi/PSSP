@@ -137,6 +137,7 @@
                 android:text="@string/ssDob" />
 
             <DatePicker
+                android:id="@+id/ssA9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -170,7 +171,7 @@
                     android:text="@string/ssMonths" />
 
                 <EditText
-                    android:id="@+id/ssA10M"
+                    android:id="@+id/ssA10m"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
@@ -306,7 +307,7 @@
                 android:text="@string/ssA14e" />
 
             <RadioButton
-                android:id="@+id/ssA14f"
+                android:id="@+id/ssA14x"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
@@ -314,6 +315,13 @@
 
         </RadioGroup>
 
+        <EditText
+            android:id="@+id/ssA14x96"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digits"
+            android:hint="@string/ssOther"
+            android:inputType="text" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -325,6 +333,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:digits="1234567890"
+            android:hint="@string/ssA15"
             android:inputType="number"
             android:maxLength="2" />
 
@@ -397,10 +406,19 @@
 
         </RadioGroup>
 
+        <EditText
+            android:id="@+id/ssA16x96"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digits"
+            android:hint="@string/ssOther"
+            android:inputType="text" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
+            android:onClick="submitSecA"
             android:text="@string/nextSection" />
 
     </LinearLayout>

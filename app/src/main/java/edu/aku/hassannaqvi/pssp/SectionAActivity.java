@@ -1,9 +1,13 @@
 package edu.aku.hassannaqvi.pssp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -33,12 +37,10 @@ public class SectionAActivity extends Activity {
     EditText ssA8;
     @BindView(R.id.ageDob)
     Switch ageDob;
-    @BindView(R.id.fldGrpssA9)
-    LinearLayout fldGrpssA9;
-    @BindView(R.id.fldGrpssA10)
-    LinearLayout fldGrpssA10;
-    @BindView(R.id.ssA10M)
-    EditText ssA10M;
+    @BindView(R.id.ssA9)
+    DatePicker ssA9;
+    @BindView(R.id.ssA10m)
+    EditText ssA10m;
     @BindView(R.id.ssA10d)
     EditText ssA10d;
     @BindView(R.id.ssA11)
@@ -63,8 +65,10 @@ public class SectionAActivity extends Activity {
     RadioButton ssA14d;
     @BindView(R.id.ssA14e)
     RadioButton ssA14e;
-    @BindView(R.id.ssA14f)
-    RadioButton ssA14f;
+    @BindView(R.id.ssA14x)
+    RadioButton ssA14x;
+    @BindView(R.id.ssA14x96)
+    EditText ssA14x96;
     @BindView(R.id.ssA15)
     EditText ssA15;
     @BindView(R.id.ssA16)
@@ -85,6 +89,13 @@ public class SectionAActivity extends Activity {
     RadioButton ssA16g;
     @BindView(R.id.ssA16x)
     RadioButton ssA16x;
+    @BindView(R.id.ssA16x96)
+    EditText ssA16x96;
+
+    @BindView(R.id.fldGrpssA9)
+    LinearLayout fldGrpssA9;
+    @BindView(R.id.fldGrpssA10)
+    LinearLayout fldGrpssA10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +133,71 @@ public class SectionAActivity extends Activity {
             }
         });
 
+        ageDob.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    fldGrpssA9.setVisibility(View.VISIBLE);
+                    fldGrpssA10.setVisibility(View.GONE);
+                    ssA10d.setText(null);
+                    ssA10m.setText(null);
+                } else {
+                    fldGrpssA9.setVisibility(View.GONE);
+                    fldGrpssA10.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        ssA14.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (ssA14x.isChecked()) {
+                    ssA14x96.setVisibility(View.VISIBLE);
+                } else {
+                    ssA14x96.setVisibility(View.GONE);
+                    ssA14x96.setText(null);
+                }
+            }
+        });
+
+        ssA16.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (ssA16x.isChecked()) {
+                    ssA16x96.setVisibility(View.VISIBLE);
+                } else {
+                    ssA16x96.setVisibility(View.GONE);
+                    ssA16x96.setText(null);
+                }
+            }
+        });
+
+    }
+
+    public void submitSecA(View v) {
+        Toast.makeText(this, "Processing Section A", Toast.LENGTH_SHORT).show();
+        if (formValidation()) {
+            SaveDraft();
+            if (UpdateDB()) {
+                Toast.makeText(this, "Starting Section B", Toast.LENGTH_SHORT).show();
+                Intent secB = new Intent(this, SectionBActivity.class);
+                startActivity(secB);
+            }
+        }
+    }
+
+    private boolean UpdateDB() {
+        Toast.makeText(this, "Starting Database Processing", Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    private void SaveDraft() {
+        Toast.makeText(this, "Saving Draft...", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean formValidation() {
+        Toast.makeText(this, "Validating Section A", Toast.LENGTH_SHORT).show();
+        return false;
     }
 
 }
