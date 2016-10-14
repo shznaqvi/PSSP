@@ -2,7 +2,63 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:scrollViewStyle">@style/BackgroundStyle</item>
+        <item name="android:textColor">#efefef</item>
+        <item name="android:textViewStyle">@style/lblTextView</item>
+        <item name="android:editTextStyle">@style/txtEditText</item>
+        <item name="android:buttonStyle">@style/btnButton</item>
+        <item name="android:radioButtonStyle">@style/btnRadioButton</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:typeface">serif</item>
+
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="BackgroundStyle" parent="android:Widget.ScrollView">
+        <item name="android:background">#363636</item>
+    </style>
+
+    <style name="lblTextView" parent="android:TextAppearance.Widget.TextView">
+        <item name="android:background">#ff7500</item>
+        <item name="android:textColor">#efefef</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawableBottom">#000</item>
+    </style>
+
+    <style name="txtEditText" parent="android:Widget.EditText">
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">#efefef</item>
+        <item name="android:background">#555555</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">20sp</item>
+
+
+    </style>
+
+    <style name="btnButton" parent="android:Widget.Button">
+        <item name="android:textColor">#efefef</item>
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">20sp</item>
+
+    </style>
+
+    <style name="btnRadioButton" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">#efefef</item>
+        <item name="android:background">#555555</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">20sp</item>
+
+    </style>
 </resources>

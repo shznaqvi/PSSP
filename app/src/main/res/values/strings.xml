@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">PSSP</string>
+    <string name="app_name">Polio Seropervalence Survey - 2016/17</string>
+    <string name="section_A"> سیکشن \'اے\': گھر کی شناخت </string>
+    <string name="ssA2">گھرانے کا نمبر</string>
+    <string name="ssA4">PSU نمبر</string>
+    <string name="ssA5">بچے کا نام</string>
+    <string name="ssA6">والد کا نام</string>
+    <string name="ssA7">والدہ کا نام</string>
+    <string name="ssA8">ماں یا باپ کا شناختی کارڈ نمبر</string>
+    <string name="ssDob">تاریخ پیدائش</string>
+    <string name="ssAge">عمر</string>
+    <string name="ssMonths">ماہ</string>
+    <string name="ssDays">دن</string>
+    <string name="ssA11">جنس</string>
+    <string name="ssSex">جنس</string>
+    <string name="ssMale">مرد</string>
+    <string name="ssFemale">عورت</string>
+    <string name="ssA12">گھر کے سربراہ کا نام</string>
+    <string name="ssA13">جواب دینے والے کا نام</string>
+    <string name="ssA14">جواب دینےوالےکا بچےسے رشتہ</string>
+    <string name="ssA14a">ماں</string>
+    <string name="ssA14b">والد</string>
+    <string name="ssA14c">بہن</string>
+    <string name="ssA14d">بھائی</string>
+    <string name="ssA14e">دادا/دادی/نانا/نانی</string>
+    <string name="ssOther">کوئی اور (وضاحت کریں)۔</string>
+    <string name="ssA15">جواب دینے والے کی عمر (سال میں)۔</string>
+    <string name="ssA16a">انپڑھ/ ناخواندہ</string>
+    <string name="ssA16b">بنیادی/پرائمری</string>
+    <string name="ssA16c">دسویں پاس</string>
+    <string name="ssA16d">بارہویں پاس</string>
+    <string name="ssA16e">چودویں پاس</string>
+    <string name="ssA16f">سولہ ویں پاس</string>
+    <string name="ssA16g">دینی تعلیم</string>
+    <string name="nextSection">اگلا سیکشن</string>
 </resources>
