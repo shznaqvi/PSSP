@@ -39,6 +39,21 @@
             android:hint="@string/ssA2"
             android:inputType="number"
             android:maxLength="4" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Q1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/q1"
+            android:hint="Q1"
+            android:inputType="text"
+            android:digits="@string/digits"
+
+            />
 
         <TextView
             android:layout_width="match_parent"

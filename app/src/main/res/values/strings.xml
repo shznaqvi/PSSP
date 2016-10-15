@@ -35,4 +35,8 @@
     <string name="nextSection">اگلا سیکشن</string>
     <string name="digits"><![CDATA[1234567890.,+=-qwertyuiopasdfghjklzxcvbnm ?%#@!&amp;QWERTYUIOPASDFGHJKLZXCVBNM]]></string>
     <string name="section_B">سیکشن \'بی\': سماجی اور معاشی معلومات</string>
+    <string name="ssB1">What language do you speak in your household</string>
+    <string name="ssB1a">Urdu</string>
+    <string name="ssB1b">Sindhi</string>
+    <string name="ssB2">Primary material use for construction</string>
 </resources>
