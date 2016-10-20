@@ -33,7 +33,7 @@
     <string name="ssA16f">سولہ ویں پاس</string>
     <string name="ssA16g">دینی تعلیم</string>
     <string name="nextSection">اگلا سیکشن</string>
-    <string name="digits"><![CDATA[1234567890.,+=-qwertyuiopasdfghjklzxcvbnm ?%#@!&amp;QWERTYUIOPASDFGHJKLZXCVBNM]]></string>
+    <string name="digits">"1234567890.,+=-qwertyuiopasdfghjklzxcvbnm ?%#@!&amp;QWERTYUIOPASDFGHJKLZXCVBNM"</string>
 
     <string name="section_B">Index Child </string>
     <string name="ssB1">بچے کا نام</string>
@@ -45,11 +45,24 @@
     <string name="ssB6_m">مہینے</string>
     <string name="ssB6_d">دن</string>
     <string name="ssB7">بچے کی جنس</string>
-    <string name="ssBa">مرد</string>
-    <string name="ssBb">عورت</string>
+
+
 
     <string name="section_C">سیکشن سی : ٹیکوں کی معلومات</string>
     <string name="ssC1">کیا کبھی بھی آپ کے بچے کو مرکز صحت میں حفاظتی ٹیکے لگائے گئے؟</string>
+    <string name="ssC2">کیا (بچے کا نام)کے پاس حفاظتی ٹیکوں کا کارڈ موجود ہے اور کیا اس میں حفاظتی ٹیکہ جات کا اندراج موجود ہے؟</string>
+    <string name="ssC3">اگرہاں ، تو کیا میں وہ دیکھ سکتا/سکتی ہوں؟</string>
+    <string name="ssC3a">موجود ہے اور دیکھ</string>
+    <string name="ssC3b">موجود ہے پر نہیں دیکھا </string>
+    <string name="ssC4"> اگر نہیں تو کیا (بچے کا نام) کو کبھی ٹیکوں والا کارڈملا تھا؟</string>
+    <string name="ssC5">اگر ٹیکے لگائے گئے ہیں تو معلومات لکھیں</string>
+
+
+    <!--Global codes-->
+
+    <string name="ssYES">ہاں</string>
+    <string name="ssNO">نہیں </string>
+    <string name="ssDNK">معلوم نہیں</string>
 
 
 </resources>

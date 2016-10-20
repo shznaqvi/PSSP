@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_section_b"
@@ -14,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
 
         <TextView
             android:layout_width="match_parent"
@@ -35,31 +37,30 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ssB1"
-            android:inputType="textPersonName"
             android:digits="@string/digits"
-            />
+            android:hint="@string/ssB1"
+            android:inputType="textPersonName" />
 
-      <!--  <RadioGroup
-            android:id="@+id/ssB1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--  <RadioGroup
+              android:id="@+id/ssB1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
 
-            <RadioButton
-                android:id="@+id/ssB1a"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/ssB1a" />
+              <RadioButton
+                  android:id="@+id/ssB1a"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="1dp"
+                  android:text="@string/ssB1a" />
 
-            <RadioButton
-                android:id="@+id/ssB1b"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/ssB1b" />
+              <RadioButton
+                  android:id="@+id/ssB1b"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="1dp"
+                  android:text="@string/ssB1b" />
 
-        </RadioGroup> -->
+          </RadioGroup> -->
 
 
         <TextView
@@ -69,18 +70,113 @@
             android:text="@string/ssB2" />
 
         <EditText
+            android:id="@+id/ssB2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ssB2"
-            android:inputType="textPersonName"
             android:digits="@string/digits"
-            />
+            android:hint="@string/ssB2"
+            android:inputType="textPersonName" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/app_name" />
+            android:text="@string/ssB3" />
+
+        <EditText
+            android:id="@+id/ssB3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digits"
+            android:hint="@string/ssB3"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ssB4" />
+
+        <EditText
+            android:id="@+id/ssB4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ssB4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ssB5"
+
+            />
+
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:calendarViewShown="false"
+            android:datePickerMode="calendar"
+            android:spinnersShown="true"></DatePicker>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ssB6" />
+
+        <EditText
+            android:id="@+id/ssB6_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ssB6_m"
+            android:inputType="number"
+            android:maxLength="2" />
+
+        <EditText
+            android:id="@+id/ssB6_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ssB6_d"
+            android:inputType="number"
+            android:maxLength="2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ssB7" />
+
+        <RadioGroup
+            android:id="@+id/ssB7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/ssB7m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ssMale"
+                android:layout_marginBottom="1dp"
+                />
+
+            <RadioButton
+                android:id="@+id/ssB7f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ssFemale"
+                android:layout_marginBottom="1dp"
+                />
+
+        </RadioGroup>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:onClick="submitSecB"
+            android:text="@string/nextSection" />
 
 
         <!--End-->
