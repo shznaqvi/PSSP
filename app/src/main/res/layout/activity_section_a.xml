@@ -436,6 +436,7 @@
             android:onClick="submitSecA"
             android:text="@string/nextSection" />
 
+
     </LinearLayout>
 
 </ScrollView>
