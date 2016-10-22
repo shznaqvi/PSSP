@@ -22,4 +22,9 @@ public class MainActivity extends Activity {
         Intent iB = new Intent(this, SectionBActivity.class);
         startActivity(iB);
     }
+
+    public void openG(View v) {
+        Intent iG = new Intent(this, SectionGActivity.class);
+        startActivity(iG);
+    }
 }

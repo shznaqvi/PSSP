@@ -9,6 +9,9 @@
     <string name="mnSex">جنس</string>
     <string name="mnMale">مرد</string>
     <string name="mnFemale">عورت</string>
+    <string name="mnYES">ہاں</string>
+    <string name="mnNO">نہیں</string>
+    <string name="mnDNK">معلوم نہیں</string>
 
     <string name="mnOther">کوئی اور (وضاحت کریں)۔</string>
 
@@ -16,7 +19,6 @@
     <string name="endForm">اختتام</string>
     <string name="digits"><![CDATA[1234567890.,+=-qwertyuiopasdfghjklzxcvbnm ?%#@!&amp;QWERTYUIOPASDFGHJKLZXCVBNM]]></string>
 
-    <string name="section_B">سیکشن \'بی\': سماجی اور معاشی معلومات</string>
 
     <string name="mnfrmno"> ڈی ایم یو سیریل نمبر </string>
     <string name="mnsid"> تحقیقی شناخت نمبر </string>
@@ -49,6 +51,9 @@
     <string name="mna12g"> Religious Education دینی تعلیم </string>
     <string name="mna12x">(کوئی اورضاحت کریں) </string>
     <string name="mna13"> پانچ سال سے کم عمر بچوں کی تعداد (بشمول منتخب بچےکے) </string>
+
+    <string name="section_B">سیکشن بی: منتخب بچے کی تفصیلات</string>
+
     <string name="mnb1"> بچے کا نام </string>
     <string name="mnb2"> والد کا نام/ولدیت </string>
     <string name="mnb3"> ماں کا نام </string>
@@ -57,6 +62,12 @@
     <string name="mnb6mm"> بچے کی عمر (ماہ) </string>
     <string name="mnb6yy"> بچے کی عمر (دن) </string>
     <string name="mnb7"> بچے کی جنس </string>
+
+    <string name="section_C">سیکشن سی : ٹیکوں کی معلومات</string>
+    <string name="section_C1">معمول کے ٹیکے</string>
+    <string name="section_C2">اضافی ٹیکے</string>
+    <string name="section_C3">سفر کی غرز سے ٹیکے</string>
+
     <string name="mnc1"> کیا کبھی بھی آپ کے بچے کو حفاظتی ٹیکے لگائے گئے؟ </string>
     <string name="mnc2"> اگر ہاں، تو آپ کے پاس ٹیکوں کا کارڈ موجود ہے؟ </string>
     <string name="mnc3"> اگر ہاں تو کیا میں وہ دیکھ سکتا/سکتی ہوں؟ </string>
@@ -87,6 +98,9 @@
     <string name="mnc11"> کس جگہ سے بچے کو IPV کا ٹیکہ لگوایا گیا؟ </string>
     <string name="mnc12"> کیا آپ کے بچے نے گزشتہ چھ ماہ کے دوران وٹامن اے کی اضافی خوراک حاصل کی؟ </string>
     <string name="mnc13"> کیا (بچے کا نام)نے کبھی بھی سفر کے دوران چیک پوائنٹ پر پولیو کے قطرے پئیے؟ </string>
+
+    <string name="section_D">سیکشن ڈی : بچے کی صحت کی معلومات</string>
+
     <string name="mnd1"> کیا گزشتہ دو ہفتوں کے دوران (بچے کا نام) کو کھانسی یا زکام ہوا تھا؟ </string>
     <string name="mnd2"> کیا گزشتہ دو ہفتے کے دوران (بچے کا نام) کو سانس لینے میں شکایت ہوئی تھی؟ </string>
     <string name="mnd3"> کیا گزشتہ دو ہفتے کے دوران (بچے کا نام) کو سینہ چلنے کی شکایت ہوئی ہے؟ </string>
@@ -116,12 +130,15 @@
     <string name="mnd10h"> پیٹ کا درد </string>
     <string name="mnd10j"> پیشاب کے وقت رونا </string>
     <string name="mnd10x96"> کوئی اور وضاحت کریں </string>
+
+
     <string name="imfrmno"> ڈی ایم یو سیریل نمبر </string>
     <string name="imchid"> بچے کی آئ ڈی </string>
     <string name="imcompid">  </string>
     <string name="ima"> بچے کا نام </string>
     <string name="imaf"> بچے کے والد کا نام </string>
-    <string name="imrwic"> انڈیکس بچے سے رشتہ </string>
+    <!--    RWIC: Relation With Index Child    -->
+    <string name="imrwic"> منتخب شدہ بچے سے رشتہ </string>
     <string name="imrwicx">  </string>
     <string name="imb"> بچے کی جنس </string>
     <string name="imc"> حفاظتی ٹیکوں کاکارڈ موجود ہے یا نہیں </string>
@@ -166,6 +183,9 @@
     <string name="m2src"> Source </string>
     <string name="imdr"> Diarrhea </string>
     <string name="imari"> ARI </string>
+
+    <string name="section_E">سیکشن ای: ٹیکوں کے بارے میں معلومات</string>
+
     <string name="mne1"> کیا آپ نے کبھی حفاظتی ٹیکوں کے بارے میں سنا ہے؟ اگر جواب 2 یا 99 ہے تو E.4 پر جائیں اور اگر 1 ہے تو E.2 پوچھیں </string>
     <string name="mne2"> آپ نے ٹیکوں کے بارے میں معلومات کہاں سے حاصل کی؟ </string>
     <string name="mne2a"> (ٹی وی) </string>
@@ -238,6 +258,10 @@
     <string name="mne17"> آپ کے خیال میں آپ کے بچے کو پولیو کے ٹیکے کے بعد پولیو کے قطروں کی ضرورت ہو گی؟ اگر جواب ہاں ہے تو F1 پر جایئں۔ </string>
     <string name="mne18"> اگر نہیں تو کیوں؟ </string>
     <string name="mne18x96"> اگر نہیں تو کیوں؟ (کوئی اور (وضاحت کریں) </string>
+
+    <string name="section_F">ایف : سماجی اور معاشی معلومات</string>
+
+
     <string name="mnf1"> عموماً آپ اپنے گھر میں کونسی زبان بولتے ہیں؟ </string>
     <string name="mnf1x"> عموماً آپ اپنے گھر میں کونسی زبان بولتے ہیں؟ ( کوئی اورضاحت کریں) </string>
     <string name="mnf2"> کونسی بنیادی مواد گھر کی تعمیر کے وقت استعمال کی ہوئی ہے؟ </string>
@@ -274,9 +298,10 @@
     <string name="mnf9t"> (بجلی کے پنکھے) </string>
     <string name="mnf9u"> (ایئر کنڈیشنر/ایئر کولر) </string>
     <string name="mnf9v"> (کمپیوٹر) </string>
+    <string name="section_G">جی : لیب کی معلومات</string>
     <string name="mng1"> خون کا نمونہ لیا گیا ہے؟ </string>
     <string name="mng2"> اگر ہاں، تو لیے گئے خون کی مقدار لکھیں </string>
-    <string name="mnsticker">  </string>
+    <string name="mngsticker"> اسٹیکر </string>
 
 </resources>
 
