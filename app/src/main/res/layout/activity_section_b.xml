@@ -25,6 +25,187 @@
             android:textStyle="bold"
             tools:typeface="serif" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mnb1" />
 
+        <EditText
+            android:id="@+id/mnb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="QWERTYUIOPASDFGHJKLZXCVBNM qwertyuiopasdfghjklzxcvbnm"
+            android:hint="@string/mnb1"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mnb2" />
+
+        <EditText
+            android:id="@+id/mnb2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="QWERTYUIOPASDFGHJKLZXCVBNM qwertyuiopasdfghjklzxcvbnm"
+            android:hint="@string/mnb2"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mnb3" />
+
+        <EditText
+            android:id="@+id/mnb3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="QWERTYUIOPASDFGHJKLZXCVBNM qwertyuiopasdfghjklzxcvbnm"
+            android:hint="@string/mnb3"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mnb4" />
+
+        <EditText
+            android:id="@+id/mnb4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="1234567890-"
+            android:hint="@string/mnb4"
+            android:inputType="number"
+            android:maxLength="15" />
+
+        <Switch
+            android:id="@+id/ageDob"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textOff="@string/mnAge"
+            android:textOn="@string/mnDob"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/fldGrpmnb4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/mnDob" />
+
+            <DatePicker
+                android:id="@+id/mnb5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:paddingTop="8dp"
+                android:spinnersShown="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fldGrpmnb5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/mnAge" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mnMonths" />
+
+                <EditText
+                    android:id="@+id/mnb6m"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="2"
+                    android:digits="1234567890"
+                    android:hint="@string/mnMonths"
+                    android:inputType="number"
+                    android:maxLength="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mnDays" />
+
+                <EditText
+                    android:id="@+id/mnb6d"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="2"
+                    android:digits="1234567890"
+                    android:hint="@string/mnDays"
+                    android:inputType="number"
+                    android:maxLength="2" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mnSex" />
+
+        <RadioGroup
+            android:id="@+id/mnb7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/mnb7m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text="@string/mnMale" />
+
+            <RadioButton
+                android:id="@+id/mnb7f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text="@string/mnFemale" />
+        </RadioGroup>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:onClick="submitSecB"
+            android:text="@string/nextSection" />
     </LinearLayout>
 </ScrollView>

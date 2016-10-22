@@ -8,6 +8,7 @@
         <item name="android:editTextStyle">@style/txtEditText</item>
         <item name="android:buttonStyle">@style/btnButton</item>
         <item name="android:radioButtonStyle">@style/btnRadioButton</item>
+        <item name="android:checkboxStyle">@style/chkBox</item>
         <item name="android:layoutDirection">rtl</item>
         <item name="android:typeface">serif</item>
 
@@ -53,6 +54,16 @@
     </style>
 
     <style name="btnRadioButton" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:textColor">#efefef</item>
+        <item name="android:background">#555555</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">20sp</item>
+
+    </style>
+
+    <style name="chkBox" parent="android:Widget.CompoundButton.CheckBox">
         <item name="android:padding">@dimen/activity_horizontal_margin</item>
         <item name="android:textColor">#efefef</item>
         <item name="android:background">#555555</item>
