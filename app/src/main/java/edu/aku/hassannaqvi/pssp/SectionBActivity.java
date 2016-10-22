@@ -1,6 +1,7 @@
 package edu.aku.hassannaqvi.pssp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class SectionBActivity extends Activity {
 
-    private static final String TAG = SectionAActivity.class.getSimpleName();
+    private static final String TAG = SectionGActivity.class.getSimpleName();
 
     @BindView(R.id.mnb1)
     EditText mnb1;
@@ -105,9 +106,32 @@ public class SectionBActivity extends Activity {
 
     }
 
+    public void submitSecB(View v) {
+        Toast.makeText(this, "Processing Section B", Toast.LENGTH_SHORT).show();
+        if (formValidation()) {
+            SaveDraft();
+            if (UpdateDB()) {
+                Toast.makeText(this, "Starting Section B", Toast.LENGTH_SHORT).show();
+                Intent secB = new Intent(this, SectionBActivity.class);
+                startActivity(secB);
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
+    private boolean UpdateDB() {
+        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    private void SaveDraft() {
+        Toast.makeText(this, "Validation Successfull! - Saving Draft...", Toast.LENGTH_SHORT).show();
+    }
+
+    
     private boolean formValidation() {
-        Toast.makeText(this, "Validating Section A", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Validating Section B", Toast.LENGTH_SHORT).show();
 
 
         if (mnb1.getText().toString().isEmpty()) {
