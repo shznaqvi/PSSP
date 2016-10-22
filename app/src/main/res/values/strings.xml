@@ -36,21 +36,21 @@
     <string name="digits">"1234567890.,+=-qwertyuiopasdfghjklzxcvbnm ?%#@!&amp;QWERTYUIOPASDFGHJKLZXCVBNM"</string>
 
     <string name="section_B">Index Child </string>
-    <string name="ssB1">بچے کا نام</string>
-    <string name="ssB2">والد کا نام</string>
-    <string name="ssB3">ماں کا نام</string>
-    <string name="ssB4">ماں یا باپ کا شناختی کارڈ نمبر</string>
-    <string name="ssB5">تاریخ پیدائش</string>
-    <string name="ssB6">بچے کی عمر</string>
-    <string name="ssB6_m">مہینے</string>
-    <string name="ssB6_d">دن</string>
-    <string name="ssB7">بچے کی جنس</string>
+    <string name="mnb1">بچے کا نام</string>
+    <string name="mnb2">والد کا نام</string>
+    <string name="mnb3">ماں کا نام</string>
+    <string name="mnb4">ماں یا باپ کا شناختی کارڈ نمبر</string>
+    <string name="mnb5">تاریخ پیدائش</string>
+    <string name="mnb6">بچے کی عمر</string>
+    <string name="mnb6mm">مہینے</string>
+    <string name="mnb6yy">دن</string>
+    <string name="mnb7">بچے کی جنس</string>
 
 
 
     <string name="section_C">سیکشن سی : ٹیکوں کی معلومات</string>
-    <string name="ssC1">کیا کبھی بھی آپ کے بچے کو مرکز صحت میں حفاظتی ٹیکے لگائے گئے؟</string>
-    <string name="ssC2">کیا (بچے کا نام)کے پاس حفاظتی ٹیکوں کا کارڈ موجود ہے اور کیا اس میں حفاظتی ٹیکہ جات کا اندراج موجود ہے؟</string>
+    <string name="mnc1">کیا کبھی بھی آپ کے بچے کو مرکز صحت میں حفاظتی ٹیکے لگائے گئے؟</string>
+    <string name="mnc2">کیا (بچے کا نام)کے پاس حفاظتی ٹیکوں کا کارڈ موجود ہے اور کیا اس میں حفاظتی ٹیکہ جات کا اندراج موجود ہے؟</string>
     <string name="ssC3">اگرہاں ، تو کیا میں وہ دیکھ سکتا/سکتی ہوں؟</string>
     <string name="ssC3a">موجود ہے اور دیکھ</string>
     <string name="ssC3b">موجود ہے پر نہیں دیکھا </string>
