@@ -28,6 +28,8 @@ public class PSSPApp extends Application {
     private static final long DAYS_IN_YEAR = 365;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
 
+    public static String mnb1 = "TEST";
+
     protected LocationManager locationManager;
 
     @Override

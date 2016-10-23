@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class SectionBActivity extends Activity {
 
-    private static final String TAG = SectionGActivity.class.getSimpleName();
+    private static final String TAG = SectionBActivity.class.getSimpleName();
 
     @BindView(R.id.mnb1)
     EditText mnb1;
@@ -112,7 +112,7 @@ public class SectionBActivity extends Activity {
             SaveDraft();
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Section B", Toast.LENGTH_SHORT).show();
-                Intent secB = new Intent(this, SectionBActivity.class);
+                Intent secB = new Intent(this, SectionCActivity.class);
                 startActivity(secB);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
