@@ -15,7 +15,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--Fields start -->
+
+        <TextView
+            android:id="@+id/child_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/child_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Child Name"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"
+            />
+
+        <!--Fields start here-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -232,17 +248,1098 @@
                 android:text="@string/mnYES"
 
                 />
-<RadioButton
-                android:id="@+id/imfa"
+
+            <RadioButton
+                android:id="@+id/imfb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/img"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/imga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/mnYES"
 
                 />
 
+            <RadioButton
+                android:id="@+id/imgb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/imh"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/imh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/imha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES"
+
+                />
+
+            <RadioButton
+                android:id="@+id/imhb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+
+                />
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/imi"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/imi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:id="@+id/imia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/imib"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+            <RadioButton
+                android:id="@+id/imic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCHNP" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/imj"
+
+            />
+
+        <EditText
+            android:id="@+id/imj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/imj"
+            android:inputType="number" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/imk" />
+
+
+        <RadioGroup
+            android:id="@+id/imk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <RadioButton
+                android:id="@+id/imka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/imkb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+            <RadioButton
+                android:id="@+id/imkc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCHNP"
+
+                />
 
 
         </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/iml"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/iml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/imla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard"
+
+                />
+
+            <RadioButton
+                android:id="@+id/imlb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/imm" />
+
+
+        <RadioGroup
+            android:id="@+id/imm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/imma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/GHCF" />
+
+            <RadioButton
+                android:id="@+id/immb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/PHCF" />
+
+            <RadioButton
+                android:id="@+id/immc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/EPI" />
+
+            <RadioButton
+                android:id="@+id/immd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/OthNGO" />
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/imn" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/bcg" />
+
+        <RadioGroup
+            android:id="@+id/bcg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/bcgYes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/bcgNO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bcgsrc" />
+
+        <RadioGroup
+            android:id="@+id/bcgsrc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/bcgsrcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@+id/bcgsrcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bcgscar" />
+
+        <RadioGroup
+            android:id="@+id/bcgscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/bcgscarYES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/bcgscarNO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+
+            <RadioButton
+                android:id="@+id/bcgscarNP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNP"
+
+                />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/opv0" />
+
+        <RadioGroup
+            android:id="@+id/opv0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/opv0YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/opv0NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/opv0src" />
+
+        <RadioGroup
+            android:id="@+id/opv0src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/opv0srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@+id/opv0srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp"
+
+                />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/p1" />
+
+        <RadioGroup
+            android:id="@+id/p1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/p1YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/p1NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/p1src" />
+
+        <RadioGroup
+            android:id="@+id/p1src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@id/p1srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@id/p1srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pcv1" />
+
+        <RadioGroup
+            android:id="@+id/pcv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/pcv1YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+
+            <RadioButton
+                android:id="@+id/pcv1NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pcv1src"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/pcv1src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/pcv1srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard"
+
+                />
+
+            <RadioButton
+                android:id="@+id/pcv1srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp"
+
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/opv1" />
+
+        <RadioGroup
+            android:id="@+id/opv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/opv1YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+
+            <RadioButton
+                android:id="@+id/opv1NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/opv1src" />
+
+        <RadioGroup
+            android:id="@+id/opv1src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/opv1srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+
+            <RadioButton
+                android:id="@+id/opv1srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp"
+
+                />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/p2" />
+
+        <RadioGroup
+            android:id="@+id/p2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/p2YES"
+                android:text="@string/mnYES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/p2NO"
+                android:text="@string/mnNO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/p2src" />
+
+        <RadioGroup
+            android:id="@+id/p2src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:id="@+id/p2srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@+id/p2srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pcv2" />
+
+        <RadioGroup
+            android:id="@+id/pcv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/pcv2YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/pcv2NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pcv2src" />
+
+
+        <RadioGroup
+            android:id="@+id/pcv2src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/pcv2srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@+id/pcv2srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp"
+
+                />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/opv2" />
+
+        <RadioGroup
+            android:id="@+id/opv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/opv2YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES"
+
+                />
+
+            <RadioButton
+                android:id="@+id/opv2NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/opv2src" />
+
+        <RadioGroup
+            android:id="@+id/opv2src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/opv2srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard"
+
+                />
+
+            <RadioButton
+                android:id="@+id/opv2srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp"
+
+                />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/p3" />
+
+        <RadioGroup
+            android:id="@+id/p3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/p3YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES"
+
+                />
+
+            <RadioButton
+                android:id="@+id/p3NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/p3src" />
+
+
+        <RadioGroup
+            android:id="@+id/p3src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/p3srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard"
+
+                />
+
+            <RadioButton
+                android:id="@+id/p3srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pcv3"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/pcv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/pcv3YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES"
+
+                />
+
+            <RadioButton
+                android:id="@+id/pcv3NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pcv3src"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/pcv3src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/pcv3srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@+id/pcv3srcREsp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp"
+
+                />
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/opv3" />
+
+        <RadioGroup
+            android:id="@+id/opv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <RadioButton
+                android:id="@+id/opv3YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES" />
+
+            <RadioButton
+                android:id="@+id/opv3NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/opv3src" />
+
+        <RadioGroup
+            android:id="@+id/opv3src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:id="@+id/opv3srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard" />
+
+            <RadioButton
+                android:id="@+id/opv3srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/m1"
+
+
+            />
+
+        <RadioGroup
+            android:id="@+id/m1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/m1YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES"
+
+                />
+
+            <RadioButton
+                android:id="@+id/m1NO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO"
+
+                />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/m1src" />
+
+        <RadioGroup
+            android:id="@+id/m1src"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/m1srcCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnCard"
+
+                />
+
+            <RadioButton
+                android:id="@+id/m1srcResp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnResp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/m2"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/m2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <RadioButton
+                android:id="@+id/m2YES"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnYES"
+
+                />
+
+            <RadioButton
+                android:id="@+id/mnNO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnNO" />
+
+
+        </RadioGroup>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/m2src"
+
+           />
+
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/m2src"
+    >
+
+
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/m2srcCard"
+    android:text="@string/mnCard"
+    />
+
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/mnResp"
+    android:id="@+id/m2srcResp"
+    />
+
+</RadioGroup>
+
+
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/imdr"
+    android:layout_marginTop="16dp"
+    
+    />
+
+
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/imdr"
+    >
+
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/imdrYES"
+   android:text="@string/mnYES"
+    />
+
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/imdrNO"
+   android:text="@string/mnNO"
+    />
+</RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/imari"
+            android:layout_marginTop="16dp"
+            />
+
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/imari"
+
+    >
+
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/imariYES"
+    android:text="@string/mnYES"
+    />
+
+<RadioButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/imariNO"
+    android:text="@string/mnNO"
+
+    />
+
+
+</RadioGroup>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:onClick="submitSecIM"
+            android:text="@string/nextSection" />
+
 
 
     </LinearLayout>

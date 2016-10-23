@@ -436,6 +436,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/mnd10x96"
+    android:hint="@string/mnOther"
     android:layout_marginTop="10dp"
     />
 
@@ -443,7 +444,12 @@
 
 
 
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:onClick="submitSecD"
+            android:text="@string/nextSection" />
 
 
 
