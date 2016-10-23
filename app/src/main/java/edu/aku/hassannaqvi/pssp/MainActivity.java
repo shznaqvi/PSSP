@@ -13,6 +13,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+    public void openForm(View v) {
+        Intent oF = new Intent(this, SectionAActivity.class);
+        startActivity(oF);
+    }
+
     public void openA(View v) {
         Intent iA = new Intent(this, SectionAActivity.class);
         startActivity(iA);
@@ -26,6 +31,11 @@ public class MainActivity extends Activity {
     public void openC(View v) {
         Intent iC = new Intent(this, SectionCActivity.class);
         startActivity(iC);
+    }
+
+    public void openD(View v) {
+        Intent iD = new Intent(this, SectionDActivity.class);
+        startActivity(iD);
     }
     public void openG(View v) {
         Intent iG = new Intent(this, SectionGActivity.class);

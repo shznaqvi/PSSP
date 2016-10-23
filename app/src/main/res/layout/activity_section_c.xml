@@ -26,11 +26,11 @@
             tools:typeface="serif" />
 
         <TextView
+            style="@style/subHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:background="@drawable/button_bg"
-            android:style="@style/subHeading"
             android:text="@string/section_C1" />
 
         <TextView
@@ -507,11 +507,11 @@
         </LinearLayout>
 
         <TextView
+            style="@style/subHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:background="@drawable/button_bg"
-            android:style="@style/subHeading"
             android:text="@string/section_C2" />
 
         <TextView
@@ -534,12 +534,16 @@
                 android:id="@+id/mnc6a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnYES" />
 
             <RadioButton
                 android:id="@+id/mnc6b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnNO" />
 
 
@@ -547,6 +551,8 @@
                 android:id="@+id/mnc6c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnDNK" />
 
 
@@ -571,12 +577,16 @@
                 android:id="@+id/mnc7a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnYES" />
 
             <RadioButton
                 android:id="@+id/mnc7b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnNO"
 
                 />
@@ -585,6 +595,8 @@
                 android:id="@+id/mnc7c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnDNK"
 
                 />
@@ -632,18 +644,24 @@
                 android:id="@+id/mnc9a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnYES" />
 
             <RadioButton
                 android:id="@+id/mnc9b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnNO" />
 
             <RadioButton
                 android:id="@+id/mnc9c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnDNK" />
 
 
@@ -724,6 +742,8 @@
                     android:id="@+id/mnc11a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+
                     android:text="@string/mnc11a" />
 
 
@@ -731,6 +751,8 @@
                     android:id="@+id/mnc11b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+
                     android:text="@string/mnc11b" />
 
 
@@ -738,12 +760,16 @@
                     android:id="@+id/mnc11c"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+
                     android:text="@string/mnc11c" />
 
                 <RadioButton
                     android:id="@+id/mnc11d"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+
                     android:text="@string/mnc11d" />
 
             </RadioGroup>
@@ -785,6 +811,8 @@
                     android:id="@+id/mnc12a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+
                     android:text="@string/mnYES"
 
                     />
@@ -793,6 +821,8 @@
                     android:id="@+id/mnc12b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+
                     android:text="@string/mnNO"
 
                     />
@@ -800,11 +830,11 @@
         </LinearLayout>
 
         <TextView
+            style="@style/subHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:background="@drawable/button_bg"
-            android:style="@style/subHeading"
             android:text="@string/section_C3" />
 
         <TextView
@@ -827,6 +857,8 @@
                 android:id="@+id/mnc13a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnYES"
 
                 />
@@ -835,6 +867,8 @@
                 android:id="@+id/mnc13b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnNO"
 
                 />
@@ -844,6 +878,8 @@
                 android:id="@+id/mnc13c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnc13c"
 
                 />
@@ -852,6 +888,8 @@
                 android:id="@+id/mnc13d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+
                 android:text="@string/mnDNK"
 
                 />

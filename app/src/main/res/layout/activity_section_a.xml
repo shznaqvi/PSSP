@@ -61,6 +61,12 @@
             android:layout_height="wrap_content"
             android:text="@string/mna6" />
 
+        <LinearLayout
+            android:id="@+id/fldGrpmna6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -266,15 +272,15 @@
             android:onClick="submitSecA"
             android:text="@string/nextSection"
             android:textColor="#00ef00" />
-
+        </LinearLayout>
         <Button
             android:id="@+id/btnEnd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:onClick="submitSecA"
+            android:onClick="endForm"
             android:text="@string/endForm"
-            android:textColor="#ef0000" />
+            android:textColor="#000" />
     </LinearLayout>
 
 </ScrollView>
