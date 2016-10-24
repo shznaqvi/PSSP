@@ -238,21 +238,90 @@
     <string name="mne17"> آپ کے خیال میں آپ کے بچے کو پولیو کے ٹیکے کے بعد پولیو کے قطروں کی ضرورت ہو گی؟ اگر جواب ہاں ہے تو F1 پر جایئں۔ </string>
     <string name="mne18"> اگر نہیں تو کیوں؟ </string>
     <string name="mne18x96"> اگر نہیں تو کیوں؟ (کوئی اور (وضاحت کریں) </string>
+
+
+
+
+
+
     <string name="mnf1"> عموماً آپ اپنے گھر میں کونسی زبان بولتے ہیں؟ </string>
-    <string name="mnf1x"> عموماً آپ اپنے گھر میں کونسی زبان بولتے ہیں؟ ( کوئی اورضاحت کریں) </string>
+   <string name="mnf1a">اردو</string>
+   <string name="mnf1b">سندھی</string>
+    <string name="mnf1c">پنجابی</string>
+    <string name="mnf1d">پشتو</string>
+    <string name="mnf1e">بلوچی</string>
+    <string name="mnf1x">( کوئی اورضاحت کریں) </string>
+
+
+
+
+
     <string name="mnf2"> کونسی بنیادی مواد گھر کی تعمیر کے وقت استعمال کی ہوئی ہے؟ </string>
-    <string name="mnf2x"> کونسی بنیادی مواد گھر کی تعمیر کے وقت استعمال کی ہوئی ہے؟ (کوئی اورضاحت کریں) </string>
+     <string name="mnf2a">زمین/ریت/مٹی</string>
+     <string name="mnf2b">لکڑی کے تختے</string>
+     <string name="mnf2c">اینٹیں</string>
+    <string name="mnf2d">سیمینٹ</string>
+    <string name="mnf2e">ٹائلز</string>
+     <string name="mnf2f">چپس</string>
+     <string name="mnf2g">ماربل</string>
+     <string name="mnf2h">چٹائی </string>
+    <string name="mnf2i"> قالین </string>
+    <string name="mnf2x"> کوئی اورضاحت کریں </string>
+
+
     <string name="mnf3"> گھر کی مالکانہ حیثیت کیا ہے؟ </string>
+    <string name="mnf3a">اپنا</string>
+    <string name="mnf3b">کرائے کا </string>
+   <string name="mnf3c"> رہائش بغیر کرائے کے</string>
     <string name="mnf3x"> گھر کی مالکانہ حیثیت کیا ہے؟ ( کوئی اورضاحت کریں) </string>
+
     <string name="mnf4"> اس گھر میں سونے کے لیے کتنے کمرے استعمال ہوتے ہیں؟ </string>
+
+
+
     <string name="mnf5"> گھر میں عام طور پر کھانا پکانے کے لیے کونسا اینڈھن استعمال کرتے ہیں؟ </string>
-    <string name="mnf5x"> گھر میں عام طور پر کھانا پکانے کے لیے کونسا اینڈھن استعمال کرتے ہیں؟ (کوئی اورضاحت کریں) </string>
+   <string name="mnf5a"> بجلی </string>
+    <string name="mnf5b"> گیس </string>
+    <string name="mnf5c"> قدرتی گیس  </string>
+    <string name="mnf5d">مٹی کا تیل </string>
+    <string name="mnf5e">کوئلہ</string>
+    <string name="mnf5f"> لکڑی</string>
+    <string name="mnf5g"> تنکے/جھاڑیاں/گھاس</string>
+    <string name="mnf5h">جانوروں کے گوبر </string>
+    <string name="mnf5i"> گھر میں کھانا نہیں پکتا </string>
+    <string name="mnf5x">  (کوئی اورضاحت کریں) </string>
+
     <string name="mnf6"> کیا آپ کے گھر میں بجلی ہے؟ </string>
     <string name="mnf7"> عموماً کونسے ٹوائلٹ کی سہولت گھر کے افراد استعمال کرتے ہیں؟ </string>
-    <string name="mnf7x"> عموماً کونسے ٹوائلٹ کی سہولت گھر کے افراد استعمال کرتے ہیں؟ (کوئی اورضاحت کریں) </string>
-    <string name="mnf8"> گھر کے افراد کے پینے کے پانی کے لیے کونسی بنیادی سہولت موجود ہے؟ </string>
-    <string name="mnf8x"> گھر کے افراد کے پینے کے پانی کے لیے کونسی بنیادی سہولت موجود ہے؟ (کوئی اورضاحت کریں) </string>
+
+    <string name="mnf7a">فلش سیوریج کے نظام سے ملا ہو </string>
+    <string name="mnf7b">فلش سپٹک ٹینک سے جڑا ہوا </string>
+    <string name="mnf7c">فلش گڑھے والے لیٹرین سے جڑا ہوا  </string>
+    <string name="mnf7d">فلش معلوم نہیں  کہاں ہے</string>
+    <string name="mnf7e">گڑھے والا لیٹرین ڈھکا ہے </string>
+    <string name="mnf7f">گڑھے والا کھلا لیٹرین </string>
+    <string name="mnf7g">کوئی سہولت نہیں/کھلے میدان میں</string>
+    <string name="mnf7x">کوئی اورضاحت کریں </string>
+
+    <string name="mnf8"> آپ کے گھر میں پینے کے پانی کا سب سے اہم ذریعہ کیا ہے </string>
+    <string name="mnf8a"> گھر کا نلکا </string>
+    <string name="mnf8b"> گلی میں لگا ہو انلکا </string>
+    <string name="mnf8c"> ٹیوب ویل کا پانی </string>
+    <string name="mnf8d">ہینڈ پمپ</string>
+    <string name="mnf8e">بورنگ</string>
+    <string name="mnf8f">محفوظ کنویں  کا پانی</string>
+    <string name="mnf8g">غیرمحفوظ کنویں کا پانی</string>
+    <string name="mnf8h">محفوظ چشمے کا پانی</string>
+    <string name="mnf8i">غیر محفوظ چشمے کا پانی</string>
+    <string name="mnf8j">برسات کا پانی</string>
+    <string name="mnf8k">ٹینکر کا پانی</string>
+    <string name="mnf8l">چھوٹے ٹینک کا پانی</string>
+    <string name="mnf8m">سطح کا پانی (دریا/ڈیم/جھیل/تالاب/ندی/نہر/آبپاشی چینل </string>
+    <string name="mnf8n">بوتل کا پانی</string>
+
+    <string name="mnf8x"> کوئی اورضاحت کریں </string>
     <string name="mnf9"> جواہندہ سے پوچھیں کہ ان میں سے کون سے اثاثے کے مالک ہیں اگر ان میں سے کوئی چیز نہیں تو (0) لکھیں </string>
+
     <string name="mnf9a"> مویشی سرمایہ، بیھنسیں اور گائیں </string>
     <string name="mnf9b"> بھیڑ ور بکریاں </string>
     <string name="mnf9c"> گھوڑے اور گدھے </string>
@@ -262,18 +331,18 @@
     <string name="mnf9g"> دوسری گاڑیاں، وضاحت کریں </string>
     <string name="mnf9gx"> (دوسری گاڑیاں، وضاحت کریں) </string>
     <string name="mnf9h"> (ٹیلی ویژن ) </string>
-    <string name="mnf9j"> (وی سی آر/وی سی پی/ڈی وی ڈی) </string>
-    <string name="mnf9k"> (لینڈ لائن ٹیلی فون) </string>
-    <string name="mnf9l"> (موبائل فونز) </string>
-    <string name="mnf9m"> (صوفا سیٹ) </string>
-    <string name="mnf9n"> (سلائی مشین) </string>
-    <string name="mnf9p"> (کپڑے دھونے والی مشین) </string>
-    <string name="mnf9q"> (مائکرو ویو اوون) </string>
-    <string name="mnf9r"> (ریفریجریٹر/فرج) </string>
-    <string name="mnf9s"> (پانی گرم کرنے والی مشین) </string>
-    <string name="mnf9t"> (بجلی کے پنکھے) </string>
-    <string name="mnf9u"> (ایئر کنڈیشنر/ایئر کولر) </string>
-    <string name="mnf9v"> (کمپیوٹر) </string>
+    <string name="mnf9i"> (وی سی آر/وی سی پی/ڈی وی ڈی) </string>
+    <string name="mnf9j"> (لینڈ لائن ٹیلی فون) </string>
+    <string name="mnf9k"> (موبائل فونز) </string>
+    <string name="mnf9l"> (صوفا سیٹ) </string>
+    <string name="mnf9m"> (سلائی مشین) </string>
+    <string name="mnf9n"> (کپڑے دھونے والی مشین) </string>
+    <string name="mnf9o"> (مائکرو ویو اوون) </string>
+    <string name="mnf9p"> (ریفریجریٹر/فرج) </string>
+    <string name="mnf9q"> (پانی گرم کرنے والی مشین) </string>
+    <string name="mnf9r"> (بجلی کے پنکھے) </string>
+    <string name="mnf9s"> (ایئر کنڈیشنر/ایئر کولر) </string>
+    <string name="mnf9t"> (کمپیوٹر) </string>
     <string name="mng1"> خون کا نمونہ لیا گیا ہے؟ </string>
     <string name="mng2"> اگر ہاں، تو لیے گئے خون کی مقدار لکھیں </string>
     <string name="mnsticker">  </string>
