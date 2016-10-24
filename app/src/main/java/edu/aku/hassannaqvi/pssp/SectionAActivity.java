@@ -15,7 +15,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SectionAActivity extends Activity {
-
     private static final String TAG = SectionAActivity.class.getSimpleName();
 
 

@@ -348,7 +348,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/mnYES"
-
                 />
 
             <RadioButton
@@ -729,7 +728,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:Text="@string/mnf9l" />
+            android:text="@string/mnf9l" />
 
 
         <EditText
@@ -851,32 +850,7 @@
             android:hint="@string/mnf9t"
             android:inputType="number" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/mnf9u" />
 
-
-        <EditText
-            android:id="@+id/mnf9u"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/mnf9u"
-            android:inputType="number" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/mnf9v" />
-
-        <EditText
-            android:id="@+id/mnf9v"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/mnf9v"
-            android:inputType="number" />
 
 
         <Button
