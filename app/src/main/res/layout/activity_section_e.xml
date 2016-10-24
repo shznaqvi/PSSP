@@ -121,13 +121,13 @@
             android:text="@string/mne2h" />
 
         <CheckBox
-            android:id="@+id/mne2j"
+            android:id="@+id/mne2i"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne2j" />
 
         <CheckBox
-            android:id="@+id/mne2k"
+            android:id="@+id/mne2j"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne2k" />
@@ -237,13 +237,13 @@
             android:text="@string/mne4h" />
 
         <CheckBox
-            android:id="@+id/mne4j"
+            android:id="@+id/mne4i"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne4j" />
 
         <CheckBox
-            android:id="@+id/mne4k"
+            android:id="@+id/mne4j"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne4k" />
@@ -1013,9 +1013,16 @@
             android:layout_height="wrap_content"
             android:id="@+id/mne18x96x"
             android:text="@string/mnOther"
-
-
             />
 
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:onClick="submitSecF"
+            android:text="@string/nextSection" />
     </LinearLayout>
 </ScrollView>
