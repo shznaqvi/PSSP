@@ -146,13 +146,13 @@ public class SectionDActivity extends Activity {
         setContentView(R.layout.activity_section_d);
         ButterKnife.bind(this);
 
-        if (PSSPApp.mnb1 != "TEST") {
+
             txtmnd1.setText(txtmnd1.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnd2.setText(txtmnd2.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnd4.setText(txtmnd4.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnd6.setText(txtmnd6.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnd9.setText(txtmnd9.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-        }
+
 
         mnd5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -206,7 +206,7 @@ public class SectionDActivity extends Activity {
             SaveDraft();
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Section D", Toast.LENGTH_SHORT).show();
-                Intent secD = new Intent(this, SectionDActivity.class);
+                Intent secD = new Intent(this, SectionEActivity.class);
                 startActivity(secD);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();

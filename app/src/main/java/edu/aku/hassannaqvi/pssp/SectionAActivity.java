@@ -125,6 +125,7 @@ public class SectionAActivity extends Activity {
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Section B", Toast.LENGTH_SHORT).show();
                 Intent secB = new Intent(this, SectionBActivity.class);
+                PSSPApp.chTotal = Integer.valueOf(mna13.getText().toString()) - 1; // exclude index child
                 startActivity(secB);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();

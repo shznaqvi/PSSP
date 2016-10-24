@@ -29,7 +29,8 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-        <activity android:name=".EndingActivity"></activity>
+        <activity android:name=".EndingActivity" />
+        <activity android:name=".SectionIMActivity"></activity>
     </application>
 
 </manifest>

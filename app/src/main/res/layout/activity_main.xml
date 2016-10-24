@@ -77,6 +77,15 @@
             android:text="Section D" />
 
         <Button
+            android:id="@+id/openIM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:onClick="openIM"
+            android:text="Section IM" />
+
+        <Button
             android:id="@+id/openE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

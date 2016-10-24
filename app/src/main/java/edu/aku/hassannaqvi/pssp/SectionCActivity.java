@@ -175,15 +175,15 @@ public class SectionCActivity extends Activity {
         setContentView(R.layout.activity_section_c);
         ButterKnife.bind(this);
 
-        if (PSSPApp.mnb1 != "TEST") {
-            txtmnc1.setText(txtmnc1.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+
+        txtmnc1.setText(txtmnc1.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnc2.setText(txtmnc2.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnc4.setText(txtmnc4.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnc6.setText(txtmnc6.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnc7.setText(txtmnc7.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnc8.setText(txtmnc8.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
             txtmnc9.setText(txtmnc9.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-        }
+
 
         // SKIP PATTERNS
         mnc2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

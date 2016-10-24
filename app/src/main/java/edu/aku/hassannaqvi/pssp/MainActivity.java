@@ -37,6 +37,12 @@ public class MainActivity extends Activity {
         Intent iD = new Intent(this, SectionDActivity.class);
         startActivity(iD);
     }
+
+    public void openIM(View v) {
+        Intent iIM = new Intent(this, SectionIMActivity.class);
+        startActivity(iIM);
+    }
+
     public void openG(View v) {
         Intent iG = new Intent(this, SectionGActivity.class);
         startActivity(iG);

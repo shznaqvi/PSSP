@@ -278,7 +278,7 @@
                 android:id="@+id/mnd6i"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mnd6j" />
+                android:text="@string/mnd6i" />
 
             <CheckBox
                 android:id="@+id/mnd6x"
@@ -291,7 +291,7 @@
                 android:id="@+id/mnd6x96"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/mnd6x96"
+                android:hint="@string/mnOther"
 
                 />
         </LinearLayout>
