@@ -139,6 +139,8 @@ public class SectionDActivity extends Activity {
 
     @BindView(R.id.fldGrpmnd6)
     LinearLayout fldGrpmnd6;
+    @BindView(R.id.fldGrpmnd10)
+    LinearLayout fldGrpmnd10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +188,28 @@ public class SectionDActivity extends Activity {
                 }
             }
         });
+
+        mnd9a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    fldGrpmnd10.setVisibility(View.VISIBLE);
+                } else {
+                    fldGrpmnd10.setVisibility(View.GONE);
+                    mnd10a.setChecked(false);
+                    mnd10b.setChecked(false);
+                    mnd10c.setChecked(false);
+                    mnd10d.setChecked(false);
+                    mnd10e.setChecked(false);
+                    mnd10f.setChecked(false);
+                    mnd10g.setChecked(false);
+                    mnd10h.setChecked(false);
+                    mnd10i.setChecked(false);
+                    mnd10x.setChecked(false);
+                    mnd10x96.setText(null);
+                }
+            }
+        });
         mnd10x.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -205,9 +229,9 @@ public class SectionDActivity extends Activity {
         if (formValidation()) {
             SaveDraft();
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Section D", Toast.LENGTH_SHORT).show();
-                Intent secD = new Intent(this, SectionEActivity.class);
-                startActivity(secD);
+                Toast.makeText(this, "Starting Section IM", Toast.LENGTH_SHORT).show();
+                Intent secIM = new Intent(this, SectionIMActivity.class);
+                startActivity(secIM);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -230,7 +254,7 @@ public class SectionDActivity extends Activity {
 
         // D1
         if (mnd1.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd1), Toast.LENGTH_LONG).show();
             mnd1c.setError("This data is Required!");
             Log.i(TAG, "mnd1: This data is Required!");
             return false;
@@ -239,7 +263,7 @@ public class SectionDActivity extends Activity {
         }
         // D2
         if (mnd2.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd2), Toast.LENGTH_LONG).show();
             mnd2c.setError("This data is Required!");
             Log.i(TAG, "mnd2: This data is Required!");
             return false;
@@ -248,7 +272,7 @@ public class SectionDActivity extends Activity {
         }
         // D3
         if (mnd3.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd3), Toast.LENGTH_LONG).show();
             mnd3c.setError("This data is Required!");
             Log.i(TAG, "mnd3: This data is Required!");
             return false;
@@ -257,7 +281,7 @@ public class SectionDActivity extends Activity {
         }
         // D4
         if (mnd4.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd4), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd4), Toast.LENGTH_LONG).show();
             mnd4c.setError("This data is Required!");
             Log.i(TAG, "mnd4: This data is Required!");
             return false;
@@ -267,7 +291,7 @@ public class SectionDActivity extends Activity {
 
         // D4
         if (mnd4.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd4), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd4), Toast.LENGTH_LONG).show();
             mnd4c.setError("This data is Required!");
             Log.i(TAG, "mnd4: This data is Required!");
             return false;
@@ -277,7 +301,7 @@ public class SectionDActivity extends Activity {
 
         // D5
         if (mnd5.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd5), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd5), Toast.LENGTH_LONG).show();
             mnd5b.setError("This data is Required!");
             Log.i(TAG, "mnd5: This data is Required!");
             return false;
@@ -287,13 +311,13 @@ public class SectionDActivity extends Activity {
 
         // D6
         if (mnd5a.isChecked() && !(mnd6a.isChecked() || mnd6b.isChecked() || mnd6c.isChecked() || mnd6d.isChecked() || mnd6e.isChecked() || mnd6f.isChecked() || mnd6g.isChecked() || mnd6h.isChecked() || mnd6i.isChecked() || mnd6x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd6), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd6), Toast.LENGTH_LONG).show();
             mnd6x.setError("This data is Required!");
             Log.i(TAG, "mnd6: This data is Required!");
             return false;
         } else if (mnd6x.isChecked()) {
             mnd6x.setError(null);
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnd6), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnd6), Toast.LENGTH_LONG).show();
             mnd6x96.setError("This data is empty!");
             Log.i(TAG, "mnd6: This data is empty!");
             return false;
@@ -304,7 +328,7 @@ public class SectionDActivity extends Activity {
 
         // D7
         if (mnd7.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd7), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd7), Toast.LENGTH_LONG).show();
             mnd7b.setError("This data is Required!");
             Log.i(TAG, "mnd7: This data is Required!");
             return false;
@@ -314,7 +338,7 @@ public class SectionDActivity extends Activity {
 
         // D8
         if (mnd8.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd8), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd8), Toast.LENGTH_LONG).show();
             mnd8b.setError("This data is Required!");
             Log.i(TAG, "mnd8: This data is Required!");
             return false;
@@ -324,7 +348,7 @@ public class SectionDActivity extends Activity {
 
         // D9
         if (mnd9.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd9), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd9), Toast.LENGTH_LONG).show();
             mnd9b.setError("This data is Required!");
             Log.i(TAG, "mnd9: This data is Required!");
             return false;
@@ -334,13 +358,13 @@ public class SectionDActivity extends Activity {
 
         // D10
         if (mnd5a.isChecked() && !(mnd10a.isChecked() || mnd10b.isChecked() || mnd10c.isChecked() || mnd10d.isChecked() || mnd10e.isChecked() || mnd10f.isChecked() || mnd10g.isChecked() || mnd10h.isChecked() || mnd10i.isChecked() || mnd10x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnd10), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd10), Toast.LENGTH_LONG).show();
             mnd10x.setError("This data is Required!");
             Log.i(TAG, "mnd10: This data is Required!");
             return false;
         } else if (mnd10x.isChecked()) {
             mnd10x.setError(null);
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnd10), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnd10), Toast.LENGTH_LONG).show();
             mnd10x96.setError("This data is empty!");
             Log.i(TAG, "mnd10: This data is empty!");
             return false;

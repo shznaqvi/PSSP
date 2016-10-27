@@ -90,7 +90,7 @@ public class SectionGActivity extends Activity {
         Toast.makeText(this, "Validating Section G", Toast.LENGTH_SHORT).show();
 
         if (mng1.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mng1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mng1), Toast.LENGTH_LONG).show();
             mng1b.setError("This data is Required!");
             Log.i(TAG, "mng1: This data is Required!");
             return false;
@@ -100,12 +100,12 @@ public class SectionGActivity extends Activity {
 
         // G2
         if (mng1a.isChecked() && mng2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mng2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mng2), Toast.LENGTH_LONG).show();
             mng2.setError("This data is Required!");
             Log.i(TAG, "mng2: This data is Required!");
             return false;
         } else if (mng1a.isChecked() && Integer.valueOf(mng2.getText().toString()) > 5) {
-            Toast.makeText(this, "ERROR(invalid): " + getResources().getResourceTypeName(R.string.mng2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mng2), Toast.LENGTH_LONG).show();
             mng2.setError("This data is invalid!");
             Log.i(TAG, "mng2: This data is invalid!");
             return false;
@@ -113,12 +113,12 @@ public class SectionGActivity extends Activity {
             mng2.setError(null);
         }
         if (mng1a.isChecked() && mngsticker.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mngsticker), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mngsticker), Toast.LENGTH_LONG).show();
             mngsticker.setError("This data is Required!");
             Log.i(TAG, "mngsticker: This data is Required!");
             return false;
         } else if (mng1a.isChecked() && mngsticker.getText().toString().replace("§", "").length() > 5) {
-            Toast.makeText(this, "ERROR(invalid): " + getResources().getResourceTypeName(R.string.mngsticker), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mngsticker), Toast.LENGTH_LONG).show();
             mngsticker.setError("This data is invalid!");
             Log.i(TAG, "mngsticker: This data is invalid!");
             return false;

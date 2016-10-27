@@ -11,6 +11,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Reset working variables
+        PSSPApp.mnb1 = "Test";
+        PSSPApp.chCount = 0;
+        PSSPApp.chTotal = 0;
     }
 
     public void openForm(View v) {
@@ -38,6 +43,16 @@ public class MainActivity extends Activity {
         startActivity(iD);
     }
 
+    public void openE(View v) {
+        Intent iD = new Intent(this, SectionEActivity.class);
+        startActivity(iD);
+    }
+
+    public void openF(View v) {
+        Intent iD = new Intent(this, SectionFActivity.class);
+        startActivity(iD);
+    }
+
     public void openIM(View v) {
         Intent iIM = new Intent(this, SectionIMActivity.class);
         startActivity(iIM);
@@ -46,5 +61,10 @@ public class MainActivity extends Activity {
     public void openG(View v) {
         Intent iG = new Intent(this, SectionGActivity.class);
         startActivity(iG);
+    }
+
+    public void openEnd(View v) {
+        Intent iEnd = new Intent(this, EndingActivity.class);
+        startActivity(iEnd);
     }
 }

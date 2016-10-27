@@ -250,8 +250,8 @@ public class SectionEActivity extends Activity {
     RadioGroup mne17;
     @BindView(R.id.mne17a)
     RadioButton mne17a;
-    @BindView(R.id.mn17b)
-    RadioButton mn17b;
+    @BindView(R.id.mne17b)
+    RadioButton mne17b;
     @BindView(R.id.mne18)
     RadioGroup mne18;
     @BindView(R.id.mne18a)
@@ -437,8 +437,6 @@ public class SectionEActivity extends Activity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (mne12a.isChecked()) {
-                    fldGrpe13.setVisibility(View.VISIBLE);
-                } else {
                     fldGrpe13.setVisibility(View.GONE);
                     // clear E13
                     mne13a.setChecked(false);
@@ -449,6 +447,9 @@ public class SectionEActivity extends Activity {
                     mne13x99.setChecked(false);
                     mne13x.setChecked(false);
                     mne13x96.setText(null);
+
+                } else {
+                    fldGrpe13.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -501,7 +502,7 @@ public class SectionEActivity extends Activity {
         if (formValidation()) {
             SaveDraft();
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Section E", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Starting Section F", Toast.LENGTH_SHORT).show();
                 Intent secE = new Intent(this, SectionFActivity.class);
                 startActivity(secE);
             } else {
@@ -521,10 +522,11 @@ public class SectionEActivity extends Activity {
 
 
     private boolean formValidation() {
+        Toast.makeText(this, "Validating Section E", Toast.LENGTH_SHORT).show();
 
         // E1
         if (mne1.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne1), Toast.LENGTH_LONG).show();
             mne1c.setError("This data is Required!");
             Log.i(TAG, "mne1: This data is Required!");
             return false;
@@ -537,7 +539,7 @@ public class SectionEActivity extends Activity {
 
             // E2
             if (!(mne2a.isChecked() || mne2b.isChecked() || mne2c.isChecked() || mne2d.isChecked() || mne2e.isChecked() || mne2f.isChecked() || mne2g.isChecked() || mne2h.isChecked() || mne2i.isChecked() || mne2k.isChecked() || mne2x.isChecked())) {
-                Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne2), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne2), Toast.LENGTH_LONG).show();
                 mne2x.setError("This data is Required!");
                 Log.i(TAG, "mne2: This data is Required!");
                 return false;
@@ -547,7 +549,7 @@ public class SectionEActivity extends Activity {
 
             // E2x96
             if (mne2x.isChecked() && mne2x96.getText().toString().isEmpty()) {
-                Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne2), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne2), Toast.LENGTH_LONG).show();
                 mne2x96.setError("Others Required!");
                 Log.i(TAG, "mne2x96: Others Required!");
                 return false;
@@ -556,7 +558,7 @@ public class SectionEActivity extends Activity {
             }
 
             if (mne3.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne3), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne3), Toast.LENGTH_LONG).show();
                 mne3b.setError("Answer is required");
                 Log.i(TAG, "mne3: Answer Required!");
                 return false;
@@ -568,7 +570,7 @@ public class SectionEActivity extends Activity {
 
         // E4
         if (!(mne4a.isChecked() || mne4b.isChecked() || mne4c.isChecked() || mne4d.isChecked() || mne4e.isChecked() || mne4f.isChecked() || mne4g.isChecked() || mne4h.isChecked() || mne4i.isChecked() || mne4x99.isChecked() || mne4x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne4), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne4), Toast.LENGTH_LONG).show();
             mne4x.setError("This data is Required!");
             Log.i(TAG, "mne4: This data is Required!");
             return false;
@@ -578,7 +580,7 @@ public class SectionEActivity extends Activity {
 
         // E4x96
         if (mne4x.isChecked() && mne4x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne4), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne4), Toast.LENGTH_LONG).show();
             mne4x96.setError("Others Required!");
             Log.i(TAG, "mne4x96: Others Required!");
             return false;
@@ -588,7 +590,7 @@ public class SectionEActivity extends Activity {
 
         // E5
         if (!(mne5a.isChecked() || mne5b.isChecked() || mne5c.isChecked() || mne5d.isChecked() || mne5e.isChecked() || mne5x99.isChecked() || mne5x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne5), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne5), Toast.LENGTH_LONG).show();
             mne5x.setError("This data is Required!");
             Log.i(TAG, "mne5: This data is Required!");
             return false;
@@ -598,7 +600,7 @@ public class SectionEActivity extends Activity {
 
         // E5x96
         if (mne5x.isChecked() && mne5x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne5), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne5), Toast.LENGTH_LONG).show();
             mne5x96.setError("Others Required!");
             Log.i(TAG, "mne5x96: Others Required!");
             return false;
@@ -608,7 +610,7 @@ public class SectionEActivity extends Activity {
 
         // E6
         if (!(mne6a.isChecked() || mne6b.isChecked() || mne6c.isChecked() || mne6d.isChecked() || mne6x99.isChecked() || mne6x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne6), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne6), Toast.LENGTH_LONG).show();
             mne6x.setError("This data is Required!");
             Log.i(TAG, "mne6: This data is Required!");
             return false;
@@ -618,7 +620,7 @@ public class SectionEActivity extends Activity {
 
         // E6x96
         if (mne6x.isChecked() && mne6x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne6), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne6), Toast.LENGTH_LONG).show();
             mne6x96.setError("Others Required!");
             Log.i(TAG, "mne6x96: Others Required!");
             return false;
@@ -628,7 +630,7 @@ public class SectionEActivity extends Activity {
 
         // E7
         if (mne7.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne7), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne7), Toast.LENGTH_LONG).show();
             mne7c.setError("This data is Required!");
             Log.i(TAG, "mne7: This data is Required!");
             return false;
@@ -638,7 +640,7 @@ public class SectionEActivity extends Activity {
 
         // E7x96
         if (mne7c.isChecked() && mne7x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne7), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne7), Toast.LENGTH_LONG).show();
             mne7x96.setError("Others Required!");
             Log.i(TAG, "mne7x96: Others Required!");
             return false;
@@ -651,7 +653,7 @@ public class SectionEActivity extends Activity {
 
             // E8
             if (!(mne8a.isChecked() || mne8b.isChecked() || mne8c.isChecked() || mne8d.isChecked() || mne8e.isChecked() || mne8f.isChecked() || mne8x.isChecked())) {
-                Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne8), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne8), Toast.LENGTH_LONG).show();
                 mne8x.setError("This data is Required!");
                 Log.i(TAG, "mne8: This data is Required!");
                 return false;
@@ -661,7 +663,7 @@ public class SectionEActivity extends Activity {
 
             // E8x96
             if (mne8x.isChecked() && mne8x96.getText().toString().isEmpty()) {
-                Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne8), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne8), Toast.LENGTH_LONG).show();
                 mne8x96.setError("Others Required!");
                 Log.i(TAG, "mne8x96: Others Required!");
                 return false;
@@ -672,7 +674,7 @@ public class SectionEActivity extends Activity {
 
         // E9
         if (mne9.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne9), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne9), Toast.LENGTH_LONG).show();
             mne9c.setError("This data is Required!");
             Log.i(TAG, "mne9: This data is Required!");
             return false;
@@ -682,7 +684,7 @@ public class SectionEActivity extends Activity {
 
         // E10
         if (!(mne10a.isChecked() || mne10b.isChecked() || mne10c.isChecked() || mne10x99.isChecked() || mne10x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne10), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne10), Toast.LENGTH_LONG).show();
             mne10x.setError("This data is Required!");
             Log.i(TAG, "mne10: This data is Required!");
             return false;
@@ -692,7 +694,7 @@ public class SectionEActivity extends Activity {
 
         // E10x96
         if (mne10x.isChecked() && mne10x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne10), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne10), Toast.LENGTH_LONG).show();
             mne10x96.setError("Others Required!");
             Log.i(TAG, "mne10x96: Others Required!");
             return false;
@@ -702,7 +704,7 @@ public class SectionEActivity extends Activity {
 
         // E11
         if (!(mne11a.isChecked() || mne11b.isChecked() || mne11c.isChecked() || mne11d.isChecked() || mne11e.isChecked() || mne11x99.isChecked() || mne11x.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne11), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne11), Toast.LENGTH_LONG).show();
             mne11x.setError("This data is Required!");
             Log.i(TAG, "mne11: This data is Required!");
             return false;
@@ -712,7 +714,7 @@ public class SectionEActivity extends Activity {
 
         // E11x96
         if (mne11x.isChecked() && mne11x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne11), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne11), Toast.LENGTH_LONG).show();
             mne11x96.setError("Others Required!");
             Log.i(TAG, "mne11x96: Others Required!");
             return false;
@@ -722,7 +724,7 @@ public class SectionEActivity extends Activity {
 
         // E12
         if (!(mne12a.isChecked() || mne12b.isChecked() || mne12c.isChecked() || mne12d.isChecked() || mne12e.isChecked() || mne12x99.isChecked())) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne12), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne12), Toast.LENGTH_LONG).show();
             mne12x99.setError("This data is Required!");
             Log.i(TAG, "mne12: This data is Required!");
             return false;
@@ -730,12 +732,12 @@ public class SectionEActivity extends Activity {
             mne12x99.setError(null);
         }
 
-        // E12 Option A
-        if (mne12a.isChecked()) {
+        // E12 Option other than A
+        if (!mne12a.isChecked()) {
 
             // E13
             if (!(mne13a.isChecked() || mne13b.isChecked() || mne13c.isChecked() || mne13d.isChecked() || mne13e.isChecked() || mne13x99.isChecked() || mne13x.isChecked())) {
-                Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne13), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne13), Toast.LENGTH_LONG).show();
                 mne13x.setError("This data is Required!");
                 Log.i(TAG, "mne13: This data is Required!");
                 return false;
@@ -745,7 +747,7 @@ public class SectionEActivity extends Activity {
 
             // E13x96
             if (mne13x.isChecked() && mne13x96.getText().toString().isEmpty()) {
-                Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne13), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne13), Toast.LENGTH_LONG).show();
                 mne13x96.setError("Others Required!");
                 Log.i(TAG, "mne13x96: Others Required!");
                 return false;
@@ -757,7 +759,7 @@ public class SectionEActivity extends Activity {
 
         // E14
         if (mne14.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne14), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne14), Toast.LENGTH_LONG).show();
             mne14c.setError("This data is Required!");
             Log.i(TAG, "mne14: This data is Required!");
             return false;
@@ -766,7 +768,7 @@ public class SectionEActivity extends Activity {
         }
         // E15
         if (mne15.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne15), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne15), Toast.LENGTH_LONG).show();
             mne15b.setError("This data is Required!");
             Log.i(TAG, "mne15: This data is Required!");
             return false;
@@ -775,11 +777,11 @@ public class SectionEActivity extends Activity {
         }
 
         // E15 Option A
-        if (mne15a.isChecked()) {
+        if (mne15b.isChecked()) {
 
             // E16
             if (!(mne16a.isChecked() || mne16b.isChecked() || mne16c.isChecked() || mne16d.isChecked() || mne16e.isChecked() || mne16f.isChecked() || mne16g.isChecked() || mne16x.isChecked())) {
-                Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne16), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne16), Toast.LENGTH_LONG).show();
                 mne16x.setError("This data is Required!");
                 Log.i(TAG, "mne16: This data is Required!");
                 return false;
@@ -789,7 +791,7 @@ public class SectionEActivity extends Activity {
 
             // E16x96
             if (mne16x.isChecked() && mne16x96.getText().toString().isEmpty()) {
-                Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne16), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne16), Toast.LENGTH_LONG).show();
                 mne16x96.setError("Others Required!");
                 Log.i(TAG, "mne16x96: Others Required!");
                 return false;
@@ -800,7 +802,7 @@ public class SectionEActivity extends Activity {
 
         // E15
         if (mne15.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne15), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne15), Toast.LENGTH_LONG).show();
             mne15b.setError("This data is Required!");
             Log.i(TAG, "mne15: This data is Required!");
             return false;
@@ -809,11 +811,11 @@ public class SectionEActivity extends Activity {
         }
 
         // E17 Option A
-        if (mne17a.isChecked()) {
+        if (mne17b.isChecked()) {
 
             // E18
             if (!(mne18a.isChecked() || mne18b.isChecked() || mne18x.isChecked())) {
-                Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mne18), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne18), Toast.LENGTH_LONG).show();
                 mne18x.setError("This data is Required!");
                 Log.i(TAG, "mne18: This data is Required!");
                 return false;
@@ -823,7 +825,7 @@ public class SectionEActivity extends Activity {
 
             // E18x96
             if (mne18x.isChecked() && mne18x96.getText().toString().isEmpty()) {
-                Toast.makeText(this, "ERROR(Others Req.): " + getResources().getResourceTypeName(R.string.mne18), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne18), Toast.LENGTH_LONG).show();
                 mne18x96.setError("Others Required!");
                 Log.i(TAG, "mne18x96: Others Required!");
                 return false;

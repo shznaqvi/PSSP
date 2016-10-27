@@ -65,6 +65,7 @@ public class SectionBActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Toast.makeText(SectionBActivity.this, s+"|"+start+"|"+before+"|"+count, Toast.LENGTH_SHORT).show();
                 if (s.length() == 15) {
                     String[] cp = s.toString().split("-");
                     if (cp.length != 3 || cp[0].length() != 5 || cp[1].length() != 7 || cp[2].length() != 1) {
@@ -76,6 +77,9 @@ public class SectionBActivity extends Activity {
                     }
                 } else {
                     mnb4.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                    if (before == 0 && (s.length() == 5 || s.length() == 13)) {
+                        mnb4.append("-");
+                    }
 
                 }
             }
@@ -100,8 +104,8 @@ public class SectionBActivity extends Activity {
                 }
             }
         });
-        mnb5.setMaxDate(System.currentTimeMillis() - (PSSPApp.MILLISECONDS_IN_DAY * 30 * 6));
-        mnb5.setMinDate(System.currentTimeMillis() - (PSSPApp.MILLISECONDS_IN_DAY * 30 * 11) + PSSPApp.MILLISECONDS_IN_DAY * 29);
+        mnb5.setMaxDate(System.currentTimeMillis() - ((PSSPApp.MILLISECONDS_IN_DAY * 30) * 6));
+        mnb5.setMinDate(System.currentTimeMillis() - ((PSSPApp.MILLISECONDS_IN_DAY * 30) * 11) + PSSPApp.MILLISECONDS_IN_DAY * 29);
 
 
     }
@@ -129,13 +133,13 @@ public class SectionBActivity extends Activity {
         Toast.makeText(this, "Validation Successfull! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
-    
+
     private boolean formValidation() {
         Toast.makeText(this, "Validating Section B", Toast.LENGTH_SHORT).show();
 
 
         if (mnb1.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnb1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnb1), Toast.LENGTH_LONG).show();
             mnb1.setError("This data is Required!");
             Log.i(TAG, "mnb1: This data is Required!");
             return false;
@@ -144,7 +148,7 @@ public class SectionBActivity extends Activity {
         }
 
         if (mnb2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnb2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnb2), Toast.LENGTH_LONG).show();
             mnb2.setError("This data is Required!");
             Log.i(TAG, "mnb2: This data is Required!");
             return false;
@@ -153,7 +157,7 @@ public class SectionBActivity extends Activity {
         }
 
         if (mnb3.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnb3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnb3), Toast.LENGTH_LONG).show();
             mnb3.setError("This data is Required!");
             Log.i(TAG, "mnb3: This data is Required!");
             return false;
@@ -161,33 +165,60 @@ public class SectionBActivity extends Activity {
             mnb3.setError(null);
         }
 
+
         if (mnb4.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnb4), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnb4), Toast.LENGTH_LONG).show();
             mnb4.setError("This data is Required!");
             Log.i(TAG, "mnb4: This data is Required!");
             return false;
-        } else {
-            if (mnb4.length() == 15) {
-                String[] cp = mnb4.toString().split("-");
-                if (cp.length != 3 || cp[0].length() != 5 || cp[1].length() != 7 || cp[2].length() != 1) {
-                    Toast.makeText(this, "ERROR(incorrect): " + getResources().getResourceTypeName(R.string.mnb4), Toast.LENGTH_LONG).show();
-                    mnb4.setError("CNIC is incorrect");
-                    Log.i(TAG, "mnb4: CNIC is incorrect");
-                    return false;
-                } else {
-                    mnb4.setError(null);
-                }
-            } else {
-                Toast.makeText(this, "ERROR(incomplete): " + getResources().getResourceTypeName(R.string.mnb4), Toast.LENGTH_LONG).show();
-                mnb4.setError("CNIC is incomplete");
-                Log.i(TAG, "mnb4: CNIC is incomplete");
+        } else if (mnb4.length() == 15) {
+            Toast.makeText(this, mnb4.getText().toString(), Toast.LENGTH_SHORT).show();
+            String[] cp = mnb4.getText().toString().split("-");
+            mnb4.setError(null);
+            if (cp.length != 3 || cp[0].length() != 5 || cp[1].length() != 7 || cp[2].length() != 1) {
+                Toast.makeText(this, "ERROR(incorrect): " + getString(R.string.mnb4), Toast.LENGTH_LONG).show();
+                mnb4.setError("CNIC is incorrect");
+                Log.i(TAG, "mnb4: CNIC is incorrect");
                 return false;
+            } else {
+                mnb4.setError(null);
+
             }
+        } else if (mnb4.length() < 15) {
+            mnb4.setError(null);
+            Toast.makeText(this, "ERROR(incomplete): " + getString(R.string.mnb4), Toast.LENGTH_LONG).show();
+            mnb4.setError("CNIC is incomplete");
+            Log.i(TAG, "mnb4: CNIC is incomplete");
+            return false;
+        } else {
+            mnb4.setError(null);
         }
 
-        if (ageDob.isChecked()) {
 
+        if (!ageDob.isChecked()) {
+            if (mnb6d.getText().toString().isEmpty() || mnb6m.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR(incomplete): " + getString(R.string.mnb6), Toast.LENGTH_LONG).show();
+                mnb6d.setError("Age not given");
+                Log.i(TAG, "mnb6: Age no given");
+                return false;
+            } else if (Integer.valueOf(mnb6d.getText().toString()) > 29 || Integer.valueOf(mnb6m.getText().toString()) > 11 || Integer.valueOf(mnb6m.getText().toString()) < 6) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mnb6), Toast.LENGTH_LONG).show();
+                mnb6m.setError("This is invalid");
+                Log.i(TAG, "This is invalid");
+                return false;
+            } else {
+                mnb6d.setError(null);
+            }
 
+        }
+
+        if (mnb7.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnb7), Toast.LENGTH_LONG).show();
+            mnb7m.setError("Data is required!");
+            Log.i(TAG, "mnb7: Age no given");
+            return false;
+        } else {
+            mnb7m.setError(null);
         }
 
         return true;

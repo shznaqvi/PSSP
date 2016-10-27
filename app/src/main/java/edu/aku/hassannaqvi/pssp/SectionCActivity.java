@@ -114,6 +114,8 @@ public class SectionCActivity extends Activity {
     RadioButton mnc7b;
     @BindView(R.id.mnc7c)
     RadioButton mnc7c;
+    @BindView(R.id.fldGrpmnc8)
+    LinearLayout fldGrpmnc8;
     @BindView(R.id.txtmnc8)
     TextView txtmnc8;
     @BindView(R.id.mnc8)
@@ -177,12 +179,12 @@ public class SectionCActivity extends Activity {
 
 
         txtmnc1.setText(txtmnc1.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnc2.setText(txtmnc2.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnc4.setText(txtmnc4.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnc6.setText(txtmnc6.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnc7.setText(txtmnc7.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnc8.setText(txtmnc8.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnc9.setText(txtmnc9.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnc2.setText(txtmnc2.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnc4.setText(txtmnc4.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnc6.setText(txtmnc6.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnc7.setText(txtmnc7.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnc8.setText(txtmnc8.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnc9.setText(txtmnc9.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
 
 
         // SKIP PATTERNS
@@ -201,7 +203,17 @@ public class SectionCActivity extends Activity {
                 }
             }
         });
-
+        mnc6.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (mnc6a.isChecked()) {
+                    fldGrpmnc8.setVisibility(View.VISIBLE);
+                } else {
+                    fldGrpmnc8.setVisibility(View.VISIBLE);
+                    mnc8.setText(null);
+                }
+            }
+        });
         mnc9.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -264,7 +276,7 @@ public class SectionCActivity extends Activity {
 
         // C1
         if (mnc1.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc1), Toast.LENGTH_LONG).show();
             mnc1c.setError("This data is Required!");
             Log.i(TAG, "mnc1: This data is Required!");
             return false;
@@ -274,7 +286,7 @@ public class SectionCActivity extends Activity {
 
         // C2
         if (mnc2.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc2), Toast.LENGTH_LONG).show();
             mnc2c.setError("This data is Required!");
             Log.i(TAG, "mnc2: This data is Required!");
             return false;
@@ -284,7 +296,7 @@ public class SectionCActivity extends Activity {
 
         // C3 (with C2 = Yes)
         if (mnc2a.isChecked() && mnc3.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc3), Toast.LENGTH_LONG).show();
             mnc3b.setError("This data is Required!");
             Log.i(TAG, "mnc3: This data is Required!");
             return false;
@@ -294,7 +306,7 @@ public class SectionCActivity extends Activity {
 
         // C4 (with C2 = No OR Don't Know)
         if ((mnc2b.isChecked() || mnc2c.isChecked()) && mnc4.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc4), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc4), Toast.LENGTH_LONG).show();
             mnc4c.setError("This data is Required!");
             Log.i(TAG, "mnc4: This data is Required!");
             return false;
@@ -304,7 +316,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - BCG
         if (mnc5bcg.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5bcg), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5bcg), Toast.LENGTH_LONG).show();
             mnc5bcg.setError("This data is Required!");
             Log.i(TAG, "mnc5bcg: This data is Required!");
             return false;
@@ -314,7 +326,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - OPV0
         if (mnc5opv0.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5opv0), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5opv0), Toast.LENGTH_LONG).show();
             mnc5opv0.setError("This data is Required!");
             Log.i(TAG, "mnc5opv0: This data is Required!");
             return false;
@@ -324,7 +336,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - OPV1
         if (mnc5opv1.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5opv1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5opv1), Toast.LENGTH_LONG).show();
             mnc5opv1.setError("This data is Required!");
             Log.i(TAG, "mnc5opv1: This data is Required!");
             return false;
@@ -334,7 +346,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - OPV2
         if (mnc5opv2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5opv2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5opv2), Toast.LENGTH_LONG).show();
             mnc5opv2.setError("This data is Required!");
             Log.i(TAG, "mnc5opv2: This data is Required!");
             return false;
@@ -344,7 +356,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - OPV3
         if (mnc5opv3.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5opv3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5opv3), Toast.LENGTH_LONG).show();
             mnc5opv3.setError("This data is Required!");
             Log.i(TAG, "mnc5opv3: This data is Required!");
             return false;
@@ -354,7 +366,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - Penta 1
         if (mnc5p1.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5p1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5p1), Toast.LENGTH_LONG).show();
             mnc5p1.setError("This data is Required!");
             Log.i(TAG, "mnc5p1: This data is Required!");
             return false;
@@ -364,7 +376,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - Penta 2
         if (mnc5p2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5p2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5p2), Toast.LENGTH_LONG).show();
             mnc5p2.setError("This data is Required!");
             Log.i(TAG, "mnc5p2: This data is Required!");
             return false;
@@ -374,7 +386,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - Penta 3
         if (mnc5p3.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5p3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5p3), Toast.LENGTH_LONG).show();
             mnc5p3.setError("This data is Required!");
             Log.i(TAG, "mnc5p3: This data is Required!");
             return false;
@@ -384,7 +396,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - PCV1
         if (mnc5pcv1.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5pcv1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5pcv1), Toast.LENGTH_LONG).show();
             mnc5pcv1.setError("This data is Required!");
             Log.i(TAG, "mnc5pcv1: This data is Required!");
             return false;
@@ -394,7 +406,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - PCV2
         if (mnc5pcv2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5pcv2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5pcv2), Toast.LENGTH_LONG).show();
             mnc5pcv2.setError("This data is Required!");
             Log.i(TAG, "mnc5pcv2: This data is Required!");
             return false;
@@ -404,7 +416,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - PCV3
         if (mnc5pcv3.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5pcv3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5pcv3), Toast.LENGTH_LONG).show();
             mnc5pcv3.setError("This data is Required!");
             Log.i(TAG, "mnc5pcv3: This data is Required!");
             return false;
@@ -414,7 +426,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - IPV1
         if (mnc5ipv1.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5ipv1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5ipv1), Toast.LENGTH_LONG).show();
             mnc5ipv1.setError("This data is Required!");
             Log.i(TAG, "mnc5ipv1: This data is Required!");
             return false;
@@ -424,7 +436,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - IPV2
         if (mnc5ipv2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5ipv2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5ipv2), Toast.LENGTH_LONG).show();
             mnc5ipv2.setError("This data is Required!");
             Log.i(TAG, "mnc5ipv2: This data is Required!");
             return false;
@@ -434,7 +446,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - IPV3
         if (mnc5ipv3.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5ipv3), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5ipv3), Toast.LENGTH_LONG).show();
             mnc5ipv3.setError("This data is Required!");
             Log.i(TAG, "mnc5ipv3: This data is Required!");
             return false;
@@ -444,7 +456,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - Measles 1
         if (mnc5m1.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5m1), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5m1), Toast.LENGTH_LONG).show();
             mnc5m1.setError("This data is Required!");
             Log.i(TAG, "mnc5m1: This data is Required!");
             return false;
@@ -454,7 +466,7 @@ public class SectionCActivity extends Activity {
 
         // C5 - Measles 2
         if (mnc5m2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc5m2), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc5m2), Toast.LENGTH_LONG).show();
             mnc5m2.setError("This data is Required!");
             Log.i(TAG, "mnc5m2: This data is Required!");
             return false;
@@ -464,7 +476,7 @@ public class SectionCActivity extends Activity {
 
         // C6
         if (mnc6.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc6), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc6), Toast.LENGTH_LONG).show();
             mnc6c.setError("Not selected");
             Log.i(TAG, "mnc6: Not selected");
             return false;
@@ -474,7 +486,7 @@ public class SectionCActivity extends Activity {
 
         // C7 
         if (mnc7.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc7), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc7), Toast.LENGTH_LONG).show();
             mnc7c.setError("Not selected");
             Log.i(TAG, "mnc7: Not selected");
             return false;
@@ -483,8 +495,8 @@ public class SectionCActivity extends Activity {
         }
 
         // C8
-        if (mnc8.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc8), Toast.LENGTH_LONG).show();
+        if (mnc6a.isChecked() && mnc8.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc8), Toast.LENGTH_LONG).show();
             mnc8.setError("This data is Required!");
             Log.i(TAG, "mnc8: This data is Required!");
             return false;
@@ -494,19 +506,19 @@ public class SectionCActivity extends Activity {
 
         // C9 (C10 + C11 and C12)
         if (mnc9.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc9), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc9), Toast.LENGTH_LONG).show();
             mnc9c.setError("Not selected");
             Log.i(TAG, "mnc9: Not selected");
             return false;
-        } else if (mnc9a.isChecked() && mnc10mm.getText().toString().isEmpty() && mnc10yy.getText().toString().isEmpty()) {
+        } else if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
             mnc9c.setError(null);
-            Toast.makeText(this, "ERROR(empty): " + getResources().getResourceTypeName(R.string.mnc10), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
             mnc10mm.setError("Data not entered");
             Log.i(TAG, "mnc10: Data not entered");
             return false;
         } else if (mnc9a.isChecked() && mnc11.getCheckedRadioButtonId() == -1) {
             mnc9c.setError(null);
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc11), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc11), Toast.LENGTH_LONG).show();
             mnc11d.setError("Not Selected");
             Log.i(TAG, "mnc11: Not Selected");
             return false;
@@ -514,7 +526,7 @@ public class SectionCActivity extends Activity {
             mnc9c.setError(null);
             mnc10mm.setError(null);
             mnc11d.setError(null);
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc12), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc12), Toast.LENGTH_LONG).show();
             mnc12b.setError("Not selected");
             Log.i(TAG, "mnc12: Not selected");
             return false;
@@ -524,10 +536,32 @@ public class SectionCActivity extends Activity {
             mnc11b.setError(null);
             mnc12b.setError(null);
         }
+        if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
+            mnc10mm.setError("Date is empty");
+            Log.i(TAG, "mnc10: empty");
+            return false;
+        } else if (mnc9a.isChecked() && Integer.valueOf(mnc10mm.getText().toString()) > 12) {
+            Toast.makeText(this, "ERROR(invalid month): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
+            mnc10mm.setError("Invalid data");
+            Log.i(TAG, "mnc10: Not selected");
+            return false;
+        } else {
+            mnc10mm.setError(null);
+        }
+        if (mnc9a.isChecked() && (mnc10yy.getText().toString() == "2015" || mnc10yy.getText().toString() == "2016")) {
+            mnc10yy.setError(null);
+        } else {
+            Toast.makeText(this, "ERROR(invalid year): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
+            mnc10yy.setError("Invalid data");
+            Log.i(TAG, "mnc10: Not selected");
+            return false;
+
+        }
 
         // C11 NGO Text
         if (mnc11d.isChecked() && mnc11name.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(required): " + getResources().getResourceTypeName(R.string.mnc11d), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc11d), Toast.LENGTH_LONG).show();
             mnc11name.setError("This data is Required!");
             Log.i(TAG, "mnc11name: This data is Required!");
             return false;
@@ -537,7 +571,7 @@ public class SectionCActivity extends Activity {
 
         // C13
         if (mnc13.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mnc13), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc13), Toast.LENGTH_LONG).show();
             mnc13d.setError("Not selected");
             Log.i(TAG, "mnc13: Not selected");
             return false;

@@ -8,7 +8,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 /**
  * Created by hassan.naqvi on 10/13/2016.
@@ -19,6 +18,7 @@ public class PSSPApp extends Application {
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWENTY_MINUTES = 1000 * 60 * 20;
+    private static final int TWO_MINUTES = 1000 * 60 * 2;
 
     private static final long MILLIS_IN_SECOND = 1000;
     private static final long SECONDS_IN_MINUTE = 60;
@@ -28,9 +28,12 @@ public class PSSPApp extends Application {
     private static final long DAYS_IN_YEAR = 365;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
 
+
+    public static int mna3 = -1;
     public static String mnb1 = "TEST";
     public static int chCount = 0;
     public static int chTotal = 0;
+
 
     protected LocationManager locationManager;
 
@@ -47,6 +50,7 @@ public class PSSPApp extends Application {
                 MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
                 new MyLocationListener()
         );
+
 
     }
 
@@ -74,26 +78,21 @@ public class PSSPApp extends Application {
     protected boolean isBetterLocation(Location location, Location currentBestLocation) {
         if (currentBestLocation == null) {
             // A new location is always better than no location
-            Toast.makeText(getApplicationContext(), "New Location -- Accuracy: " + String.valueOf(location.getAccuracy()), Toast.LENGTH_SHORT).show();
-
             return true;
         }
 
         // Check whether the new location fix is newer or older
         long timeDelta = location.getTime() - currentBestLocation.getTime();
-        boolean isSignificantlyNewer = timeDelta > TWENTY_MINUTES;
-        boolean isSignificantlyOlder = timeDelta < -TWENTY_MINUTES;
+        boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
+        boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
         boolean isNewer = timeDelta > 0;
 
         // If it's been more than two minutes since the current location, use the new location
         // because the user has likely moved
         if (isSignificantlyNewer) {
-            Toast.makeText(getApplicationContext(), "Significantly Newer Location -- Time: " + String.valueOf(location.getTime()), Toast.LENGTH_SHORT).show();
-
             return true;
             // If the new location is more than two minutes older, it must be worse
         } else if (isSignificantlyOlder) {
-            Toast.makeText(getApplicationContext(), "Significantly Older Location -- Time: " + String.valueOf(location.getTime()), Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -109,20 +108,12 @@ public class PSSPApp extends Application {
 
         // Determine location quality using a combination of timeliness and accuracy
         if (isMoreAccurate) {
-            Toast.makeText(getApplicationContext(), "More Accurate Location -- Accuracy: " + String.valueOf(location.getAccuracy()), Toast.LENGTH_SHORT).show();
-
             return true;
         } else if (isNewer && !isLessAccurate) {
-            Toast.makeText(getApplicationContext(), "New Location, Less Accurate -- Accuracy: " + String.valueOf(location.getAccuracy()), Toast.LENGTH_SHORT).show();
-
-            return false;
+            return true;
         } else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider) {
-            Toast.makeText(getApplicationContext(), "New Location, Significatly Less Accurate -- Accuracy: " + String.valueOf(location.getAccuracy()), Toast.LENGTH_SHORT).show();
-
-            return false;
+            return true;
         }
-        Toast.makeText(getApplicationContext(), "Older/Worse Location -- Accuracy: " + String.valueOf(location.getAccuracy()), Toast.LENGTH_SHORT).show();
-
         return false;
     }
 

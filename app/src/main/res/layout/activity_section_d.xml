@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="72dp"
     tools:context="edu.aku.hassannaqvi.pssp.SectionDActivity">
 
     <LinearLayout
@@ -389,80 +389,94 @@
 
         </RadioGroup>
 
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/fldGrpmnd10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/mnd10" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/mnd10" />
 
 
-        <CheckBox
-            android:id="@+id/mnd10a"
-            android:layout_width="match_parent"
+            <CheckBox
+                android:id="@+id/mnd10a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10a" />
+
+            <CheckBox
+                android:id="@+id/mnd10b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10b" />
+
+            <CheckBox
+                android:id="@+id/mnd10c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10c" />
+
+            <CheckBox
+                android:id="@+id/mnd10d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10d" />
+
+            <CheckBox
+                android:id="@+id/mnd10e"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10e" />
+
+            <CheckBox
+                android:id="@+id/mnd10f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10f" />
+
+            <CheckBox
+                android:id="@+id/mnd10g"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10g" />
+
+            <CheckBox
+                android:id="@+id/mnd10h"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10h" />
+
+            <CheckBox
+                android:id="@+id/mnd10i"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnd10i" />
+
+            <CheckBox
+                android:id="@+id/mnd10x"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnOther" />
+
+            <EditText
+                android:id="@+id/mnd10x96"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/mnOther" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mnd10a" />
-
-        <CheckBox
-            android:id="@+id/mnd10b"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10b" />
-
-        <CheckBox
-            android:id="@+id/mnd10c"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10c" />
-
-        <CheckBox
-            android:id="@+id/mnd10d"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10d" />
-
-        <CheckBox
-            android:id="@+id/mnd10e"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10e" />
-
-        <CheckBox
-            android:id="@+id/mnd10f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10f" />
-
-        <CheckBox
-            android:id="@+id/mnd10g"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10g" />
-
-        <CheckBox
-            android:id="@+id/mnd10h"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10h" />
-
-        <CheckBox
-            android:id="@+id/mnd10i"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnd10i" />
-
-        <CheckBox
-            android:id="@+id/mnd10x"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mnOther" />
-
-        <EditText
-            android:id="@+id/mnd10x96"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/mnOther" />
+            android:layout_marginTop="80dp"
+            android:onClick="submitSecD"
+            android:text="@string/nextSection" />
 
     </LinearLayout>
 </ScrollView>

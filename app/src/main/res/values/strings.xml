@@ -25,7 +25,7 @@
     <string name="mna1"> دورے کی تاریخ </string>
     <string name="mna2"> انٹرویو کرنے والے کا نام </string>
     <string name="mna2nm"> انٹرویو کرنے والے کا نام </string>
-    <string name="mna3"> فیلڈ سائیٹ/ضلعہ </string>
+    <string name="mna3"> فیلڈ سائیٹ/ضلع </string>
     <string name="mna4"> پی ایس یو نمبر اور نام </string>
     <string name="mna5"> گھرانے کا نمبر </string>
     <string name="mna5_ext"> خاندان نمبر </string>
@@ -60,6 +60,7 @@
     <string name="mnb3"> ماں کا نام </string>
     <string name="mnb4"> ماں یا باپ کا شناختی کارڈ نمبر </string>
     <string name="mnb5"> تاریخ پیدائش </string>
+    <string name="mnb6">  بچے کی عمر </string>
     <string name="mnb6mm"> بچے کی عمر (ماہ) </string>
     <string name="mnb6yy"> بچے کی عمر (دن) </string>
     <string name="mnb7"> بچے کی جنس </string>
@@ -94,16 +95,16 @@
     <string name="mnc5opv3"> OPV3 </string>
     <string name="mnc5ipv1"> IPV </string>
     <string name="mnc5_4"> نو ماہ کی عمر میں  </string>
-    <string name="mnc5m1"> Measles1 </string>
+    <string name="mnc5m1"> Measles 1 </string>
     <string name="mnc5ipv2"> IPV </string>
     <string name="mnc5_5">  پندرہ ماہ کی عمر میں </string>
-    <string name="mnc5m2">  Measles2 </string>
+    <string name="mnc5m2">  Measles 2 </string>
     <string name="mnc5ipv3"> IPV </string>
     <string name="mnc6"> کیا (بچے کا نام) نے کبھی گھر میں پولیو سے بچاؤ کے قطرے پیئے ہیں؟ </string>
     <string name="mnc7"> کیا گزشتہ مہم کے دوران (بچے کا نام) نے پولیو سے بچاؤ کے قطرے پیئے ہیں ؟ </string>
     <string name="mnc8"> (بچے کا نام) نے گھر میں کتنی دفعہ پولیو سے بچاؤ کے قطرے پیئے ہیں ؟ </string>
     <string name="mnc9"> کیا بچے کو پولیو کے بچاؤکے لیے ران میں پولیو کا ٹیکہ لگوایا گیا؟ (ٹیکوں کے شیڈول کے علاوہ) </string>
-    <string name="mnc10"> اگر ہاں تو، بچے کو پولیو کا ٹیکہ کب لگوایا گیا؟ </string>
+    <string name="mnc10"> اگر ہاں تو، بچے کو پولیو کا ٹیکہ کب لگوایا گیا؟ (تاریخ) </string>
     <string name="mnc10yy"> سال </string>
     <string name="mnc10mm"> ماہ </string>
     <string name="mnc11"> کس جگہ سے بچے کو IPV کا ٹیکہ لگوایا گیا؟ </string>
@@ -299,13 +300,61 @@
 
 
     <string name="mnf1"> عموماً آپ اپنے گھر میں کونسی زبان بولتے ہیں؟ </string>
-    <string name="mnf2"> کونسی بنیادی مواد گھر کی تعمیر کے وقت استعمال کی ہوئی ہے؟ </string>
+    <string name="mnf1a"> اردو </string>
+    <string name="mnf1b"> سندھی </string>
+    <string name="mnf1c"> سرائیکی </string>
+    <string name="mnf1d"> پشتو </string>
+    <string name="mnf1e"> پنجابی </string>
+    <string name="mnf1f"> بلوچی </string>
+    <string name="mnf2"> منتخب شدہ گھر میں فرش کی تعمیر کے لئے استعمال ہونےوالا بنیادی مواد کیا ہے؟ </string>
+    <string name="mnf2a"> زمین/ریت/مٹی </string>
+    <string name="mnf2b"> لکڑی کے تختے </string>
+    <string name="mnf2c"> اینٹیں </string>
+    <string name="mnf2d"> سیمینٹ </string>
+    <string name="mnf2e"> ٹائلز </string>
+    <string name="mnf2f"> چپس </string>
+    <string name="mnf2g"> ماربل </string>
+    <string name="mnf2h"> چٹائی </string>
+    <string name="mnf2i"> قالین </string>
     <string name="mnf3"> گھر کی مالکانہ حیثیت کیا ہے؟ </string>
+    <string name="mnf3a"> ذاتی </string>
+    <string name="mnf3b"> کرائے کا </string>
+    <string name="mnf3c"> رہائش کرائے کے بغیر </string>
     <string name="mnf4"> اس گھر میں سونے کے لیے کتنے کمرے استعمال ہوتے ہیں؟ </string>
     <string name="mnf5"> گھر میں عام طور پر کھانا پکانے کے لیے کونسا اینڈھن استعمال کرتے ہیں؟ </string>
+    <string name="mnf5a"> بجلی </string>
+    <string name="mnf5b"> ایل –پی-جی سیلنڈر </string>
+    <string name="mnf5c"> (سوئی گیس کنکشن(قدرتی گیس </string>
+    <string name="mnf5d"> مٹی کا تیل </string>
+    <string name="mnf5e"> کوئلہ </string>
+    <string name="mnf5f"> لکڑی </string>
+    <string name="mnf5g"> تنکے/جھاڑیاں/گھاس پھونس </string>
+    <string name="mnf5h"> (جانوروں کا گوبر(اوپلے </string>
+    <string name="mnf5i">گھر میں کھانا نہیں پکتا  </string>
     <string name="mnf6"> کیا آپ کے گھر میں بجلی ہے؟ </string>
     <string name="mnf7"> عموماً کونسے ٹوائلٹ کی سہولت گھر کے افراد استعمال کرتے ہیں؟ </string>
+    <string name="mnf7a"> فلش سیوریح کے نظام سے ملا ہوا </string>
+    <string name="mnf7b"> فلش سپٹک ٹینک سے جڑا ہوا </string>
+    <string name="mnf7c"> فلش گڑھےواے لیٹرین سے جڑاہوا </string>
+    <string name="mnf7d"> فلش معلوم نہیں کہاں </string>
+    <string name="mnf7e"> گڑھے والا لیٹرین ڈھکا ہوا </string>
+    <string name="mnf7f">گڑھے والا کھلا  لیٹرین</string>
+    <string name="mnf7g">کوئی سہولت نہیں/جھاڑیوں/میدان میں جاتے ہیں</string>
     <string name="mnf8"> گھر کے افراد کے پینے کے پانی کے لیے کونسی بنیادی سہولت موجود ہے؟ </string>
+    <string name="mnf8a"> (سرکاری پانی کا نلکا(گھر میں </string>
+    <string name="mnf8b"> عوامی جگہوں میں لگا ہوا نلکا </string>
+    <string name="mnf8c"> ٹیوب ویل /بورنگ کا پانی </string>
+    <string name="mnf8d"> ہینڈ پمپ </string>
+    <string name="mnf8e"> محفوظ کنواں </string>
+    <string name="mnf8f"> غیر محفوظ کنواں </string>
+    <string name="mnf8g"> محفوظ چشمہ </string>
+    <string name="mnf8h"> غیر محفوظ چشمہ </string>
+    <string name="mnf8i"> بارش کا پانی </string>
+    <string name="mnf8j"> ٹینکر کا پانی </string>
+    <string name="mnf8k"> فلٹر پلانٹ کا پانی </string>
+    <string name="mnf8l"> سوزکی یا گدھا گاڑی </string>
+    <string name="mnf8m"> (سطح والا پانی(دریا،جھیل ،ڈیم،تالاب/ ندی/نہر/ابپاشی کا پانی </string>
+    <string name="mnf8n"> (پانی  کی بوتل (منرل واٹر </string>
     <string name="mnf9"> جواہندہ سے پوچھیں کہ ان میں سے کون سے اثاثے کے مالک ہیں اگر ان میں سے کوئی چیز نہیں تو (0) لکھیں </string>
     <string name="mnf9a"> مویشی سرمایہ، بیھنسیں اور گائیں </string>
     <string name="mnf9b"> بھیڑ ور بکریاں </string>
@@ -316,23 +365,41 @@
     <string name="mnf9g"> دوسری گاڑیاں، وضاحت کریں </string>
     <string name="mnf9h"> (ٹیلی ویژن ) </string>
     <string name="mnf9i"> (وی سی آر/وی سی پی/ڈی وی ڈی) </string>
-    <string name="mnf9k"> (لینڈ لائن ٹیلی فون) </string>
-    <string name="mnf9l"> (موبائل فونز) </string>
-    <string name="mnf9m"> (صوفا سیٹ) </string>
-    <string name="mnf9n"> (سلائی مشین) </string>
-    <string name="mnf9p"> (کپڑے دھونے والی مشین) </string>
-    <string name="mnf9q"> (مائکرو ویو اوون) </string>
-    <string name="mnf9r"> (ریفریجریٹر/فرج) </string>
-    <string name="mnf9s"> (پانی گرم کرنے والی مشین) </string>
-    <string name="mnf9t"> (بجلی کے پنکھے) </string>
-    <string name="mnf9u"> (ایئر کنڈیشنر/ایئر کولر) </string>
-    <string name="mnf9v"> (کمپیوٹر) </string>
-    <string name="section_G">جی : لیب کی معلومات</string>
+    <string name="mnf9j"> (لینڈ لائن ٹیلی فون) </string>
+    <string name="mnf9k"> (موبائل فونز) </string>
+    <string name="mnf9l"> (صوفا سیٹ) </string>
+    <string name="mnf9m"> (سلائی مشین) </string>
+    <string name="mnf9n"> (کپڑے دھونے والی مشین) </string>
+    <string name="mnf9o"> (مائکرو ویو اوون) </string>
+    <string name="mnf9p"> (ریفریجریٹر/فرج) </string>
+    <string name="mnf9q"> (پانی گرم کرنے والی مشین) </string>
+    <string name="mnf9r"> (بجلی کے پنکھے) </string>
+    <string name="mnf9s"> (ایئر کنڈیشنر/ایئر کولر) </string>
+    <string name="mnf9t"> (کمپیوٹر) </string>
+    <string name="section_G"> جی : لیب کی معلومات </string>
     <string name="mng1"> خون کا نمونہ لیا گیا ہے؟ </string>
     <string name="mng2"> اگر ہاں، تو لیے گئے خون کی مقدار لکھیں </string>
     <string name="mngsticker"> اسٹیکر </string>
-    <string name="mnCard">حفاظتی ٹیکوں کا کارڈ</string>
-    <string name="mnResp">جواب دہندہ</string>
+    <string name="mnCard"> حفاظتی ٹیکوں کا کارڈ </string>
+    <string name="mnResp"> جواب دہندہ </string>
+    <string name="title_activity_login">Log in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Log in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="title_activity_splash_screen">Splash Screen Activity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
 
