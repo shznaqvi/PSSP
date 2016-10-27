@@ -378,7 +378,7 @@
     <string name="mnf9t"> (کمپیوٹر) </string>
     <string name="section_G"> جی : لیب کی معلومات </string>
     <string name="mng1"> خون کا نمونہ لیا گیا ہے؟ </string>
-    <string name="mng2"> اگر ہاں، تو لیے گئے خون کی مقدار لکھیں </string>
+    <string name="mng2"> اگر ہاں، تو لیے گئے خون کی مقدار لکھیں (CC میں) </string>
     <string name="mngsticker"> اسٹیکر </string>
     <string name="mnCard"> حفاظتی ٹیکوں کا کارڈ </string>
     <string name="mnResp"> جواب دہندہ </string>

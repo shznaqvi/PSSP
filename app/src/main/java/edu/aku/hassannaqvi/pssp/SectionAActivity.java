@@ -200,6 +200,7 @@ public class SectionAActivity extends Activity {
     private boolean formValidation() {
         Toast.makeText(this, "Validating Section A", Toast.LENGTH_SHORT).show();
 
+
         if (mna4.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mna4), Toast.LENGTH_LONG).show();
             mna4.setError("This data is Required!");
@@ -209,6 +210,16 @@ public class SectionAActivity extends Activity {
             mna4.setError(null);
         }
 
+        if (mna4.getText().toString().length() < 5) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mna4), Toast.LENGTH_LONG).show();
+            mna4.setError("This data is invalid!");
+            Log.i(TAG, "mna4: This data is invalid!");
+            return false;
+        } else {
+            mna4.setError(null);
+        }
+
+
         if (mna5.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mna5), Toast.LENGTH_LONG).show();
             mna5.setError("This data is Required!");
@@ -217,6 +228,16 @@ public class SectionAActivity extends Activity {
         } else {
             mna5.setError(null);
         }
+
+        if (mna5.getText().toString().length() < 5 || !mna5.getText().toString().contains("-")) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mna5), Toast.LENGTH_LONG).show();
+            mna5.setError("This data is Required!");
+            Log.i(TAG, "mna5: This data is Required!");
+            return false;
+        } else {
+            mna5.setError(null);
+        }
+
         if (mna6.isChecked()) {
 
 
@@ -259,7 +280,7 @@ public class SectionAActivity extends Activity {
                 mna11.setError("This data is Required!");
                 Log.i(TAG, "mna11: This data is Required!");
                 return false;
-            } else if (Integer.valueOf(mna11.getText().toString()) < 14) {
+            } else if (Integer.valueOf(mna11.getText().toString()) < 15) {
                 Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mna11), Toast.LENGTH_LONG).show();
                 mna11.setError("This data is Invalid!");
                 Log.i(TAG, "mna11: This data is Invalid!");
@@ -288,12 +309,15 @@ public class SectionAActivity extends Activity {
                 mna13.setError("This data is Required!");
                 Log.i(TAG, "mna13: This data is Required!");
                 return false;
+            } else if (Integer.valueOf(mna13.getText().toString()) == 0) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mna13), Toast.LENGTH_LONG).show();
+                mna13.setError("This data is invalid!");
+                Log.i(TAG, "mna13: This data is invalid!");
+                return false;
             } else {
                 mna13.setError(null);
             }
-
         }
         return true;
     }
-
 }

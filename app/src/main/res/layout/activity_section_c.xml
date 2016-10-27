@@ -800,14 +800,8 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/fldGrpmnc12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible">
 
-            <TextView
+        <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -843,7 +837,7 @@
 
                     />
             </RadioGroup>
-        </LinearLayout>
+
 
         <TextView
             style="@style/subHeading"

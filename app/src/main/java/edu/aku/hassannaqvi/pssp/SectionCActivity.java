@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -114,8 +115,6 @@ public class SectionCActivity extends Activity {
     RadioButton mnc7b;
     @BindView(R.id.mnc7c)
     RadioButton mnc7c;
-    @BindView(R.id.fldGrpmnc8)
-    LinearLayout fldGrpmnc8;
     @BindView(R.id.txtmnc8)
     TextView txtmnc8;
     @BindView(R.id.mnc8)
@@ -165,10 +164,11 @@ public class SectionCActivity extends Activity {
     @BindView(R.id.mnc13d)
     RadioButton mnc13d;
 
+    @BindView(R.id.fldGrpmnc8)
+    LinearLayout fldGrpmnc8;
     @BindView(R.id.fldGrpmnc10)
     LinearLayout fldGrpmnc10;
-    @BindView(R.id.fldGrpmnc12)
-    LinearLayout fldGrpmnc12;
+
 
 
     @Override
@@ -214,17 +214,26 @@ public class SectionCActivity extends Activity {
                 }
             }
         });
+        mnc6a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                             @Override
+                                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                 if (isChecked) {
+                                                     fldGrpmnc8.setVisibility(View.VISIBLE);
+                                                 } else {
+                                                     fldGrpmnc8.setVisibility(View.GONE);
+                                                     mnc8.setText(null);
+                                                 }
+                                             }
+                                         }
+        );
         mnc9.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (mnc9a.isChecked()) {
                     fldGrpmnc10.setVisibility(View.VISIBLE);
-                    fldGrpmnc12.setVisibility(View.GONE);
-                    mnc12.clearCheck();
                 }
                 if (mnc9b.isChecked() || mnc9c.isChecked()) {
                     fldGrpmnc10.setVisibility(View.GONE);
-                    fldGrpmnc12.setVisibility(View.VISIBLE);
                     mnc10yy.setText(null);
                     mnc10mm.setText(null);
                     mnc11.clearCheck();
@@ -510,38 +519,27 @@ public class SectionCActivity extends Activity {
             mnc9c.setError("Not selected");
             Log.i(TAG, "mnc9: Not selected");
             return false;
-        } else if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
+        } else {
+            mnc9c.setError(null);
+        }
+
+        if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
             mnc9c.setError(null);
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
             mnc10mm.setError("Data not entered");
             Log.i(TAG, "mnc10: Data not entered");
             return false;
-        } else if (mnc9a.isChecked() && mnc11.getCheckedRadioButtonId() == -1) {
-            mnc9c.setError(null);
-            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc11), Toast.LENGTH_LONG).show();
-            mnc11d.setError("Not Selected");
-            Log.i(TAG, "mnc11: Not Selected");
-            return false;
-        } else if ((mnc9b.isChecked() || mnc9c.isChecked()) && mnc12.getCheckedRadioButtonId() == -1) {
-            mnc9c.setError(null);
-            mnc10mm.setError(null);
-            mnc11d.setError(null);
-            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc12), Toast.LENGTH_LONG).show();
-            mnc12b.setError("Not selected");
-            Log.i(TAG, "mnc12: Not selected");
-            return false;
         } else {
-            mnc9c.setError(null);
             mnc10mm.setError(null);
-            mnc11b.setError(null);
-            mnc12b.setError(null);
         }
+
         if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
             mnc10mm.setError("Date is empty");
             Log.i(TAG, "mnc10: empty");
             return false;
-        } else if (mnc9a.isChecked() && Integer.valueOf(mnc10mm.getText().toString()) > 12) {
+        }
+        if (mnc9a.isChecked() && Integer.valueOf(mnc10mm.getText().toString()) > 12) {
             Toast.makeText(this, "ERROR(invalid month): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
             mnc10mm.setError("Invalid data");
             Log.i(TAG, "mnc10: Not selected");
@@ -550,12 +548,12 @@ public class SectionCActivity extends Activity {
             mnc10mm.setError(null);
         }
         if (mnc9a.isChecked() && (mnc10yy.getText().toString() == "2015" || mnc10yy.getText().toString() == "2016")) {
-            mnc10yy.setError(null);
-        } else {
             Toast.makeText(this, "ERROR(invalid year): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
             mnc10yy.setError("Invalid data");
             Log.i(TAG, "mnc10: Not selected");
             return false;
+        } else {
+            mnc10yy.setError(null);
 
         }
 
@@ -568,6 +566,29 @@ public class SectionCActivity extends Activity {
         } else {
             mnc11name.setError(null);
         }
+
+        if (mnc9a.isChecked() && mnc11.getCheckedRadioButtonId() == -1) {
+            mnc9c.setError(null);
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc11), Toast.LENGTH_LONG).show();
+            mnc11d.setError("Not Selected");
+            Log.i(TAG, "mnc11: Not Selected");
+            return false;
+        } else {
+            mnc11d.setError(null);
+        }
+
+
+        if (mnc12.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc12), Toast.LENGTH_LONG).show();
+            mnc12b.setError("Not selected");
+            Log.i(TAG, "mnc12: Not selected");
+            return false;
+        } else {
+            mnc12b.setError(null);
+        }
+
+
+
 
         // C13
         if (mnc13.getCheckedRadioButtonId() == -1) {

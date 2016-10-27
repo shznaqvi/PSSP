@@ -331,7 +331,7 @@ public class SectionIMActivity extends Activity {
                 if (isChecked) {
                     fldGrpimDOB.setVisibility(View.VISIBLE);
                     imd.setMaxDate(new Date().getTime());
-                    imd.setMinDate(new Date().getTime() - (PSSPApp.MILLISECONDS_IN_YEAR * 2));
+                    imd.setMinDate(new Date().getTime() - (PSSPApp.MILLISECONDS_IN_YEAR * 5));
                     fldGrpimAge.setVisibility(View.GONE);
                     imed.setText(null);
                     imem.setText(null);

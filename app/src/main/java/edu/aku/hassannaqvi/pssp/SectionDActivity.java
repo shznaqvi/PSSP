@@ -159,7 +159,7 @@ public class SectionDActivity extends Activity {
         mnd5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (mnd1a.isChecked()) {
+                if (mnd5a.isChecked()) {
                     fldGrpmnd6.setVisibility(View.VISIBLE);
                 } else {
                     fldGrpmnd6.setVisibility(View.GONE);
@@ -315,7 +315,7 @@ public class SectionDActivity extends Activity {
             mnd6x.setError("This data is Required!");
             Log.i(TAG, "mnd6: This data is Required!");
             return false;
-        } else if (mnd6x.isChecked()) {
+        } else if (mnd6x.isChecked() && mnd6x96.getText().toString().isEmpty()) {
             mnd6x.setError(null);
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnd6), Toast.LENGTH_LONG).show();
             mnd6x96.setError("This data is empty!");
