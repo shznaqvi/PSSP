@@ -15,6 +15,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -170,7 +173,6 @@ public class SectionCActivity extends Activity {
     LinearLayout fldGrpmnc10;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -209,7 +211,7 @@ public class SectionCActivity extends Activity {
                 if (mnc6a.isChecked()) {
                     fldGrpmnc8.setVisibility(View.VISIBLE);
                 } else {
-                    fldGrpmnc8.setVisibility(View.VISIBLE);
+                    fldGrpmnc8.setVisibility(View.GONE);
                     mnc8.setText(null);
                 }
             }
@@ -255,7 +257,7 @@ public class SectionCActivity extends Activity {
 
     }
 
-    public void submitSecC(View v) {
+    public void submitSecC(View v) throws JSONException {
         Toast.makeText(this, "Processing Section C", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -270,11 +272,115 @@ public class SectionCActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSC();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
-    private void SaveDraft() {
+    private void SaveDraft() throws JSONException {
+        JSONObject sc = new JSONObject();
+
+        switch (mnc1.getCheckedRadioButtonId()) {
+            case R.id.mnc1a:
+                sc.put("mnc1", "1");
+                break;
+            case R.id.mnc1b:
+                sc.put("mnc1", "2");
+                break;
+            case R.id.mnc1c:
+                sc.put("mnc1", "99");
+                break;
+            default:
+                sc.put("mnc1", "default");
+                break;
+        }
+        switch (mnc2.getCheckedRadioButtonId()) {
+            case R.id.mnc2a:
+                sc.put("mnc2", "1");
+                break;
+            case R.id.mnc2b:
+                sc.put("mnc2", "2");
+                break;
+            case R.id.mnc2c:
+                sc.put("mnc2", "99");
+                break;
+            default:
+                sc.put("mnc2", "default");
+                break;
+        }
+        switch (mnc3.getCheckedRadioButtonId()) {
+            case R.id.mnc3a:
+                sc.put("mnc3", "1");
+                break;
+            case R.id.mnc3b:
+                sc.put("mnc3", "2");
+                break;
+            default:
+                sc.put("mnc3", "default");
+                break;
+        }
+
+        switch (mnc4.getCheckedRadioButtonId()) {
+            case R.id.mnc4a:
+                sc.put("mnc4", "1");
+                break;
+            case R.id.mnc4b:
+                sc.put("mnc4", "2");
+                break;
+            case R.id.mnc4c:
+                sc.put("mnc4", "99");
+                break;
+            default:
+                sc.put("mnc4", "default");
+                break;
+        }
+
+        sc.put("mnc5bcg", mnc5bcg.getText().toString());
+        sc.put("mnc5opv0", mnc5opv0.getText().toString());
+        sc.put("mnc5opv1", mnc5opv1.getText().toString());
+        sc.put("mnc5opv2", mnc5opv2.getText().toString());
+        sc.put("mnc5opv3", mnc5opv3.getText().toString());
+        sc.put("mnc5pcv1", mnc5pcv1.getText().toString());
+        sc.put("mnc5pcv2", mnc5pcv2.getText().toString());
+        sc.put("mnc5pcv3", mnc5pcv3.getText().toString());
+        sc.put("mnc5ipv1", mnc5ipv1.getText().toString());
+        sc.put("mnc5ipv2", mnc5ipv2.getText().toString());
+        sc.put("mnc5ipv3", mnc5ipv3.getText().toString());
+        sc.put("mnc5ipv3", mnc5pcv2.getText().toString());
+        sc.put("mnc5p1", mnc5p1.getText().toString());
+        sc.put("mnc5p2", mnc5p2.getText().toString());
+        sc.put("mnc5p3", mnc5p3.getText().toString());
+        sc.put("mnc5m1", mnc5m1.getText().toString());
+        sc.put("mnc5m2", mnc5m2.getText().toString());
+        switch (mnc13.getCheckedRadioButtonId()) {
+            case R.id.mnc13a:
+                sc.put("mnc13", "1");
+                break;
+            case R.id.mnc13b:
+                sc.put("mnc13", "2");
+                break;
+            case R.id.mnc13c:
+                sc.put("mnc13", "3");
+                break;
+            case R.id.mnc13d:
+                sc.put("mnc13", "99");
+                break;
+            default:
+                sc.put("mnc13", "default");
+                break;
+        }
+
+
+        PSSPApp.fc.setsC(sc.toString());
+
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
@@ -523,40 +629,44 @@ public class SectionCActivity extends Activity {
             mnc9c.setError(null);
         }
 
-        if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
-            mnc9c.setError(null);
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
-            mnc10mm.setError("Data not entered");
-            Log.i(TAG, "mnc10: Data not entered");
-            return false;
-        } else {
-            mnc10mm.setError(null);
-        }
+        if (mnc9a.isChecked()) {
 
-        if (mnc9a.isChecked() && (mnc10mm.getText().toString().isEmpty() || mnc10yy.getText().toString().isEmpty())) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
-            mnc10mm.setError("Date is empty");
-            Log.i(TAG, "mnc10: empty");
-            return false;
-        }
-        if (mnc9a.isChecked() && Integer.valueOf(mnc10mm.getText().toString()) > 12) {
-            Toast.makeText(this, "ERROR(invalid month): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
-            mnc10mm.setError("Invalid data");
-            Log.i(TAG, "mnc10: Not selected");
-            return false;
-        } else {
-            mnc10mm.setError(null);
-        }
-        if (mnc9a.isChecked() && (mnc10yy.getText().toString() == "2015" || mnc10yy.getText().toString() == "2016")) {
-            Toast.makeText(this, "ERROR(invalid year): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
-            mnc10yy.setError("Invalid data");
-            Log.i(TAG, "mnc10: Not selected");
-            return false;
-        } else {
-            mnc10yy.setError(null);
+            if (mnc10yy.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10yy), Toast.LENGTH_LONG).show();
+                mnc10yy.setError("Date is empty");
+                Log.i(TAG, "mnc10: empty");
+                return false;
+            } else {
+                mnc10yy.setError(null);
+            }
+            if (mnc10mm.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnc10mm), Toast.LENGTH_LONG).show();
+                mnc10mm.setError("Date is empty");
+                Log.i(TAG, "mnc10: empty");
+                return false;
+            } else {
+                mnc10mm.setError(null);
+            }
 
-        }
 
+            if (Integer.valueOf(mnc10mm.getText().toString()) > 12) {
+                Toast.makeText(this, "ERROR(invalid month): " + getString(R.string.mnc10mm), Toast.LENGTH_LONG).show();
+                mnc10mm.setError("Invalid data");
+                Log.i(TAG, "mnc10: Not selected");
+                return false;
+            } else {
+                mnc10mm.setError(null);
+            }
+            if (!mnc10yy.getText().toString().equals("2015") && !mnc10yy.getText().toString().equals("2016")) {
+                Toast.makeText(this, "ERROR(invalid year): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
+                mnc10yy.setError("Invalid data");
+                Log.i(TAG, "mnc10: Not selected");
+                return false;
+            } else {
+                mnc10yy.setError(null);
+
+            }
+        }
         // C11 NGO Text
         if (mnc11d.isChecked() && mnc11name.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(required): " + getString(R.string.mnc11d), Toast.LENGTH_LONG).show();
@@ -586,8 +696,6 @@ public class SectionCActivity extends Activity {
         } else {
             mnc12b.setError(null);
         }
-
-
 
 
         // C13

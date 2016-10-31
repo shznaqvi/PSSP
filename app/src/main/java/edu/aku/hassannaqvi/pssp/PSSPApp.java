@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 /**
@@ -28,19 +29,23 @@ public class PSSPApp extends Application {
     private static final long DAYS_IN_YEAR = 365;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
 
+    public static String deviceId;
 
+    public static String mna2;
     public static int mna3 = -1;
     public static String mnb1 = "TEST";
     public static int chCount = 0;
     public static int chTotal = 0;
-
-
+    public static FormsContract fc;
     protected LocationManager locationManager;
 
     @Override
     public void onCreate() {
         super.onCreate();
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
+
+        deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 

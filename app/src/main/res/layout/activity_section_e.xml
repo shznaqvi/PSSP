@@ -132,10 +132,10 @@
                 android:text="@string/mne2i" />
 
             <CheckBox
-                android:id="@+id/mne2k"
+                android:id="@+id/mne2j"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mne2k" />
+                android:text="@string/mne2j" />
 
             <CheckBox
                 android:id="@+id/mne2x"

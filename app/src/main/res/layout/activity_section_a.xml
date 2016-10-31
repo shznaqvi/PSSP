@@ -57,10 +57,9 @@
             android:id="@+id/mna5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:digits="1234567890qwertyuiopasdfghjklzxcvbnm-"
+            android:digits="1234567890--qwertyuiopasdfghjklzxcvbnm"
             android:hint="@string/mna5"
-            android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="5" />
 
         <CheckBox
             android:id="@+id/mna6"

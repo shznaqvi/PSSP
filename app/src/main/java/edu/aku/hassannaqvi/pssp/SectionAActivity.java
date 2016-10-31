@@ -1,8 +1,11 @@
 package edu.aku.hassannaqvi.pssp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,7 +17,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +33,8 @@ public class SectionAActivity extends Activity {
     // District Spinner (used in LoginActivity)
     public static ArrayList<String> lables;
     public static ArrayList<String> values;
+
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
     @BindView(R.id.txtmna3)
     TextView txtmna3;
@@ -158,7 +168,7 @@ public class SectionAActivity extends Activity {
 
     }
 
-    public void submitSecA(View v) {
+    public void submitSecA(View v) throws JSONException {
         Toast.makeText(this, "Processing Section A", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -173,7 +183,7 @@ public class SectionAActivity extends Activity {
         }
     }
 
-    public void endForm(View v) {
+    public void endForm(View v) throws JSONException {
         Toast.makeText(this, "Processing Section A", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -189,12 +199,102 @@ public class SectionAActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        Long rowId;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        rowId = null;
+        rowId = db.addForm(PSSPApp.fc);
+
+        PSSPApp.fc.setID(String.valueOf(rowId));
+
+        if (rowId != null) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            PSSPApp.fc.setUID(PSSPApp.fc.getDeviceID().substring(PSSPApp.fc.getDeviceID().length() - 5) + "-" + PSSPApp.fc.getID());
+            Toast.makeText(this, "Current Form No: " + PSSPApp.fc.getUID(), Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 
-    private void SaveDraft() {
-        Toast.makeText(this, "Validation Successfull! - Saving Draft...", Toast.LENGTH_SHORT).show();
+    private void SaveDraft() throws JSONException {
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+        PSSPApp.fc = new FormsContract();
+
+        PSSPApp.fc.setMna1(dtToday);
+        PSSPApp.fc.setMna2(PSSPApp.mna2);
+        PSSPApp.fc.setMna3(String.valueOf(PSSPApp.mna3));
+        PSSPApp.fc.setMna4(mna4.getText().toString());
+        PSSPApp.fc.setMna5(mna5.getText().toString());
+        PSSPApp.fc.setMna6a(mna6.getText().toString());
+        PSSPApp.fc.setMna6(mna6.getText().toString());
+
+        JSONObject sA = new JSONObject();
+
+        sA.put("mna8", mna8.getText().toString());
+        sA.put("mna9", mna9.getText().toString());
+        switch (mna10.getCheckedRadioButtonId()) {
+            case R.id.mna10a:
+                sA.put("mna10", "1");
+                break;
+            case R.id.mna10b:
+                sA.put("mna10", "2");
+                break;
+            case R.id.mna10c:
+                sA.put("mna10", "3");
+                break;
+            case R.id.mna10d:
+                sA.put("mna10", "4");
+                break;
+            case R.id.mna10e:
+                sA.put("mna10", "5");
+                break;
+            case R.id.mna10x:
+                sA.put("mna10", "96");
+                break;
+            default:
+                sA.put("mna10", "default");
+        }
+        sA.put("mna10x96", mna10x96.getText().toString());
+        sA.put("mna11", mna11.getText().toString());
+        switch (mna12.getCheckedRadioButtonId()) {
+            case R.id.mna12a:
+                sA.put("mna12", "1");
+                break;
+            case R.id.mna12b:
+                sA.put("mna12", "2");
+                break;
+            case R.id.mna12c:
+                sA.put("mna12", "3");
+                break;
+            case R.id.mna12d:
+                sA.put("mna12", "4");
+                break;
+            case R.id.mna12e:
+                sA.put("mna12", "5");
+                break;
+            case R.id.mna12f:
+                sA.put("mna12", "6");
+                break;
+            case R.id.mna12x:
+                sA.put("mna12", "96");
+                break;
+            default:
+                sA.put("mna12", "default");
+        }
+        sA.put("mna12x96", mna12x96.getText().toString());
+        sA.put("mna13", mna13.getText().toString());
+
+
+        PSSPApp.fc.setDeviceID(PSSPApp.deviceId);
+        setGPS();
+
+        Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(sA.this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
+
     }
 
     private boolean formValidation() {
@@ -231,8 +331,8 @@ public class SectionAActivity extends Activity {
 
         if (mna5.getText().toString().length() < 5 || !mna5.getText().toString().contains("-")) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mna5), Toast.LENGTH_LONG).show();
-            mna5.setError("This data is Required!");
-            Log.i(TAG, "mna5: This data is Required!");
+            mna5.setError("This data is invalid!");
+            Log.i(TAG, "mna5: This data is invalid!");
             return false;
         } else {
             mna5.setError(null);
@@ -319,5 +419,19 @@ public class SectionAActivity extends Activity {
             }
         }
         return true;
+    }
+
+    public void setGPS() {
+        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+
+        // CONVERTING GPS TIMESTAMP TO DATETIME FORMAT
+        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
+
+        PSSPApp.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
+        PSSPApp.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
+        PSSPApp.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
+        PSSPApp.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+
+        Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
     }
 }

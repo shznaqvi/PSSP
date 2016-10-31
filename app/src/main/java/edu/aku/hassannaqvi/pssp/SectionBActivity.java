@@ -16,6 +16,11 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -110,7 +115,7 @@ public class SectionBActivity extends Activity {
 
     }
 
-    public void submitSecB(View v) {
+    public void submitSecB(View v) throws JSONException {
         Toast.makeText(this, "Processing Section B", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -125,12 +130,41 @@ public class SectionBActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSB();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 
-    private void SaveDraft() {
-        Toast.makeText(this, "Validation Successfull! - Saving Draft...", Toast.LENGTH_SHORT).show();
+    private void SaveDraft() throws JSONException {
+
+        JSONObject sb = new JSONObject();
+
+        // Data of Birth conversion from DataPicker
+        String DOB = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(mnb5.getCalendarView().getDate());
+
+
+        sb.put("mnb1", mnb1.getText().toString());
+        sb.put("mnb2", mnb2.getText().toString());
+        sb.put("mnb3", mnb3.getText().toString());
+        sb.put("mnb4", mnb4.getText().toString());
+        sb.put("mnb5", ageDob.isChecked() ? DOB : "");
+        sb.put("mnb6d", mnb6d.getText().toString());
+        sb.put("mnb6m", mnb6m.getText().toString());
+        sb.put("mnb7", mnb7m.isChecked() ? "1" : "2");
+
+        PSSPApp.fc.setsB(sb.toString());
+
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
 

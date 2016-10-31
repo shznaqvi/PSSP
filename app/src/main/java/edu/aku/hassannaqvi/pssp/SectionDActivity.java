@@ -15,6 +15,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -224,14 +227,21 @@ public class SectionDActivity extends Activity {
 
     }
 
-    public void submitSecD(View v) {
+    public void submitSecD(View v) throws JSONException {
         Toast.makeText(this, "Processing Section D", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Section IM", Toast.LENGTH_SHORT).show();
-                Intent secIM = new Intent(this, SectionIMActivity.class);
+                Intent secIM;
+                if (PSSPApp.chCount < PSSPApp.chTotal) {
+                    Toast.makeText(this, "Starting Section IM", Toast.LENGTH_SHORT).show();
+                    secIM = new Intent(this, SectionIMActivity.class);
+                } else {
+                    Toast.makeText(this, "Starting Section E", Toast.LENGTH_SHORT).show();
+                    secIM = new Intent(this, SectionEActivity.class);
+                }
                 startActivity(secIM);
+
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -239,18 +249,154 @@ public class SectionDActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSD();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
-    private void SaveDraft() {
-        Toast.makeText(this, "Validation Suddessful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+    private void SaveDraft() throws JSONException {
+        JSONObject sd = new JSONObject();
+
+        switch (mnd1.getCheckedRadioButtonId()) {
+            case R.id.mnd1a:
+                sd.put("mnd1", "1");
+                break;
+            case R.id.mnd1b:
+                sd.put("mnd1", "2");
+                break;
+            case R.id.mnd1c:
+                sd.put("mnd1", "99");
+                break;
+            default:
+                sd.put("mnd1", "default");
+                break;
+        }
+
+        switch (mnd2.getCheckedRadioButtonId()) {
+            case R.id.mnd2a:
+                sd.put("mnd2", "1");
+                break;
+            case R.id.mnd2b:
+                sd.put("mnd2", "2");
+                break;
+            case R.id.mnd2c:
+                sd.put("mnd2", "99");
+                break;
+            default:
+                sd.put("mnd2", "default");
+                break;
+        }
+        switch (mnd3.getCheckedRadioButtonId()) {
+            case R.id.mnd3a:
+                sd.put("mnd3", "1");
+                break;
+            case R.id.mnd3b:
+                sd.put("mnd3", "2");
+                break;
+            case R.id.mnd3c:
+                sd.put("mnd3", "99");
+                break;
+            default:
+                sd.put("mnd3", "default");
+                break;
+        }
+        switch (mnd4.getCheckedRadioButtonId()) {
+            case R.id.mnd4a:
+                sd.put("mnd4", "1");
+                break;
+            case R.id.mnd4b:
+                sd.put("mnd4", "2");
+                break;
+            case R.id.mnd4c:
+                sd.put("mnd4", "99");
+                break;
+            default:
+                sd.put("mnd4", "default");
+                break;
+        }
+        switch (mnd5.getCheckedRadioButtonId()) {
+            case R.id.mnd5a:
+                sd.put("mnd5", "1");
+                break;
+            case R.id.mnd5b:
+                sd.put("mnd5", "2");
+                break;
+            default:
+                sd.put("mnd5", "default");
+                break;
+        }
+        sd.put("mnd6a", mnd6a.isChecked() ? "1" : "");
+        sd.put("mnd6b", mnd6b.isChecked() ? "2" : "");
+        sd.put("mnd6c", mnd6c.isChecked() ? "3" : "");
+        sd.put("mnd6d", mnd6d.isChecked() ? "4" : "");
+        sd.put("mnd6e", mnd6e.isChecked() ? "5" : "");
+        sd.put("mnd6f", mnd6f.isChecked() ? "6" : "");
+        sd.put("mnd6g", mnd6g.isChecked() ? "7" : "");
+        sd.put("mnd6h", mnd6h.isChecked() ? "8" : "");
+        sd.put("mnd6i", mnd6i.isChecked() ? "9" : "");
+        sd.put("mnd6x", mnd6x.isChecked() ? "96" : "");
+        sd.put("mnd6x96", mnd6x96.getText().toString());
+        switch (mnd7.getCheckedRadioButtonId()) {
+            case R.id.mnd7a:
+                sd.put("mnd7", "1");
+                break;
+            case R.id.mnd7b:
+                sd.put("mnd7", "2");
+                break;
+            default:
+                sd.put("mnd7", "default");
+                break;
+        }
+        switch (mnd8.getCheckedRadioButtonId()) {
+            case R.id.mnd8a:
+                sd.put("mnd8", "1");
+                break;
+            case R.id.mnd8b:
+                sd.put("mnd8", "2");
+                break;
+            default:
+                sd.put("mnd8", "default");
+                break;
+        }
+        switch (mnd9.getCheckedRadioButtonId()) {
+            case R.id.mnd9a:
+                sd.put("mnd9", "1");
+                break;
+            case R.id.mnd9b:
+                sd.put("mnd9", "2");
+                break;
+            default:
+                sd.put("mnd9", "default");
+                break;
+        }
+        sd.put("mnd10a", mnd10a.isChecked() ? "1" : "");
+        sd.put("mnd10b", mnd10b.isChecked() ? "2" : "");
+        sd.put("mnd10c", mnd10c.isChecked() ? "3" : "");
+        sd.put("mnd10d", mnd10d.isChecked() ? "4" : "");
+        sd.put("mnd10e", mnd10e.isChecked() ? "5" : "");
+        sd.put("mnd10f", mnd10f.isChecked() ? "6" : "");
+        sd.put("mnd10g", mnd10g.isChecked() ? "7" : "");
+        sd.put("mnd10h", mnd10h.isChecked() ? "8" : "");
+        sd.put("mnd10i", mnd10i.isChecked() ? "9" : "");
+        sd.put("mnd10x", mnd10x.isChecked() ? "96" : "");
+        sd.put("mnd10x96", mnd10x96.getText().toString());
+
+        PSSPApp.fc.setsD(sd.toString());
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
 
     private boolean formValidation() {
 
-        Toast.makeText(this, "Validating Sedtion D", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Validating Section D", Toast.LENGTH_SHORT).show();
 
         // D1
         if (mnd1.getCheckedRadioButtonId() == -1) {

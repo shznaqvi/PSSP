@@ -405,6 +405,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(false);
 
             if (success) {
+                PSSPApp.mna2 = mEmailView.getText().toString();
                 Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(iLogin);
 

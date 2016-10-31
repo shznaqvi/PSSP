@@ -14,6 +14,9 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -50,8 +53,8 @@ public class SectionEActivity extends Activity {
     CheckBox mne2h;
     @BindView(R.id.mne2i)
     CheckBox mne2i;
-    @BindView(R.id.mne2k)
-    CheckBox mne2k;
+    @BindView(R.id.mne2j)
+    CheckBox mne2j;
     @BindView(R.id.mne2x)
     CheckBox mne2x;
     @BindView(R.id.mne2x96)
@@ -297,7 +300,7 @@ public class SectionEActivity extends Activity {
                     mne2g.setChecked(false);
                     mne2h.setChecked(false);
                     mne2i.setChecked(false);
-                    mne2k.setChecked(false);
+                    mne2j.setChecked(false);
                     mne2x.setChecked(false);
                     mne2x96.setText(null);
                     // clear E3
@@ -497,7 +500,7 @@ public class SectionEActivity extends Activity {
     }
 
 
-    public void submitSecE(View v) {
+    public void submitSecE(View v) throws JSONException {
         Toast.makeText(this, "Processing Section E", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -512,11 +515,284 @@ public class SectionEActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSE();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
-    private void SaveDraft() {
+    private void SaveDraft() throws JSONException {
+        JSONObject se = new JSONObject();
+
+        switch (mne1.getCheckedRadioButtonId()) {
+            case R.id.mne1a:
+                se.put("mne1", "1");
+                break;
+            case R.id.mne1b:
+                se.put("mne1", "2");
+                break;
+            case R.id.mne1c:
+                se.put("mne1", "99");
+                break;
+            default:
+                se.put("mne1", "default");
+                break;
+        }
+        se.put("mne2a", mne2a.isChecked() ? "1" : "");
+        se.put("mne2b", mne2b.isChecked() ? "2" : "");
+        se.put("mne2c", mne2c.isChecked() ? "3" : "");
+        se.put("mne2d", mne2d.isChecked() ? "4" : "");
+        se.put("mne2e", mne2e.isChecked() ? "5" : "");
+        se.put("mne2f", mne2f.isChecked() ? "6" : "");
+        se.put("mne2g", mne2g.isChecked() ? "7" : "");
+        se.put("mne2h", mne2h.isChecked() ? "8" : "");
+        se.put("mne2i", mne2i.isChecked() ? "9" : "");
+        se.put("mne2j", mne2j.isChecked() ? "10" : "");
+        se.put("mne2x", mne2x.isChecked() ? "96" : "");
+        se.put("mne2x96", mne2x96.getText().toString());
+        switch (mne3.getCheckedRadioButtonId()) {
+            case R.id.mne3a:
+                se.put("mne3", "1");
+                break;
+            case R.id.mne3b:
+                se.put("mne3", "2");
+                break;
+            default:
+                se.put("mne3", "default");
+                break;
+        }
+        se.put("mne4a", mne4a.isChecked() ? "1" : "");
+        se.put("mne4b", mne4b.isChecked() ? "2" : "");
+        se.put("mne4c", mne4c.isChecked() ? "3" : "");
+        se.put("mne4d", mne4d.isChecked() ? "4" : "");
+        se.put("mne4e", mne4e.isChecked() ? "5" : "");
+        se.put("mne4f", mne4f.isChecked() ? "6" : "");
+        se.put("mne4g", mne4g.isChecked() ? "7" : "");
+        se.put("mne4h", mne4h.isChecked() ? "8" : "");
+        se.put("mne4i", mne4i.isChecked() ? "9" : "");
+        se.put("mne4x99", mne4x99.isChecked() ? "99" : "");
+        se.put("mne4x", mne4x.isChecked() ? "96" : "");
+        se.put("mne4x96", mne4x96.getText().toString());
+        se.put("mne5a", mne5a.isChecked() ? "1" : "");
+        se.put("mne5b", mne5b.isChecked() ? "2" : "");
+        se.put("mne5c", mne5c.isChecked() ? "3" : "");
+        se.put("mne5d", mne5d.isChecked() ? "4" : "");
+        se.put("mne5e", mne5e.isChecked() ? "5" : "");
+        se.put("mne5x99", mne5x99.isChecked() ? "99" : "");
+        se.put("mne5x", mne5x.isChecked() ? "96" : "");
+        se.put("mne5x96", mne5x96.getText().toString());
+        se.put("mne6a", mne6a.isChecked() ? "1" : "");
+        se.put("mne6b", mne6b.isChecked() ? "2" : "");
+        se.put("mne6c", mne6c.isChecked() ? "3" : "");
+        se.put("mne6d", mne6d.isChecked() ? "4" : "");
+        se.put("mne6x99", mne6x99.isChecked() ? "99" : "");
+        se.put("mne6x", mne6x.isChecked() ? "96" : "");
+        se.put("mne6x96", mne6x96.getText().toString());
+        switch (mne7.getCheckedRadioButtonId()) {
+            case R.id.mne7a:
+                se.put("mne7", "1");
+                break;
+            case R.id.mne7b:
+                se.put("mne7", "2");
+                break;
+            case R.id.mne7c:
+                se.put("mne7", "96");
+                break;
+            default:
+                se.put("mne7", "default");
+                break;
+        }
+        se.put("mne7x96", mne7x96.getText().toString());
+        se.put("mne8a", mne8a.isChecked() ? "1" : "");
+        se.put("mne8b", mne8b.isChecked() ? "2" : "");
+        se.put("mne8c", mne8c.isChecked() ? "3" : "");
+        se.put("mne8d", mne8d.isChecked() ? "4" : "");
+        se.put("mne8e", mne8e.isChecked() ? "5" : "");
+        se.put("mne8f", mne8f.isChecked() ? "6" : "");
+        se.put("mne8x", mne8x.isChecked() ? "96" : "");
+        se.put("mne8x96", mne8x96.getText().toString());
+        switch (mne9.getCheckedRadioButtonId()) {
+            case R.id.mne9a:
+                se.put("mne9", "1");
+                break;
+            case R.id.mne9b:
+                se.put("mne9", "2");
+                break;
+            case R.id.mne9c:
+                se.put("mne9", "99");
+                break;
+            default:
+                se.put("mne9", "default");
+                break;
+        }
+        switch (mne10.getCheckedRadioButtonId()) {
+            case R.id.mne10a:
+                se.put("mne10", "1");
+                break;
+            case R.id.mne10b:
+                se.put("mne10", "2");
+                break;
+            case R.id.mne10c:
+                se.put("mne10", "3");
+                break;
+            case R.id.mne10x99:
+                se.put("mne10", "99");
+                break;
+            case R.id.mne10x:
+                se.put("mne10", "96");
+                break;
+            default:
+                se.put("mne10", "default");
+                break;
+        }
+        se.put("mne10x96", mne10x96.getText().toString());
+        switch (mne11.getCheckedRadioButtonId()) {
+            case R.id.mne11a:
+                se.put("mne11", "1");
+                break;
+            case R.id.mne11b:
+                se.put("mne11", "2");
+                break;
+            case R.id.mne11c:
+                se.put("mne11", "3");
+                break;
+            case R.id.mne11d:
+                se.put("mne11", "4");
+                break;
+            case R.id.mne11e:
+                se.put("mne11", "5");
+                break;
+            case R.id.mne11x99:
+                se.put("mne11", "99");
+                break;
+            case R.id.mne11x:
+                se.put("mne11", "96");
+                break;
+            default:
+                se.put("mne11", "default");
+                break;
+        }
+        se.put("mne11x96", mne11x96.getText().toString());
+        switch (mne12.getCheckedRadioButtonId()) {
+            case R.id.mne12a:
+                se.put("mne12", "1");
+                break;
+            case R.id.mne12b:
+                se.put("mne12", "2");
+                break;
+            case R.id.mne12c:
+                se.put("mne12", "3");
+                break;
+            case R.id.mne12d:
+                se.put("mne12", "4");
+                break;
+            case R.id.mne12e:
+                se.put("mne12", "5");
+                break;
+            case R.id.mne12x99:
+                se.put("mne12", "99");
+                break;
+            default:
+                se.put("mne12", "default");
+                break;
+        }
+        switch (mne13.getCheckedRadioButtonId()) {
+            case R.id.mne13a:
+                se.put("mne13", "1");
+                break;
+            case R.id.mne13b:
+                se.put("mne13", "2");
+                break;
+            case R.id.mne13c:
+                se.put("mne13", "3");
+                break;
+            case R.id.mne13d:
+                se.put("mne13", "4");
+                break;
+            case R.id.mne13e:
+                se.put("mne13", "5");
+                break;
+            case R.id.mne13x99:
+                se.put("mne13", "99");
+                break;
+            case R.id.mne13x:
+                se.put("mne13", "96");
+                break;
+            default:
+                se.put("mne13", "default");
+                break;
+        }
+        se.put("mne13x96", mne13x96.getText().toString());
+        switch (mne14.getCheckedRadioButtonId()) {
+            case R.id.mne14a:
+                se.put("mne14", "1");
+                break;
+            case R.id.mne14b:
+                se.put("mne14", "2");
+                break;
+            case R.id.mne14c:
+                se.put("mne14", "99");
+                break;
+            default:
+                se.put("mne14", "default");
+                break;
+        }
+        switch (mne15.getCheckedRadioButtonId()) {
+            case R.id.mne15a:
+                se.put("mne15", "1");
+                break;
+            case R.id.mne15b:
+                se.put("mne15", "2");
+                break;
+            default:
+                se.put("mne15", "default");
+                break;
+        }
+
+        se.put("mne16a", mne16a.isChecked() ? "1" : "");
+        se.put("mne16b", mne16b.isChecked() ? "2" : "");
+        se.put("mne16c", mne16c.isChecked() ? "3" : "");
+        se.put("mne16d", mne16d.isChecked() ? "4" : "");
+        se.put("mne16e", mne16e.isChecked() ? "5" : "");
+        se.put("mne16f", mne16f.isChecked() ? "6" : "");
+        se.put("mne16g", mne16g.isChecked() ? "7" : "");
+        se.put("mne16x", mne16x.isChecked() ? "96" : "");
+        se.put("mne16x96", mne16x96.getText().toString());
+        switch (mne17.getCheckedRadioButtonId()) {
+            case R.id.mne17a:
+                se.put("mne17", "1");
+                break;
+            case R.id.mne17b:
+                se.put("mne17", "2");
+                break;
+            default:
+                se.put("mne17", "default");
+                break;
+        }
+        switch (mne18.getCheckedRadioButtonId()) {
+            case R.id.mne18a:
+                se.put("mne18", "1");
+                break;
+            case R.id.mne18b:
+                se.put("mne18", "2");
+                break;
+            case R.id.mne18x:
+                se.put("mne18", "96");
+                break;
+            default:
+                se.put("mne18", "default");
+                break;
+        }
+        se.put("mne18x96", mne18x96.getText().toString());
+
+        PSSPApp.fc.setsE(se.toString());
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
@@ -538,7 +814,7 @@ public class SectionEActivity extends Activity {
         if (mne1a.isChecked()) {
 
             // E2
-            if (!(mne2a.isChecked() || mne2b.isChecked() || mne2c.isChecked() || mne2d.isChecked() || mne2e.isChecked() || mne2f.isChecked() || mne2g.isChecked() || mne2h.isChecked() || mne2i.isChecked() || mne2k.isChecked() || mne2x.isChecked())) {
+            if (!(mne2a.isChecked() || mne2b.isChecked() || mne2c.isChecked() || mne2d.isChecked() || mne2e.isChecked() || mne2f.isChecked() || mne2g.isChecked() || mne2h.isChecked() || mne2i.isChecked() || mne2j.isChecked() || mne2x.isChecked())) {
                 Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne2), Toast.LENGTH_LONG).show();
                 mne2x.setError("This data is Required!");
                 Log.i(TAG, "mne2: This data is Required!");

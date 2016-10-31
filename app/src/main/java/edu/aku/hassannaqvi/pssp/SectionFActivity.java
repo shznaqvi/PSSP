@@ -12,6 +12,9 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -290,7 +293,7 @@ public class SectionFActivity extends Activity {
 
     }
 
-    public void submitSecF(View v) {
+    public void submitSecF(View v) throws JSONException {
         Toast.makeText(this, "Processing Section F", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -305,11 +308,238 @@ public class SectionFActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSF();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
-    private void SaveDraft() {
+    private void SaveDraft() throws JSONException {
+
+        JSONObject sf = new JSONObject();
+
+        switch (mnf1.getCheckedRadioButtonId()) {
+            case R.id.mnf1a:
+                sf.put("mnf1", "1");
+                break;
+            case R.id.mnf1b:
+                sf.put("mnf1", "2");
+                break;
+            case R.id.mnf1c:
+                sf.put("mnf1", "3");
+                break;
+            case R.id.mnf1d:
+                sf.put("mnf1", "4");
+                break;
+            case R.id.mnf1e:
+                sf.put("mnf1", "5");
+                break;
+            case R.id.mnf1x:
+                sf.put("mnf1", "96");
+                break;
+            default:
+                sf.put("mnf1", "default");
+                break;
+        }
+        sf.put("mnf1x96", mnf1x96.getText().toString());
+
+        switch (mnf2.getCheckedRadioButtonId()) {
+            case R.id.mnf2a:
+                sf.put("mnf2", "1");
+                break;
+            case R.id.mnf2b:
+                sf.put("mnf2", "2");
+                break;
+            case R.id.mnf2c:
+                sf.put("mnf2", "3");
+                break;
+            case R.id.mnf2d:
+                sf.put("mnf2", "4");
+                break;
+            case R.id.mnf2e:
+                sf.put("mnf2", "5");
+                break;
+            case R.id.mnf2f:
+                sf.put("mnf2", "6");
+                break;
+            case R.id.mnf2g:
+                sf.put("mnf2", "7");
+                break;
+            case R.id.mnf2h:
+                sf.put("mnf2", "8");
+                break;
+            case R.id.mnf2i:
+                sf.put("mnf2", "9");
+                break;
+            case R.id.mnf2x:
+                sf.put("mnf2", "96");
+                break;
+            default:
+                sf.put("mnf2", "default");
+                break;
+        }
+        sf.put("mnf2x96", mnf2x96.getText().toString());
+
+        switch (mnf3.getCheckedRadioButtonId()) {
+            case R.id.mnf3a:
+                sf.put("mnf3", "1");
+                break;
+            case R.id.mnf3b:
+                sf.put("mnf3", "2");
+                break;
+            case R.id.mnf3c:
+                sf.put("mnf3", "3");
+                break;
+            case R.id.mnf3x:
+                sf.put("mnf3", "96");
+                break;
+            default:
+                sf.put("mnf3", "default");
+                break;
+        }
+        sf.put("mnf3x96", mnf3x96.getText().toString());
+        sf.put("mnf4", mnf4.getText().toString());
+
+        switch (mnf5.getCheckedRadioButtonId()) {
+            case R.id.mnf5a:
+                sf.put("mnf5", "1");
+                break;
+            case R.id.mnf5b:
+                sf.put("mnf5", "2");
+                break;
+            case R.id.mnf5c:
+                sf.put("mnf5", "3");
+                break;
+            case R.id.mnf5d:
+                sf.put("mnf5", "4");
+                break;
+            case R.id.mnf5e:
+                sf.put("mnf5", "5");
+                break;
+            case R.id.mnf5f:
+                sf.put("mnf5", "6");
+                break;
+            case R.id.mnf5g:
+                sf.put("mnf5", "7");
+                break;
+            case R.id.mnf5h:
+                sf.put("mnf5", "8");
+                break;
+            case R.id.mnf5i:
+                sf.put("mnf5", "9");
+                break;
+            case R.id.mnf5x:
+                sf.put("mnf5", "96");
+                break;
+            default:
+                sf.put("mnf5", "default");
+                break;
+        }
+        sf.put("mnf5x96", mnf5x96.getText().toString());
+
+        switch (mnf6.getCheckedRadioButtonId()) {
+            case R.id.mnf6a:
+                sf.put("mnf6", "1");
+                break;
+            case R.id.mnf6b:
+                sf.put("mnf6", "2");
+                break;
+            default:
+                sf.put("mnf6", "default");
+                break;
+        }
+
+        switch (mnf7.getCheckedRadioButtonId()) {
+            case R.id.mnf7a:
+                sf.put("mnf7", "1");
+                break;
+            case R.id.mnf7b:
+                sf.put("mnf7", "2");
+                break;
+            case R.id.mnf7c:
+                sf.put("mnf7", "3");
+                break;
+            case R.id.mnf7d:
+                sf.put("mnf7", "4");
+                break;
+            case R.id.mnf7e:
+                sf.put("mnf7", "5");
+                break;
+            case R.id.mnf7f:
+                sf.put("mnf7", "6");
+                break;
+            case R.id.mnf7g:
+                sf.put("mnf7", "7");
+                break;
+            case R.id.mnf7x:
+                sf.put("mnf7", "96");
+                break;
+            default:
+                sf.put("mnf7", "default");
+                break;
+        }
+        sf.put("mnf7x96", mnf7x96.getText().toString());
+        switch (mnf7.getCheckedRadioButtonId()) {
+            case R.id.mnf7a:
+                sf.put("mnf7", "1");
+                break;
+            case R.id.mnf7b:
+                sf.put("mnf7", "2");
+                break;
+            case R.id.mnf7c:
+                sf.put("mnf7", "3");
+                break;
+            case R.id.mnf7d:
+                sf.put("mnf7", "4");
+                break;
+            case R.id.mnf7e:
+                sf.put("mnf7", "5");
+                break;
+            case R.id.mnf7f:
+                sf.put("mnf7", "6");
+                break;
+            case R.id.mnf7g:
+                sf.put("mnf7", "7");
+                break;
+            case R.id.mnf7h:
+                sf.put("mnf7", "8");
+                break;
+            case R.id.mnf7i:
+                sf.put("mnf7", "9");
+                break;
+            case R.id.mnf7j:
+                sf.put("mnf7", "10");
+                break;
+            case R.id.mnf7d:
+                sf.put("mnf7", "11");
+                break;
+            case R.id.mnf7e:
+                sf.put("mnf7", "12");
+                break;
+            case R.id.mnf7f:
+                sf.put("mnf7", "13");
+                break;
+            case R.id.mnf7g:
+                sf.put("mnf7", "14");
+                break;
+            case R.id.mnf7x:
+                sf.put("mnf7", "96");
+                break;
+            default:
+                sf.put("mnf7", "default");
+                break;
+        }
+        sf.put("mnf7x96", mnf7x96.getText().toString());
+
+
+        PSSPApp.fc.setsE(sf.toString());        
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
