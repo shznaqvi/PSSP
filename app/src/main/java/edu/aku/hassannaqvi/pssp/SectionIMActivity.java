@@ -18,6 +18,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -26,6 +30,7 @@ import butterknife.ButterKnife;
 public class SectionIMActivity extends Activity {
 
     private static final String TAG = SectionEActivity.class.getSimpleName();
+
 
     @BindView(R.id.activity_section_im)
     ScrollView activitySectionIm;
@@ -358,7 +363,7 @@ public class SectionIMActivity extends Activity {
 
     }
 
-    public void submitSecIM(View v) {
+    public void submitSecIM(View v) throws JSONException {
         Toast.makeText(this, "Processing Section IM", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -379,12 +384,74 @@ public class SectionIMActivity extends Activity {
     }
 
     private boolean UpdateDG() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        Long rowId;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        rowId = null;
+        rowId = db.addIM(PSSPApp.im);
+
+        PSSPApp.im.setId(String.valueOf(rowId));
+
+        if (rowId != null) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Current Form UID: " + PSSPApp.fc.getUID(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Current IM UID: " + PSSPApp.im.getUID(), Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 
-    private void SaveDraft() {
+    private void SaveDraft() throws JSONException {
+
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+        String DOB = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(imd.getCalendarView().getDate());
+
+        PSSPApp.im = new IMsContract();
+
+        PSSPApp.im.setUID(PSSPApp.fc.getUID());
+        PSSPApp.im.setChid(PSSPApp.fc.getUID() + String.format("%02d", PSSPApp.chCount));
+
+        JSONObject im = new JSONObject();
+
+        im.put("ima", ima.getText().toString());
+        im.put("imb", imba.isChecked() ? "1" : imbb.isChecked() ? "2" : "");
+        im.put("imc", imca.isChecked() ? "1" : imcb.isChecked() ? "2" : "");
+        im.put("imd", DOB);
+        im.put("imed", imed.getText().toString());
+        im.put("imem", imem.getText().toString());
+        im.put("imey", imey.getText().toString());
+        im.put("imf", imfa.isChecked() ? "1" : imfb.isChecked() ? "2" : "");
+        im.put("img", imga.isChecked() ? "1" : imgb.isChecked() ? "2" : "");
+        im.put("imh", imha.isChecked() ? "1" : imhb.isChecked() ? "2" : "");
+        im.put("imi", imia.isChecked() ? "1" : imib.isChecked() ? "2" : imic.isChecked() ? "3" : "");
+        im.put("imj", imj.getText().toString());
+        im.put("imk", imka.isChecked() ? "1" : imkb.isChecked() ? "2" : imkc.isChecked() ? "3" : "");
+        im.put("iml", imla.isChecked() ? "1" : imlb.isChecked() ? "2" : "");
+        im.put("imm", imma.isChecked() ? "1" : immb.isChecked() ? "2" : immc.isChecked() ? "3" : immd.isChecked() ? "4" : "");
+        im.put("bcg", bcga.isChecked() ? "1" : bcgb.isChecked() ? "2" : "");
+        im.put("opv0", opv0a.isChecked() ? "1" : opv0b.isChecked() ? "2" : "");
+        im.put("opv1", opv1a.isChecked() ? "1" : opv1b.isChecked() ? "2" : "");
+        im.put("opv2", opv2a.isChecked() ? "1" : opv2b.isChecked() ? "2" : "");
+        im.put("opv3", opv3a.isChecked() ? "1" : opv3b.isChecked() ? "2" : "");
+        im.put("pcv1", pcv1a.isChecked() ? "1" : pcv1b.isChecked() ? "2" : "");
+        im.put("pcv2", pcv2a.isChecked() ? "1" : pcv2b.isChecked() ? "2" : "");
+        im.put("pcv3", pcv3a.isChecked() ? "1" : pcv3b.isChecked() ? "2" : "");
+        im.put("p1", p1a.isChecked() ? "1" : p1b.isChecked() ? "2" : "");
+        im.put("p2", p2a.isChecked() ? "1" : p2b.isChecked() ? "2" : "");
+        im.put("p3", p3a.isChecked() ? "1" : p3b.isChecked() ? "2" : "");
+        im.put("m1", m1a.isChecked() ? "1" : m1b.isChecked() ? "2" : "");
+        im.put("m2", m2a.isChecked() ? "1" : m2b.isChecked() ? "2" : "");
+        im.put("dr", imdra.isChecked() ? "1" : imdrb.isChecked() ? "2" : "");
+        im.put("ari", imaria.isChecked() ? "1" : imarib.isChecked() ? "2" : "");
+
+
+        PSSPApp.im.setIM(im.toString());
+
+        Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -527,7 +594,7 @@ public class SectionIMActivity extends Activity {
             imlb.setError(null);
         }
         // imm
-        if (imm.getCheckedRadioButtonId() == -1) {
+        if (imka.isChecked() && imm.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.imm), Toast.LENGTH_LONG).show();
             immd.setError("This data is Required!");
             Log.i(TAG, "imm: This data is Required!");

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -209,7 +210,8 @@ public class SectionAActivity extends Activity {
 
         if (rowId != null) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-            PSSPApp.fc.setUID(PSSPApp.fc.getDeviceID().substring(PSSPApp.fc.getDeviceID().length() - 5) + "-" + PSSPApp.fc.getID());
+            PSSPApp.fc.setUID(
+                    (PSSPApp.fc.getDeviceID() + PSSPApp.fc.getID()));
             Toast.makeText(this, "Current Form No: " + PSSPApp.fc.getUID(), Toast.LENGTH_SHORT).show();
             return true;
         } else {
@@ -222,7 +224,8 @@ public class SectionAActivity extends Activity {
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
         PSSPApp.fc = new FormsContract();
-
+        PSSPApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID));
         PSSPApp.fc.setMna1(dtToday);
         PSSPApp.fc.setMna2(PSSPApp.mna2);
         PSSPApp.fc.setMna3(String.valueOf(PSSPApp.mna3));

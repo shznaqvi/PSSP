@@ -37,6 +37,7 @@ public class PSSPApp extends Application {
     public static int chCount = 0;
     public static int chTotal = 0;
     public static FormsContract fc;
+    public static IMsContract im;
     protected LocationManager locationManager;
 
     @Override

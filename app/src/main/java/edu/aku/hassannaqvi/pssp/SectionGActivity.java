@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -62,7 +65,7 @@ public class SectionGActivity extends Activity {
     }
 
 
-    public void submitSecG(View v) {
+    public void submitSecG(View v) throws JSONException {
         Toast.makeText(this, "Processing Section G", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
@@ -77,12 +80,40 @@ public class SectionGActivity extends Activity {
     }
 
     private boolean UpdateDG() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSG();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
-    private void SaveDraft() {
-        Toast.makeText(this, "Validation Successfull! - Saving Draft...", Toast.LENGTH_SHORT).show();
+    private void SaveDraft() throws JSONException {
+
+        JSONObject sg = new JSONObject();
+
+        switch (mng1.getCheckedRadioButtonId()) {
+            case R.id.mng1a:
+                sg.put("mng1", "1");
+                break;
+            case R.id.mng1b:
+                sg.put("mng1", "2");
+                break;
+            default:
+                sg.put("mng1", "default");
+                break;
+        }
+        sg.put("mng2", mng2.getText().toString());
+        sg.put("mngsticker", mngsticker.getText().toString());
+
+        PSSPApp.fc.setsE(sg.toString());
+
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
 

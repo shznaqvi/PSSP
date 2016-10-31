@@ -486,57 +486,77 @@ public class SectionFActivity extends Activity {
                 break;
         }
         sf.put("mnf7x96", mnf7x96.getText().toString());
-        switch (mnf7.getCheckedRadioButtonId()) {
-            case R.id.mnf7a:
-                sf.put("mnf7", "1");
+        switch (mnf8.getCheckedRadioButtonId()) {
+            case R.id.mnf8a:
+                sf.put("mnf8", "1");
                 break;
-            case R.id.mnf7b:
-                sf.put("mnf7", "2");
+            case R.id.mnf8b:
+                sf.put("mnf8", "2");
                 break;
-            case R.id.mnf7c:
-                sf.put("mnf7", "3");
+            case R.id.mnf8c:
+                sf.put("mnf8", "3");
                 break;
-            case R.id.mnf7d:
-                sf.put("mnf7", "4");
+            case R.id.mnf8d:
+                sf.put("mnf8", "4");
                 break;
-            case R.id.mnf7e:
-                sf.put("mnf7", "5");
+            case R.id.mnf8e:
+                sf.put("mnf8", "5");
                 break;
-            case R.id.mnf7f:
-                sf.put("mnf7", "6");
+            case R.id.mnf8f:
+                sf.put("mnf8", "6");
                 break;
-            case R.id.mnf7g:
-                sf.put("mnf7", "7");
+            case R.id.mnf8g:
+                sf.put("mnf8", "7");
                 break;
-            case R.id.mnf7h:
-                sf.put("mnf7", "8");
+            case R.id.mnf8h:
+                sf.put("mnf8", "8");
                 break;
-            case R.id.mnf7i:
-                sf.put("mnf7", "9");
+            case R.id.mnf8i:
+                sf.put("mnf8", "9");
                 break;
-            case R.id.mnf7j:
-                sf.put("mnf7", "10");
+            case R.id.mnf8j:
+                sf.put("mnf8", "10");
                 break;
-            case R.id.mnf7d:
-                sf.put("mnf7", "11");
+            case R.id.mnf8k:
+                sf.put("mnf8", "11");
                 break;
-            case R.id.mnf7e:
-                sf.put("mnf7", "12");
+            case R.id.mnf8l:
+                sf.put("mnf8", "12");
                 break;
-            case R.id.mnf7f:
-                sf.put("mnf7", "13");
+            case R.id.mnf8m:
+                sf.put("mnf8", "13");
                 break;
-            case R.id.mnf7g:
-                sf.put("mnf7", "14");
+            case R.id.mnf8n:
+                sf.put("mnf8", "14");
                 break;
-            case R.id.mnf7x:
-                sf.put("mnf7", "96");
+            case R.id.mnf8x:
+                sf.put("mnf8", "96");
                 break;
             default:
-                sf.put("mnf7", "default");
+                sf.put("mnf8", "default");
                 break;
         }
-        sf.put("mnf7x96", mnf7x96.getText().toString());
+        sf.put("mnf8x96", mnf8x96.getText().toString());
+        sf.put("mnf9a", mnf9a.getText().toString());
+        sf.put("mnf9b", mnf9b.getText().toString());
+        sf.put("mnf9c", mnf9c.getText().toString());
+        sf.put("mnf9d", mnf9d.getText().toString());
+        sf.put("mnf9e", mnf9e.getText().toString());
+        sf.put("mnf9f", mnf9f.getText().toString());
+        sf.put("mnf9g", mnf9g.getText().toString());
+        sf.put("mnf9gx96", mnf9gx96.getText().toString());
+        sf.put("mnf9i", mnf9i.getText().toString());
+        sf.put("mnf9j", mnf9j.getText().toString());
+        sf.put("mnf9k", mnf9k.getText().toString());
+        sf.put("mnf9l", mnf9l.getText().toString());
+        sf.put("mnf9m", mnf9m.getText().toString());
+        sf.put("mnf9n", mnf9n.getText().toString());
+        sf.put("mnf9o", mnf9o.getText().toString());
+        sf.put("mnf9p", mnf9p.getText().toString());
+        sf.put("mnf9q", mnf9q.getText().toString());
+        sf.put("mnf9r", mnf9r.getText().toString());
+        sf.put("mnf9s", mnf9s.getText().toString());
+        sf.put("mnf9t", mnf9t.getText().toString());
 
 
         PSSPApp.fc.setsE(sf.toString());        

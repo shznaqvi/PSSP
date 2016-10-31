@@ -9,6 +9,9 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,7 +45,11 @@ public class EndingActivity extends Activity {
     void onBtnEndClick() {
         Toast.makeText(this, "Processing Closing Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
-            SaveDraft();
+            try {
+                SaveDraft();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             if (UpdateDB()) {
                 Toast.makeText(this, "Closing Form!", Toast.LENGTH_SHORT).show();
                 Intent endSec = new Intent(this, MainActivity.class);
@@ -55,12 +62,40 @@ public class EndingActivity extends Activity {
     }
 
     private boolean UpdateDB() {
-        Toast.makeText(this, "Database Updated!", Toast.LENGTH_SHORT).show();
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateEnd();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
-    private void SaveDraft() {
+    private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+        JSONObject sg = new JSONObject();
+
+        switch (mna7.getCheckedRadioButtonId()) {
+            case R.id.mna7a:
+                sg.put("mna7", "1");
+                break;
+            case R.id.mna7b:
+                sg.put("mna7", "2");
+                break;
+            case R.id.mna7c:
+                sg.put("mna7", "3");
+                break;
+            default:
+                sg.put("mna7", "default");
+                break;
+        }
+
+
+        PSSPApp.fc.setsE(sg.toString());
     }
 
     private boolean formValidation() {
