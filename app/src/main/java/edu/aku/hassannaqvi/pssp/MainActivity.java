@@ -1,11 +1,25 @@
 package edu.aku.hassannaqvi.pssp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends Activity {
+
+
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +30,8 @@ public class MainActivity extends Activity {
         PSSPApp.mnb1 = "Test";
         PSSPApp.chCount = 0;
         PSSPApp.chTotal = 0;
+
+
     }
 
     public void openForm(View v) {
@@ -66,5 +82,86 @@ public class MainActivity extends Activity {
     public void openEnd(View v) {
         Intent iEnd = new Intent(this, EndingActivity.class);
         startActivity(iEnd);
+    }
+
+    public void openDB(View v) {
+        Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
+        startActivity(dbmanager);
+    }
+
+    public void syncServer(View view) {
+        if (isNetworkAvailable()) {
+            SyncForms ff = new SyncForms(this);
+            Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
+            ff.execute();
+/*
+
+            SyncIMs im = new SyncIMs(this);
+            Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
+            im.execute();
+*/
+
+
+            SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = syncPref.edit();
+
+            editor.putString("LastSyncServer", dtToday);
+
+            editor.apply();
+        }
+    }
+
+    public void syncDevice(View view) {
+        if (isNetworkAvailable()) {
+
+
+            GetUsers gu = new GetUsers(this);
+            Toast.makeText(getApplicationContext(), "Syncing Users", Toast.LENGTH_SHORT).show();
+            gu.execute();
+
+            GetChildren gc = new GetChildren(this);
+            Toast.makeText(getApplicationContext(), "Syncing Children", Toast.LENGTH_SHORT).show();
+            gc.execute();
+
+
+            SharedPreferences syncPref = getSharedPreferences("SyncInfo(DOWN)", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = syncPref.edit();
+
+            editor.putString("LastSyncDevice ", dtToday);
+
+            editor.apply();
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private boolean isHostAvailable() {
+
+        if (isNetworkAvailable()) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress(PSSPApp._IP, PSSPApp._PORT);
+                // Create an unbound socket
+                Socket sock = new Socket();
+
+                // This method will block no more than timeoutMs.
+                // If the timeout occurs, SocketTimeoutException is thrown.
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                return true;
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Server Not Available for Update", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Network not available for Update", Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
     }
 }

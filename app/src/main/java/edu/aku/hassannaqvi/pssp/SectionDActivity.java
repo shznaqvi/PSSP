@@ -389,7 +389,7 @@ public class SectionDActivity extends Activity {
         sd.put("mnd10x", mnd10x.isChecked() ? "96" : "");
         sd.put("mnd10x96", mnd10x96.getText().toString());
 
-        PSSPApp.fc.setsD(sd.toString());
+        PSSPApp.fc.setsD(String.valueOf(sd));
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
@@ -508,7 +508,7 @@ public class SectionDActivity extends Activity {
             mnd10x.setError("This data is Required!");
             Log.i(TAG, "mnd10: This data is Required!");
             return false;
-        } else if (mnd10x.isChecked()) {
+        } else if (mnd10x.isChecked() && mnd10x96.getText().toString().isEmpty()) {
             mnd10x.setError(null);
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnd10), Toast.LENGTH_LONG).show();
             mnd10x96.setError("This data is empty!");

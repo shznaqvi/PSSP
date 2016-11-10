@@ -61,6 +61,23 @@
             android:hint="@string/mna5"
             android:maxLength="5" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/child_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="checkChild"
+                android:text="Check Child Name" />
+        </LinearLayout>
         <CheckBox
             android:id="@+id/mna6"
             android:layout_width="match_parent"

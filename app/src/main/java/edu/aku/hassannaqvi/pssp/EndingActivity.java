@@ -10,7 +10,6 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +29,8 @@ public class EndingActivity extends Activity {
     RadioButton mna7b;
     @BindView(R.id.mna7c)
     RadioButton mna7c;
+    @BindView(R.id.mna7d)
+    RadioButton mna7d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,25 +78,25 @@ public class EndingActivity extends Activity {
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
-        JSONObject sg = new JSONObject();
 
         switch (mna7.getCheckedRadioButtonId()) {
             case R.id.mna7a:
-                sg.put("mna7", "1");
+                PSSPApp.fc.setMna7("1");
                 break;
             case R.id.mna7b:
-                sg.put("mna7", "2");
+                PSSPApp.fc.setMna7("2");
                 break;
             case R.id.mna7c:
-                sg.put("mna7", "3");
+                PSSPApp.fc.setMna7("3");
+                break;
+            case R.id.mna7d:
+                PSSPApp.fc.setMna7("4");
                 break;
             default:
-                sg.put("mna7", "default");
+                PSSPApp.fc.setMna7("default");
                 break;
         }
 
-
-        PSSPApp.fc.setsE(sg.toString());
     }
 
     private boolean formValidation() {
@@ -103,11 +104,11 @@ public class EndingActivity extends Activity {
 
         if (mna7.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mna7), Toast.LENGTH_LONG).show();
-            mna7c.setError("This data is Required!");
+            mna7d.setError("This data is Required!");
             Log.i(TAG, "mnd9: This data is Required!");
             return false;
         } else {
-            mna7c.setError(null);
+            mna7d.setError(null);
         }
         return true;
     }

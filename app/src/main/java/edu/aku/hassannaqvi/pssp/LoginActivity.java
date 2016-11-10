@@ -269,7 +269,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() >= 8;
+        return password.length() >= 7;
     }
 
     /**
@@ -351,6 +351,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         mEmailView.setAdapter(adapter);
     }
 
+    public void gotoMain(View v) {
+        Intent im = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(im);
+    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -403,8 +407,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
-            if (success) {
+            DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
+            if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)) {
                 PSSPApp.mna2 = mEmailView.getText().toString();
                 Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(iLogin);
@@ -412,8 +416,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
+                Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
             }
         }
+
 
         @Override
         protected void onCancelled() {

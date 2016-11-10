@@ -2,9 +2,12 @@ package edu.aku.hassannaqvi.pssp;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Iterator;
 
 /**
  * Created by hassan.naqvi on 10/25/2016.
@@ -14,36 +17,37 @@ public class FormsContract {
 
     private final String projectName = "Sero 2016-17";
     private final String surveyType = "SN";
-    private String _ID;
-    private String UID;
-    private String mna1; // Date
-    private String mna2; // DC name
-    private String mna3; // District
-    private String mna4; // PSU
-    private String mna5; // HH no.
-    private String mna6; // Index Child Name
-    private String mna6a; // Name Confirmation
-    private String mna7; // Form Status
-    private String sA;
-    private String sB;
-    private String sC;
-    private String sD;
-    private String sE;
-    private String sF;
-    private String sG;
-    private String gpsLat;
-    private String gpsLng;
-    private String gpsTime;
-    private String gpsAcc;
-    private String deviceID;
-    private String synced;
-    private String synced_date;
+    private String _ID = "";
+    private String UID = "";
+    private String mna1 = ""; // Date
+    private String mna2 = ""; // DC name
+    private String mna3 = ""; // District
+    private String mna4 = ""; // PSU
+    private String mna5 = ""; // HH no.
+    private String mna6 = ""; // Index Child Name
+    private String mna6a = ""; // Name Confirmation
+    private String mna7 = ""; // Form Status
+    private String sA = "";
+    private String sB = "";
+    private String sC = "";
+    private String sD = "";
+    private String sE = "";
+    private String sF = "";
+    private String sG = "";
 
+    private String gpsLat = "";
+    private String gpsLng = "";
+    private String gpsTime = "";
+    private String gpsAcc = "";
+    private String deviceID = "";
+    private String synced = "";
+    private String synced_date = "";
 
     public FormsContract() {
     }
 
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
+        this._ID = jsonObject.getString(singleForm._ID);
         this.UID = jsonObject.getString(singleForm.COLUMN_UID);
         this.mna1 = jsonObject.getString(singleForm.COLUMN_MNA1);
         this.mna2 = jsonObject.getString(singleForm.COLUMN_MNA2);
@@ -72,6 +76,7 @@ public class FormsContract {
     }
 
     public FormsContract hydrate(Cursor cursor) {
+        this._ID = cursor.getString(cursor.getColumnIndex(singleForm._ID));
         this.UID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_UID));
         this.mna1 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA1));
         this.mna2 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA2));
@@ -82,6 +87,8 @@ public class FormsContract {
         this.mna6a = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA6A));
         this.mna7 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA7));
         this.sA = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SA));
+        Log.d("TAG:", "hydrate: CsA " + cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SA)));
+        Log.d("TAG:", "hydrate: sA " + this.sA);
         this.sB = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SB));
         this.sC = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SC));
         this.sD = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SD));
@@ -188,7 +195,7 @@ public class FormsContract {
     }
 
     public String getsA() {
-        return sA;
+        return this.sA;
     }
 
     public void setsA(String sA) {
@@ -196,6 +203,7 @@ public class FormsContract {
     }
 
     public String getsB() {
+
         return sB;
     }
 
@@ -304,6 +312,7 @@ public class FormsContract {
         JSONObject json = new JSONObject();
 
         json.put(singleForm._ID, this._ID);
+        json.put(singleForm.COLUMN_UID, this.UID);
         json.put(singleForm.COLUMN_PROJECT_NAME, this.projectName);
         json.put(singleForm.COLUMN_SURVEY_TYPE, this.surveyType);
         json.put(singleForm.COLUMN_DEVICE_ID, this.deviceID);
@@ -321,7 +330,22 @@ public class FormsContract {
         json.put(singleForm.COLUMN_MNA6, this.mna6);
         json.put(singleForm.COLUMN_MNA6A, this.mna6a);
         json.put(singleForm.COLUMN_MNA7, this.mna7);
+
+
+/*        json = jsonMerge(json, new JSONObject(this.sA));
+        json = jsonMerge(json, new JSONObject(this.sB));
+        json = jsonMerge(json, new JSONObject(this.sC));
+        json = jsonMerge(json, new JSONObject(this.sD));
+        json = jsonMerge(json, new JSONObject(this.sE));
+        json = jsonMerge(json, new JSONObject(this.sF));
+        json = jsonMerge(json, new JSONObject(this.sG));*/
+
         json.put(singleForm.COLUMN_SA, this.sA);
+        Log.d("What's in the TAG", "toJSONObject: A" + this.sA);
+        json.put(singleForm.COLUMN_SA, this.sA.substring(1));
+        Log.d("What's in the TAG", "toJSONObject: B" + this.sB);
+        json.put(singleForm.COLUMN_SB, this.sB.substring(1));
+
         json.put(singleForm.COLUMN_SB, this.sB);
         json.put(singleForm.COLUMN_SC, this.sC);
         json.put(singleForm.COLUMN_SD, this.sD);
@@ -332,6 +356,27 @@ public class FormsContract {
         return json;
     }
 
+    public JSONObject jsonMerge(JSONObject o1, JSONObject o2) throws JSONException {
+
+        JSONObject jm = new JSONObject();
+
+        //I assume that your two JSONObjects are o1 and o2
+        JSONObject mergedObj = new JSONObject();
+
+        Iterator i1 = o1.keys();
+        Iterator i2 = o2.keys();
+        String tmp_key;
+        while (i1.hasNext()) {
+            tmp_key = (String) i1.next();
+            mergedObj.put(tmp_key, o1.get(tmp_key));
+        }
+        while (i2.hasNext()) {
+            tmp_key = (String) i2.next();
+            mergedObj.put(tmp_key, o2.get(tmp_key));
+        }
+
+        return mergedObj;
+    }
     public static abstract class singleForm implements BaseColumns {
 
         public static final String TABLE_NAME = "forms";

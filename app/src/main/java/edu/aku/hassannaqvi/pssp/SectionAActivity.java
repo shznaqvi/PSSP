@@ -45,6 +45,8 @@ public class SectionAActivity extends Activity {
     EditText mna5;
     @BindView(R.id.mna6)
     CheckBox mna6;
+    @BindView(R.id.child_name)
+    TextView child_name;
     @BindView(R.id.mna8)
     EditText mna8;
     @BindView(R.id.mna9)
@@ -132,6 +134,8 @@ public class SectionAActivity extends Activity {
         values.add("43");
 
         txtmna3.setText(getString(R.string.mna3) + ": " + lables.get(PSSPApp.mna3));
+        mna6.setEnabled(false);
+
 
         mna6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -169,6 +173,16 @@ public class SectionAActivity extends Activity {
 
     }
 
+    public void checkChild(View v) {
+        DatabaseHelper db = new DatabaseHelper(SectionAActivity.this);
+        String chName = db.getChildByHH(mna5.getText().toString(), mna4.getText().toString());
+        child_name.setText(chName);
+        if (chName.equals("No Child Found")) {
+            mna6.setEnabled(false);
+        } else {
+            mna6.setEnabled(true);
+        }
+    }
     public void submitSecA(View v) throws JSONException {
         Toast.makeText(this, "Processing Section A", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
@@ -231,8 +245,7 @@ public class SectionAActivity extends Activity {
         PSSPApp.fc.setMna3(String.valueOf(PSSPApp.mna3));
         PSSPApp.fc.setMna4(mna4.getText().toString());
         PSSPApp.fc.setMna5(mna5.getText().toString());
-        PSSPApp.fc.setMna6a(mna6.getText().toString());
-        PSSPApp.fc.setMna6(mna6.getText().toString());
+        PSSPApp.fc.setMna6(mna6.isChecked() ? "1" : "2");
 
         JSONObject sA = new JSONObject();
 
@@ -290,8 +303,7 @@ public class SectionAActivity extends Activity {
         sA.put("mna12x96", mna12x96.getText().toString());
         sA.put("mna13", mna13.getText().toString());
 
-
-        PSSPApp.fc.setDeviceID(PSSPApp.deviceId);
+        PSSPApp.fc.setsA(String.valueOf(sA));
         setGPS();
 
         Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();

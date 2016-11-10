@@ -448,7 +448,7 @@ public class SectionIMActivity extends Activity {
         im.put("ari", imaria.isChecked() ? "1" : imarib.isChecked() ? "2" : "");
 
 
-        PSSPApp.im.setIM(im.toString());
+        PSSPApp.im.setIM(String.valueOf(im));
 
         Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
 

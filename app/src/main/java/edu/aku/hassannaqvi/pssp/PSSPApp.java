@@ -16,6 +16,15 @@ import android.view.View;
 
 public class PSSPApp extends Application {
 
+    //public static final String _IP = "192.168.1.10"; // Test NODE server
+    public static final String _IP = "192.168.1.10"; // Test PHP server
+    public static final Integer _PORT = 80; // Port - with colon (:)
+    public static final String _HOST_URL = "http://" + PSSPApp._IP + ":" + PSSPApp._PORT + "/";
+/*
+    public static final String _IP = "43.245.131.159"; // Test server
+*/
+
+
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWENTY_MINUTES = 1000 * 60 * 20;
@@ -28,6 +37,7 @@ public class PSSPApp extends Application {
     public static final long MILLISECONDS_IN_DAY = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY;
     private static final long DAYS_IN_YEAR = 365;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
+
 
     public static String deviceId;
 

@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -36,6 +37,8 @@ public class SectionBActivity extends Activity {
     EditText mnb3;
     @BindView(R.id.mnb4)
     EditText mnb4;
+    @BindView(R.id.mnb4x95)
+    CheckBox mnb4x95;
     @BindView(R.id.ageDob)
     Switch ageDob;
     @BindView(R.id.fldGrpmnb4)
@@ -54,6 +57,9 @@ public class SectionBActivity extends Activity {
     RadioButton mnb7m;
     @BindView(R.id.mnb7f)
     RadioButton mnb7f;
+    @BindView(R.id.fldGrpmnb4x96)
+    LinearLayout fldGrpmnb4x96;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +67,18 @@ public class SectionBActivity extends Activity {
         setContentView(R.layout.activity_section_b);
         ButterKnife.bind(this);
 
+        mnb4x95.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    fldGrpmnb4x96.setVisibility(View.GONE);
+                    mnb4.setText(null);
+                } else {
+                    fldGrpmnb4x96.setVisibility(View.VISIBLE);
 
+                }
+            }
+        });
         mnb4.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -162,7 +179,8 @@ public class SectionBActivity extends Activity {
         sb.put("mnb6m", mnb6m.getText().toString());
         sb.put("mnb7", mnb7m.isChecked() ? "1" : "2");
 
-        PSSPApp.fc.setsB(sb.toString());
+        PSSPApp.fc.setsB(String.valueOf(sb));
+
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
@@ -199,7 +217,7 @@ public class SectionBActivity extends Activity {
             mnb3.setError(null);
         }
 
-
+        if (!mnb4x95.isChecked()) {
         if (mnb4.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.mnb4), Toast.LENGTH_LONG).show();
             mnb4.setError("This data is Required!");
@@ -226,6 +244,7 @@ public class SectionBActivity extends Activity {
             return false;
         } else {
             mnb4.setError(null);
+        }
         }
 
 

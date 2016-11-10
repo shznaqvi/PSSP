@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,8 +58,8 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
 
         HttpURLConnection connection = null;
         try {
-            String request = "http://192.168.1.10:3000/forms";
-            //String request = "http://10.1.42.30:3000/forms";
+            String request = PSSPApp._HOST_URL + "ims/";
+            //String request = "http://10.1.42.30:3000/ims";
 
             URL url = new URL(request);
             connection = (HttpURLConnection) url.openConnection();
@@ -123,6 +124,8 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+        Toast.makeText(mContext, "Synced IMs " + result, Toast.LENGTH_SHORT).show();
+
         pd.setMessage("Server Response: " + result);
         pd.setTitle("Please wait... Done IMS");
         pd.show();

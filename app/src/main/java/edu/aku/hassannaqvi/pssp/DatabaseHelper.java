@@ -3,26 +3,46 @@ package edu.aku.hassannaqvi.pssp;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import edu.aku.hassannaqvi.pssp.FormsContract.singleForm;
 import edu.aku.hassannaqvi.pssp.IMsContract.singleIms;
+import edu.aku.hassannaqvi.pssp.PSUsContract.singleChild;
+import edu.aku.hassannaqvi.pssp.UsersContract.singleUser;
 
 /**
  * Created by hassan.naqvi on 10/29/2016.
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
+    public static final String SQL_CREATE_PSU = "CREATE TABLE " + singleChild.TABLE_NAME + "("
+            + singleChild._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + singleChild.COLUMN_PSU + " TEXT,"
+            + singleChild.COLUMN_LUID + " TEXT,"
+            + singleChild.COLUMN_HH + " TEXT,"
+            + singleChild.COLUMN_HH03 + " TEXT,"
+            + singleChild.COLUMN_HH07 + " TEXT,"
+            + singleChild.COLUMN_CHILD_NAME + " TEXT );";
     public static final String SQL_CREATE_IMS = "CREATE TABLE " + singleIms.TABLE_NAME + "("
             + singleIms._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + singleIms.COLUMN_CHID + " TEXT,"
             + singleIms.COLUMN_UID + " TEXT,"
             + singleIms.COLUMN_IM + " TEXT );";
+    public static final String SQL_CREATE_USERS = "CREATE TABLE " + singleUser.TABLE_NAME + "("
+            + singleUser._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + singleUser.ROW_USERNAME + " TEXT,"
+            + singleUser.ROW_PASSWORD + " TEXT );";
     private static final String DATABASE_NAME = "sero.db";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_FORMS = "CREATE TABLE "
@@ -57,9 +77,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final java.lang.String SQL_DELETE_FORMS = "DROP TABLE IF EXISTS " + singleForm.TABLE_NAME;
     private static final String SQL_DELETE_IMS =
             "DROP TABLE IF EXISTS " + singleIms.TABLE_NAME;
-
+    private static final String SQL_DELETE_USERS =
+            "DROP TABLE IF EXISTS " + singleUser.TABLE_NAME;
+    private static final String SQL_DELETE_PSUS =
+            "DROP TABLE IF EXISTS " + singleChild.TABLE_NAME;
     public static String DB_FORM_ID;
     public static String DB_IMS_ID;
+    private final String TAG = "DatabaseHelper";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -70,6 +94,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_FORMS);
         db.execSQL(SQL_CREATE_IMS);
+        db.execSQL(SQL_CREATE_USERS);
+        db.execSQL(SQL_CREATE_PSU);
 
     }
 
@@ -77,6 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_IMS);
+        db.execSQL(SQL_DELETE_USERS);
+        db.execSQL(SQL_DELETE_PSUS);
 
         onCreate(db);
     }
@@ -134,7 +162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     ////////////
-    public Collection<FormsContract> getAllForms() {
+    public Collection<FormsContract> getAllForms() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -331,7 +359,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(singleForm.COLUMN_SF, PSSPApp.fc.getsF());
 
-
         // Which row to update, based on the ID
         String selection = singleForm._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
@@ -381,4 +408,203 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public void addUser(UsersContract userscontract) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            ContentValues values = new ContentValues();
+
+            values.put(singleUser.ROW_USERNAME, userscontract.getUserName());
+            values.put(singleUser.ROW_PASSWORD, userscontract.getPassword());
+            db.insert(singleUser.TABLE_NAME, null, values);
+            db.close();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public void syncUser(JSONArray userlist) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(UsersContract.singleUser.TABLE_NAME, null, null);
+
+        try {
+            JSONArray jsonArray = userlist;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                String userName = jsonObjectUser.getString("username");
+                String password = jsonObjectUser.getString("password");
+
+
+                ContentValues values = new ContentValues();
+
+                values.put(singleUser.ROW_USERNAME, userName);
+                values.put(singleUser.ROW_PASSWORD, password);
+                db.insert(singleUser.TABLE_NAME, null, values);
+            }
+            db.close();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public ArrayList<UsersContract> getAllUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<UsersContract> userList = null;
+        try {
+            userList = new ArrayList<UsersContract>();
+            String QUERY = "SELECT * FROM " + singleUser.TABLE_NAME;
+            Cursor cursor = db.rawQuery(QUERY, null);
+            int num = cursor.getCount();
+            if (!cursor.isLast()) {
+                while (cursor.moveToNext()) {
+                    UsersContract user = new UsersContract();
+                    user.setId(cursor.getInt(0));
+                    user.setUserName(cursor.getString(1));
+                    user.setPassword(cursor.getString(2));
+                    userList.add(user);
+                }
+            }
+            db.close();
+        } catch (Exception e) {
+        }
+        return userList;
+    }
+
+    public boolean Login(String username, String password) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + singleUser.TABLE_NAME + " WHERE " + singleUser.ROW_USERNAME + "=? AND " + singleUser.ROW_PASSWORD + "=?", new String[]{username, password});
+        if (mCursor != null) {
+            if (mCursor.getCount() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void syncChild(JSONArray childlist) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(PSUsContract.singleChild.TABLE_NAME, null, null);
+        Log.d(TAG, "PSU table deleted!");
+        try {
+            JSONArray jsonArray = childlist;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                String LUID = jsonObjectUser.getString("UID");
+                String psu = jsonObjectUser.getString("hh02");
+                String hh03 = jsonObjectUser.getString("hh03");
+                String hh07 = jsonObjectUser.getString("hh07");
+                String child_name = jsonObjectUser.getString("child_name");
+
+
+                ContentValues values = new ContentValues();
+
+                values.put(singleChild.COLUMN_LUID, LUID);
+                values.put(singleChild.COLUMN_HH03, hh03);
+                values.put(singleChild.COLUMN_HH07, hh07);
+                values.put(singleChild.COLUMN_HH, hh03 + "-" + hh07);
+                values.put(singleChild.COLUMN_PSU, psu);
+                values.put(singleChild.COLUMN_CHILD_NAME, child_name);
+
+                db.insert(singleChild.TABLE_NAME, null, values);
+            }
+            db.close();
+
+        } catch (Exception e) {
+        }
+    }
+
+
+    public ArrayList<PSUsContract> getAllChildren() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<PSUsContract> childList = null;
+        try {
+            childList = new ArrayList<PSUsContract>();
+            String QUERY = "SELECT * FROM " + singleChild.TABLE_NAME;
+            Cursor cursor = db.rawQuery(QUERY, null);
+            int num = cursor.getCount();
+            if (!cursor.isLast()) {
+                while (cursor.moveToNext()) {
+                    PSUsContract child = new PSUsContract(cursor);
+
+                    childList.add(child);
+
+                }
+            }
+            db.close();
+        } catch (Exception e) {
+        }
+        return childList;
+    }
+
+    public String getChildByHH(String hh, String psu) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        PSUsContract child = null;
+        try {
+            String QUERY = "SELECT * FROM " + singleChild.TABLE_NAME
+                    + " where " + singleChild.COLUMN_HH + " = '" + hh.toUpperCase().replaceFirst("^0+(?!$)", "") + "' and " + singleChild.COLUMN_PSU + " = '" + psu + "' Limit 1";
+            Cursor cursor = db.rawQuery(QUERY, null);
+            if (!cursor.isLast()) {
+                while (cursor.moveToNext()) {
+                    child = new PSUsContract(cursor);
+                    return child.getChild_name();
+
+                }
+            } else {
+                return "No Child Found";
+            }
+            db.close();
+        } catch (Exception e) {
+        }
+        return "No Child Found";
+
+    }
+
+
+    // ANDROID DATABASE MANAGER
+    public ArrayList<Cursor> getData(String Query) {
+        //get writable database
+        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        String[] columns = new String[]{"mesage"};
+        //an array list of cursor to save two cursors one has results from the query
+        //other cursor stores error message if any errors are triggered
+        ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+        MatrixCursor Cursor2 = new MatrixCursor(columns);
+        alc.add(null);
+        alc.add(null);
+
+        try {
+            String maxQuery = Query;
+            //execute the query results will be save in Cursor c
+            Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+            //add value to cursor2
+            Cursor2.addRow(new Object[]{"Success"});
+
+            alc.set(1, Cursor2);
+            if (null != c && c.getCount() > 0) {
+
+                alc.set(0, c);
+                c.moveToFirst();
+
+                return alc;
+            }
+            return alc;
+        } catch (SQLException sqlEx) {
+            Log.d("printing exception", sqlEx.getMessage());
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[]{"" + sqlEx.getMessage()});
+            alc.set(1, Cursor2);
+            return alc;
+        } catch (Exception ex) {
+
+            Log.d("printing exception", ex.getMessage());
+
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[]{"" + ex.getMessage()});
+            alc.set(1, Cursor2);
+            return alc;
+        }
+
+
+    }
 }

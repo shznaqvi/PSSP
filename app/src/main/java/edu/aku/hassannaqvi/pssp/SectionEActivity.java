@@ -304,7 +304,7 @@ public class SectionEActivity extends Activity {
                     mne2x.setChecked(false);
                     mne2x96.setText(null);
                     // clear E3
-                    mne3.clearCheck();
+                    // mne3.clearCheck();
                 }
             }
         });
@@ -792,7 +792,7 @@ public class SectionEActivity extends Activity {
         }
         se.put("mne18x96", mne18x96.getText().toString());
 
-        PSSPApp.fc.setsE(se.toString());
+        PSSPApp.fc.setsE(String.valueOf(se));
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
@@ -833,17 +833,18 @@ public class SectionEActivity extends Activity {
                 mne2x96.setError(null);
             }
 
-            if (mne3.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne3), Toast.LENGTH_LONG).show();
-                mne3b.setError("Answer is required");
-                Log.i(TAG, "mne3: Answer Required!");
-                return false;
-            } else {
-                mne3b.setError(null);
-            }
+
 
         } // End of E1 Yes Condition
 
+        if (mne3.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne3), Toast.LENGTH_LONG).show();
+            mne3b.setError("Answer is required");
+            Log.i(TAG, "mne3: Answer Required!");
+            return false;
+        } else {
+            mne3b.setError(null);
+        }
         // E4
         if (!(mne4a.isChecked() || mne4b.isChecked() || mne4c.isChecked() || mne4d.isChecked() || mne4e.isChecked() || mne4f.isChecked() || mne4g.isChecked() || mne4h.isChecked() || mne4i.isChecked() || mne4x99.isChecked() || mne4x.isChecked())) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne4), Toast.LENGTH_LONG).show();

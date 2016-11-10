@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Polio Seropervalence Survey - 2016/17</string>
+    <string name="app_name">Seropervalence Survey Pakistan - 2016/17</string>
     <string name="section_A"> سیکشن \'اے\': گھر کی شناخت </string>
 
     <string name="mnDob">تاریخ پیدائش</string>
@@ -59,6 +59,7 @@
     <string name="mnb2"> والد کا نام/ولدیت </string>
     <string name="mnb3"> ماں کا نام </string>
     <string name="mnb4"> ماں یا باپ کا شناختی کارڈ نمبر </string>
+    <string name="mnb4x96"> شناختی کارڈ موجود نہِیں </string>
     <string name="mnb5"> تاریخ پیدائش </string>
     <string name="mnb6">  بچے کی عمر </string>
     <string name="mnb6mm"> بچے کی عمر (ماہ) </string>
@@ -399,6 +400,7 @@
     <string name="title_activity_splash_screen">Splash Screen Activity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="mna7d">منتخب شدہ بچہ موجود نہیں</string>
 
 </resources>
 

@@ -559,7 +559,7 @@ public class SectionFActivity extends Activity {
         sf.put("mnf9t", mnf9t.getText().toString());
 
 
-        PSSPApp.fc.setsE(sf.toString());        
+        PSSPApp.fc.setsF(String.valueOf(sf));
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 

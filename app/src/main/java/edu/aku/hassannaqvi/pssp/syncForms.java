@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +58,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
         HttpURLConnection connection = null;
         try {
-            String request = "http://192.168.1.10:3000/forms";
+            String request = "http://192.168.1.10/pssp/api/forms.php";
             //String request = "http://10.1.42.30:3000/forms";
 
             URL url = new URL(request);
@@ -81,6 +82,36 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 //            pd.setMessage("Total Forms: " );
             for (FormsContract fc : forms) {
 
+                /*JSONObject jsonParam = new JSONObject();
+
+                jsonParam.put("_id", fc.getID());
+                jsonParam.put("_uid", fc.getUID());
+                jsonParam.put("projectname", fc.getProjectName());
+                jsonParam.put("surveytype", fc.getSurveyType());
+                jsonParam.put("mna1", fc.getMna1());
+                jsonParam.put("mna2", fc.getMna2());
+                jsonParam.put("mna3", fc.getMna3());
+                jsonParam.put("mna4", fc.getMna4());
+                jsonParam.put("mna5", fc.getMna5());
+                jsonParam.put("mna6", fc.getMna6());
+                jsonParam.put("mna6a", fc.getMna6a());
+                jsonParam.put("mna7", fc.getMna7());
+                jsonParam.put("sa", fc.getsA());
+                //Log.d(TAG, "doInBackground: sA"+ jsonParam.getJSONObject("sA"));
+                jsonParam.put("sb", fc.getsB());
+                jsonParam.put("sc", fc.getsC());
+                jsonParam.put("sd", fc.getsD());
+                jsonParam.put("se", fc.getsE());
+                jsonParam.put("sf", fc.getsF());
+                jsonParam.put("sg", fc.getsG());
+                jsonParam.put("gpslat", fc.getGpsLat());
+                jsonParam.put("gpslng", fc.getGpsLng());
+                jsonParam.put("gpsacc", fc.getGpsAcc());
+                jsonParam.put("gpstime", DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(fc.getGpsTime())));
+                jsonParam.put("deviceid", fc.getDeviceID());
+
+                longInfo(jsonParam.toString());*/
+                //jsonSync.put(fc.toJSONObject());
                 jsonSync.put(fc.toJSONObject());
                 //wr.writeBytes(jsonParam.toString().replace("\uFEFF", "") + "\n");
 
@@ -124,6 +155,9 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+
+        Toast.makeText(mContext, "Synced Forms " + result, Toast.LENGTH_SHORT).show();
+
         pd.setMessage("Server Response: " + result);
         pd.setTitle("Please wait... Done Forms");
         pd.show();

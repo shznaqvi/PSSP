@@ -379,7 +379,7 @@ public class SectionCActivity extends Activity {
         }
 
 
-        PSSPApp.fc.setsC(sc.toString());
+        PSSPApp.fc.setsC(String.valueOf(sc));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }

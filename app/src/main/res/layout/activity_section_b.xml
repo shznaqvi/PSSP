@@ -67,6 +67,20 @@
             android:hint="@string/mnb3"
             android:inputType="textPersonName" />
 
+        <CheckBox
+            android:id="@+id/mnb4x95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:text="@string/mnb4x96"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/fldGrpmnb4x96"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +96,7 @@
             android:inputType="number"
             android:layoutDirection="ltr"
             android:maxLength="15" />
-
+        </LinearLayout>
         <Switch
             android:id="@+id/ageDob"
             android:layout_width="match_parent"

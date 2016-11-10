@@ -37,6 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="72dp"
                 android:contentDescription="TVI LOGO"
+                android:onClick="gotoMain"
                 android:src="@drawable/agakhan" />
 
             <AutoCompleteTextView

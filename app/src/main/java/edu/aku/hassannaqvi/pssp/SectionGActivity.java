@@ -111,7 +111,7 @@ public class SectionGActivity extends Activity {
         sg.put("mng2", mng2.getText().toString());
         sg.put("mngsticker", mngsticker.getText().toString());
 
-        PSSPApp.fc.setsE(sg.toString());
+        PSSPApp.fc.setsG(String.valueOf(sg));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
@@ -135,7 +135,7 @@ public class SectionGActivity extends Activity {
             mng2.setError("This data is Required!");
             Log.i(TAG, "mng2: This data is Required!");
             return false;
-        } else if (mng1a.isChecked() && Integer.valueOf(mng2.getText().toString()) > 5) {
+        } else if (mng1a.isChecked() && Float.valueOf(mng2.getText().toString()) > 5) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mng2), Toast.LENGTH_LONG).show();
             mng2.setError("This data is invalid!");
             Log.i(TAG, "mng2: This data is invalid!");
