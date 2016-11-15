@@ -58,7 +58,7 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
 
         HttpURLConnection connection = null;
         try {
-            String request = PSSPApp._HOST_URL + "ims/";
+            String request = "http://192.168.1.10/pssp/api/ims.php";
             //String request = "http://10.1.42.30:3000/ims";
 
             URL url = new URL(request);

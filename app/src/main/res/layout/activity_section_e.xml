@@ -712,16 +712,20 @@
                 />
 
             <RadioButton
-                android:id="@+id/mne12x99"
+                android:id="@+id/mne12x"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mnDNK"
-
+                android:text="@string/mnOther"
                 />
 
 
         </RadioGroup>
 
+        <EditText
+            android:id="@+id/mne12x96"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mnOther" />
         <LinearLayout
             android:id="@+id/fldGrpe13"
             android:layout_width="match_parent"
@@ -806,7 +810,7 @@
                 android:id="@+id/mne13x96"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mnOther"
+                android:hint="@string/mnOther"
                 />
         </LinearLayout>
 
@@ -1045,7 +1049,7 @@
                 android:id="@+id/mne18x96"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mnOther"
+                android:hint="@string/mnOther"
 
 
                 />

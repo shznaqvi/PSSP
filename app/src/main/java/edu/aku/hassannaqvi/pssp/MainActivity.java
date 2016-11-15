@@ -94,12 +94,11 @@ public class MainActivity extends Activity {
             SyncForms ff = new SyncForms(this);
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             ff.execute();
-/*
+
 
             SyncIMs im = new SyncIMs(this);
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             im.execute();
-*/
 
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);

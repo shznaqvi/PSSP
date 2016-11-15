@@ -409,7 +409,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(false);
             DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
             if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)) {
-                PSSPApp.mna2 = mEmailView.getText().toString();
+                PSSPApp.mna2 = mEmail;
                 Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(iLogin);
 

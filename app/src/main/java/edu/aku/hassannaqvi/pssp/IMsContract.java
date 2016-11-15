@@ -12,7 +12,7 @@ public class IMsContract {
     private static final String TAG = "IM_CONTRACT";
 
     private Long _ID;
-    private String UID = PSSPApp.fc.getDeviceID() + PSSPApp.fc.getID();
+    private String UID;
     private String chid;
     private String im;
 

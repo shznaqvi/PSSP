@@ -197,8 +197,10 @@ public class SectionEActivity extends Activity {
     RadioButton mne12d;
     @BindView(R.id.mne12e)
     RadioButton mne12e;
-    @BindView(R.id.mne12x99)
-    RadioButton mne12x99;
+    @BindView(R.id.mne12x)
+    RadioButton mne12x;
+    @BindView(R.id.mne12x96)
+    EditText mne12x96;
     @BindView(R.id.mne13)
     RadioGroup mne13;
     @BindView(R.id.mne13a)
@@ -696,13 +698,14 @@ public class SectionEActivity extends Activity {
             case R.id.mne12e:
                 se.put("mne12", "5");
                 break;
-            case R.id.mne12x99:
-                se.put("mne12", "99");
+            case R.id.mne12x:
+                se.put("mne12", "96");
                 break;
             default:
                 se.put("mne12", "default");
                 break;
         }
+        se.put("mne12x96", mne12x96.getText().toString());
         switch (mne13.getCheckedRadioButtonId()) {
             case R.id.mne13a:
                 se.put("mne13", "1");
@@ -1000,13 +1003,13 @@ public class SectionEActivity extends Activity {
         }
 
         // E12
-        if (!(mne12a.isChecked() || mne12b.isChecked() || mne12c.isChecked() || mne12d.isChecked() || mne12e.isChecked() || mne12x99.isChecked())) {
+        if (!(mne12a.isChecked() || mne12b.isChecked() || mne12c.isChecked() || mne12d.isChecked() || mne12e.isChecked() || mne12x.isChecked())) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne12), Toast.LENGTH_LONG).show();
-            mne12x99.setError("This data is Required!");
+            mne12x.setError("This data is Required!");
             Log.i(TAG, "mne12: This data is Required!");
             return false;
         } else {
-            mne12x99.setError(null);
+            mne12x.setError(null);
         }
 
         // E12 Option other than A

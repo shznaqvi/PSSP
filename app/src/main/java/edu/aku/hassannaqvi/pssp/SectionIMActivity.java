@@ -254,8 +254,8 @@ public class SectionIMActivity extends Activity {
     RadioGroup pcv3src;
     @BindView(R.id.pcv3srca)
     RadioButton pcv3srca;
-    @BindView(R.id.pcv3srcREsp)
-    RadioButton pcv3srcREsp;
+    @BindView(R.id.pcv3srcb)
+    RadioButton pcv3srcb;
     @BindView(R.id.opv3)
     RadioGroup opv3;
     @BindView(R.id.opv3a)
@@ -432,23 +432,49 @@ public class SectionIMActivity extends Activity {
         im.put("iml", imla.isChecked() ? "1" : imlb.isChecked() ? "2" : "");
         im.put("imm", imma.isChecked() ? "1" : immb.isChecked() ? "2" : immc.isChecked() ? "3" : immd.isChecked() ? "4" : "");
         im.put("bcg", bcga.isChecked() ? "1" : bcgb.isChecked() ? "2" : "");
+        im.put("bcgscar", bcgscara.isChecked() ? "1" : bcgscarb.isChecked() ? "2" : bcgscarc.isChecked() ? "3" : "");
+        im.put("bcgsrc", bcgsrca.isChecked() ? "1" : bcgsrcb.isChecked() ? "2" : "");
         im.put("opv0", opv0a.isChecked() ? "1" : opv0b.isChecked() ? "2" : "");
+        im.put("opv0src", opv0srca.isChecked() ? "1" : opv0srcb.isChecked() ? "2" : "");
         im.put("opv1", opv1a.isChecked() ? "1" : opv1b.isChecked() ? "2" : "");
+        im.put("opv1src", opv1srca.isChecked() ? "1" : opv1srcb.isChecked() ? "2" : "");
+
         im.put("opv2", opv2a.isChecked() ? "1" : opv2b.isChecked() ? "2" : "");
+        im.put("opv2src", opv2srca.isChecked() ? "1" : opv2srcb.isChecked() ? "2" : "");
+
         im.put("opv3", opv3a.isChecked() ? "1" : opv3b.isChecked() ? "2" : "");
+        im.put("opv3src", opv3srca.isChecked() ? "1" : opv3srcb.isChecked() ? "2" : "");
+
         im.put("pcv1", pcv1a.isChecked() ? "1" : pcv1b.isChecked() ? "2" : "");
+        im.put("pcv1src", pcv1srca.isChecked() ? "1" : pcv1srcb.isChecked() ? "2" : "");
+
         im.put("pcv2", pcv2a.isChecked() ? "1" : pcv2b.isChecked() ? "2" : "");
+        im.put("pcv2src", pcv2srca.isChecked() ? "1" : pcv2srcb.isChecked() ? "2" : "");
+
         im.put("pcv3", pcv3a.isChecked() ? "1" : pcv3b.isChecked() ? "2" : "");
+        im.put("pcv3src", pcv3srca.isChecked() ? "1" : pcv3srcb.isChecked() ? "2" : "");
+
         im.put("p1", p1a.isChecked() ? "1" : p1b.isChecked() ? "2" : "");
+        im.put("p1src", p1srca.isChecked() ? "1" : p1srcb.isChecked() ? "2" : "");
+
         im.put("p2", p2a.isChecked() ? "1" : p2b.isChecked() ? "2" : "");
+        im.put("p2src", p2srca.isChecked() ? "1" : p2srcb.isChecked() ? "2" : "");
+
         im.put("p3", p3a.isChecked() ? "1" : p3b.isChecked() ? "2" : "");
+        im.put("p3src", p3srca.isChecked() ? "1" : p3srcb.isChecked() ? "2" : "");
+
         im.put("m1", m1a.isChecked() ? "1" : m1b.isChecked() ? "2" : "");
+        im.put("m1src", m1srca.isChecked() ? "1" : m1srcb.isChecked() ? "2" : "");
+
         im.put("m2", m2a.isChecked() ? "1" : m2b.isChecked() ? "2" : "");
+        im.put("m2src", m2srca.isChecked() ? "1" : m2srcb.isChecked() ? "2" : "");
+
         im.put("dr", imdra.isChecked() ? "1" : imdrb.isChecked() ? "2" : "");
         im.put("ari", imaria.isChecked() ? "1" : imarib.isChecked() ? "2" : "");
 
 
         PSSPApp.im.setIM(String.valueOf(im));
+        PSSPApp.im.setUID(PSSPApp.fc.getDeviceID() + PSSPApp.fc.getID());
 
         Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
 

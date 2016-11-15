@@ -2,7 +2,6 @@ package edu.aku.hassannaqvi.pssp;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -87,8 +86,6 @@ public class FormsContract {
         this.mna6a = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA6A));
         this.mna7 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA7));
         this.sA = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SA));
-        Log.d("TAG:", "hydrate: CsA " + cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SA)));
-        Log.d("TAG:", "hydrate: sA " + this.sA);
         this.sB = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SB));
         this.sC = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SC));
         this.sD = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SD));
@@ -341,11 +338,7 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sG));*/
 
         json.put(singleForm.COLUMN_SA, this.sA);
-        Log.d("What's in the TAG", "toJSONObject: A" + this.sA);
-        json.put(singleForm.COLUMN_SA, this.sA.substring(1));
-        Log.d("What's in the TAG", "toJSONObject: B" + this.sB);
-        json.put(singleForm.COLUMN_SB, this.sB.substring(1));
-
+        json.put(singleForm.COLUMN_SB, this.sB);
         json.put(singleForm.COLUMN_SB, this.sB);
         json.put(singleForm.COLUMN_SC, this.sC);
         json.put(singleForm.COLUMN_SD, this.sD);

@@ -1177,7 +1177,7 @@
                 android:text="@string/mnCard" />
 
             <RadioButton
-                android:id="@+id/pcv3srcREsp"
+                android:id="@+id/pcv3srcb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"

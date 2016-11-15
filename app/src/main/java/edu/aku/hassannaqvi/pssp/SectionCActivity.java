@@ -360,6 +360,90 @@ public class SectionCActivity extends Activity {
         sc.put("mnc5p3", mnc5p3.getText().toString());
         sc.put("mnc5m1", mnc5m1.getText().toString());
         sc.put("mnc5m2", mnc5m2.getText().toString());
+
+        switch (mnc6.getCheckedRadioButtonId()) {
+            case R.id.mnc6a:
+                sc.put("mnc6", "1");
+                break;
+            case R.id.mnc6b:
+                sc.put("mnc6", "2");
+                break;
+            case R.id.mnc6c:
+                sc.put("mnc6", "99");
+                break;
+
+            default:
+                sc.put("mnc6", "default");
+                break;
+        }
+
+        switch (mnc7.getCheckedRadioButtonId()) {
+            case R.id.mnc7a:
+                sc.put("mnc7", "1");
+                break;
+            case R.id.mnc7b:
+                sc.put("mnc7", "2");
+                break;
+            case R.id.mnc7c:
+                sc.put("mnc7", "99");
+                break;
+
+            default:
+                sc.put("mnc7", "default");
+                break;
+        }
+
+        switch (mnc9.getCheckedRadioButtonId()) {
+            case R.id.mnc9a:
+                sc.put("mnc9", "1");
+                break;
+            case R.id.mnc9b:
+                sc.put("mnc9", "2");
+                break;
+            case R.id.mnc9c:
+                sc.put("mnc9", "99");
+                break;
+
+            default:
+                sc.put("mnc9", "default");
+                break;
+        }
+
+        sc.put("mnc8", mnc8.getText().toString());
+        sc.put("mnc10yy", mnc10yy.getText().toString());
+        sc.put("mnc10mm", mnc10mm.getText().toString());
+
+
+        switch (mnc11.getCheckedRadioButtonId()) {
+            case R.id.mnc11a:
+                sc.put("mnc11", "1");
+                break;
+            case R.id.mnc11b:
+                sc.put("mnc11", "2");
+                break;
+            case R.id.mnc11c:
+                sc.put("mnc11", "3");
+                break;
+            case R.id.mnc11d:
+                sc.put("mnc11", "4");
+                break;
+            default:
+                sc.put("mnc11", "default");
+                break;
+        }
+        sc.put("mnc11name", mnc11name.getText().toString());
+
+        switch (mnc12.getCheckedRadioButtonId()) {
+            case R.id.mnc12a:
+                sc.put("mnc12", "1");
+                break;
+            case R.id.mnc12b:
+                sc.put("mnc12", "2");
+                break;
+            default:
+                sc.put("mnc12", "default");
+                break;
+        }
         switch (mnc13.getCheckedRadioButtonId()) {
             case R.id.mnc13a:
                 sc.put("mnc13", "1");
