@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import edu.aku.hassannaqvi.pssp.FormsContract.singleForm;
 import edu.aku.hassannaqvi.pssp.IMsContract.singleIms;
@@ -142,6 +143,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values);
         DB_FORM_ID = String.valueOf(newRowId);
         return newRowId;
+    }
+
+    public void updateForms(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(singleForm.COLUMN_SYNCED, true);
+        values.put(singleForm.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = singleForm._ID + " LIKE ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                singleForm.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
     }
 
     public long addIM(IMsContract imscontract) {

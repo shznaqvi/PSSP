@@ -90,7 +90,20 @@ public class MainActivity extends Activity {
     }
 
     public void syncServer(View view) {
-        if (isNetworkAvailable()) {
+
+        String stringUrl = PSSPApp._HOST_URL + "pssp/api/forms.php";
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            new SyncForms(this).execute(stringUrl);
+        } else {
+            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+       /* if (isNetworkAvailable()) {
             SyncForms ff = new SyncForms(this);
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             ff.execute();
@@ -107,7 +120,7 @@ public class MainActivity extends Activity {
             editor.putString("LastSyncServer", dtToday);
 
             editor.apply();
-        }
+        }*/
     }
 
     public void syncDevice(View view) {

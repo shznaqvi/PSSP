@@ -109,8 +109,11 @@ public class SectionGActivity extends Activity {
                 break;
         }
         sg.put("mng2", mng2.getText().toString());
-        sg.put("mngsticker", mngsticker.getText().toString());
-
+        if (PSSPApp.scanned) {
+            sg.put("mngsticker", "S-" + mngsticker.getText().toString());
+        } else {
+            sg.put("mngsticker", mngsticker.getText().toString());
+        }
         PSSPApp.fc.setsG(String.valueOf(sg));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
@@ -148,7 +151,7 @@ public class SectionGActivity extends Activity {
             mngsticker.setError("This data is Required!");
             Log.i(TAG, "mngsticker: This data is Required!");
             return false;
-        } else if (mng1a.isChecked() && mngsticker.getText().toString().replace("§", "").length() > 5) {
+        } else if (mng1a.isChecked() && mngsticker.getText().toString().length() != 8) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mngsticker), Toast.LENGTH_LONG).show();
             mngsticker.setError("This data is invalid!");
             Log.i(TAG, "mngsticker: This data is invalid!");
@@ -190,7 +193,8 @@ public class SectionGActivity extends Activity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                mngsticker.setText("§" + result.getContents());
+                mngsticker.setText(result.getContents());
+                PSSPApp.scanned = true;
                 mngsticker.setEnabled(false);
             }
         } else {

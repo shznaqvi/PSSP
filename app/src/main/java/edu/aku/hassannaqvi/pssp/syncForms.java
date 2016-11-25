@@ -9,19 +9,19 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
 /**
  * Created by hassan.naqvi on 7/26/2016.
  */
-public class SyncForms extends AsyncTask<Void, Void, String> {
+public class SyncForms extends AsyncTask<String, Void, String> {
 
     private static final String TAG = "SyncForms";
     private Context mContext;
@@ -52,30 +52,67 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(String... urls) {
 
         String line = "No Response";
-
-        HttpURLConnection connection = null;
         try {
-            String request = "http://192.168.1.10/pssp/api/forms.php";
-            //String request = "http://10.1.42.30:3000/forms";
+            return downloadUrl(urls[0]);
+        } catch (IOException e) {
+            return "Unable to upload data. Server may be down.";
+        }
 
-            URL url = new URL(request);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setDoInput(true);
-            connection.setInstanceFollowRedirects(false);
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("charset", "utf-8");
-            connection.setUseCaches(false);
-            connection.connect();
+    }
 
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
 
+        JSONArray json = null;
+        try {
+            json = new JSONArray(result);
+            DatabaseHelper db = new DatabaseHelper(mContext);
+            for (int i = 0; i < json.length(); i++) {
+                db.updateForms(json.getString(i));
+            }
+            Toast.makeText(mContext, "Successfully Synced "+ json.length() +" Forms", Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(json.length()+" forms synced.");
+            pd.setTitle("Done uploading forms data");
+            pd.show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(result);
+            pd.setTitle("Forms Sync Failed");
+            pd.show();
+
+        }
+
+    }
+
+    private String downloadUrl(String myurl) throws IOException {
+        InputStream is = null;
+        // Only display the first 500 characters of the retrieved
+        // web page content.
+        int len = 500;
+
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setUseCaches(false);
+            // Starts the query
+            conn.connect();
             JSONArray jsonSync = new JSONArray();
-
-            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+            try {
+            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
             DatabaseHelper db = new DatabaseHelper(mContext);
             Collection<FormsContract> forms = db.getAllForms();
             Log.d(TAG, String.valueOf(forms.size()));
@@ -119,47 +156,35 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
             longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
             wr.flush();
-            int HttpResult = connection.getResponseCode();
-            if (HttpResult == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        connection.getInputStream(), "utf-8"));
-                StringBuffer sb = new StringBuffer();
-
-                while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                br.close();
-
-                System.out.println("" + sb.toString());
-                return sb.toString();
-            } else {
-                System.out.println(connection.getResponseMessage());
-                return connection.getResponseMessage();
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-        } catch (MalformedURLException e) {
 
-            e.printStackTrace();
-        } catch (IOException e) {
 
-            e.printStackTrace();
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+
+            int response = conn.getResponseCode();
+            Log.d(TAG, "The response is: " + response);
+            is = conn.getInputStream();
+
+            // Convert the InputStream into a string
+            String contentAsString = readIt(is, len);
+            return contentAsString;
+
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
         } finally {
-            if (connection != null)
-                connection.disconnect();
+            if (is != null) {
+                is.close();
+            }
         }
-        return line;
     }
 
-    @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-
-        Toast.makeText(mContext, "Synced Forms " + result, Toast.LENGTH_SHORT).show();
-
-        pd.setMessage("Server Response: " + result);
-        pd.setTitle("Please wait... Done Forms");
-        pd.show();
+    public String readIt(InputStream stream, int len) throws IOException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[len];
+        reader.read(buffer);
+        return new String(buffer);
     }
 }

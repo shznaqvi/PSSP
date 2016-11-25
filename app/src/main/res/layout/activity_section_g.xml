@@ -97,7 +97,7 @@
             android:digits="1234567890"
             android:hint="@string/mngsticker"
             android:inputType="number"
-            android:maxLength="5"
+            android:maxLength="9"
             android:onClick="startScan" />
         </LinearLayout>
 

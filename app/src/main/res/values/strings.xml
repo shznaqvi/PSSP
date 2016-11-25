@@ -148,6 +148,21 @@
     <string name="mnd10h"> پیٹ کا درد </string>
     <string name="mnd10i"> پیشاب کے وقت رونا </string>
 
+    <string name="mnd11"> کیا(بچے کا نام)نے کبھی ماں کا دودھ پیا ہے؟ </string>
+    <string name="mnd12"> بچہ ابھی بھی ماں کا دودھ پیتا ہے </string>
+    <string name="mnd13"> کیا (بچے کا نام) نے کل دن یا رات میں ماں کا دودھ پیا ہے؟ </string>
+    <string name="mnd14"> کس عمر تک (بچے کا نام) نے ماں کا دودھ پیا ہے؟ </string>
+    <string name="mnd15"> کیا (بچے کا نام) نے کل دن یا رات میں اِن میں سے کوئی مائع اشیاء استمال کی ہیں؟ </string>
+    <string name="mnd15a"> سادہ پانی </string>
+    <string name="mnd15b"> گلوکوز کا پانی </string>
+    <string name="mnd15c"> جانور کا دودھ یا خشک دودھ </string>
+    <string name="mnd15d"> پھلوں کا جوس یا شربت </string>
+    <string name="mnd15e"> یخنی یا سوپ </string>
+    <string name="mnd15f"> دہی یا لسی </string>
+    <string name="mnd15g"> پتلا دلیہ </string>
+    <string name="mnd15h"> وٹامن کے قطرے یا کوئی دوا </string>
+    <string name="mnd15i"> ORS / نمکول </string>
+
 
     <string name="imfrmno"> ڈی ایم یو سیریل نمبر </string>
     <string name="imchid"> بچے کی آئ ڈی </string>

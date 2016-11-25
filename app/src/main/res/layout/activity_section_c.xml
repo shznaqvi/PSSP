@@ -223,7 +223,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5bcg"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -238,7 +238,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5opv0"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -265,7 +265,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5p1"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -280,7 +280,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5pcv1"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -295,7 +295,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5opv1"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -322,7 +322,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5p2"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -337,7 +337,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5pcv2"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -352,7 +352,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5opv2"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -379,7 +379,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5p3"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -394,7 +394,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5pcv3"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -409,7 +409,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5opv3"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -424,7 +424,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5ipv1"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -451,7 +451,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5m1"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -467,7 +467,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5ipv2"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -495,7 +495,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5m2"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -511,7 +511,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:digits="10"
+                android:digits="12"
                 android:hint="@string/mnc5ipv3"
                 android:inputType="number"
                 android:maxLength="1" />

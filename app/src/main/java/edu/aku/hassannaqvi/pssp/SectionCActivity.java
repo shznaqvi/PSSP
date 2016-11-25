@@ -673,6 +673,32 @@ public class SectionCActivity extends Activity {
             mnc5m2.setError(null);
         }
 
+        if (mnc1a.isChecked() && (
+                mnc5bcg.getText().toString().equals("2")
+                        && mnc5opv0.getText().toString().equals("2")
+                        && mnc5opv1.getText().toString().equals("2")
+                        && mnc5opv2.getText().toString().equals("2")
+                        && mnc5opv3.getText().toString().equals("2")
+                        && mnc5p1.getText().toString().equals("2")
+                        && mnc5p2.getText().toString().equals("2")
+                        && mnc5p3.getText().toString().equals("2")
+                        && mnc5pcv1.getText().toString().equals("2")
+                        && mnc5pcv2.getText().toString().equals("2")
+                        && mnc5pcv3.getText().toString().equals("2")
+                        && mnc5ipv1.getText().toString().equals("2")
+                        && mnc5ipv2.getText().toString().equals("2")
+                        && mnc5ipv3.getText().toString().equals("2")
+                        && mnc5m1.getText().toString().equals("2")
+                        && mnc5m2.getText().toString().equals("2")
+        )) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mnc5), Toast.LENGTH_LONG).show();
+            mnc5m2.setError("At least one should be YES.");
+            Log.i(TAG, "mnc5: the answer is invalid");
+            return false;
+        } else {
+            mnc5m2.setError(null);
+        }
+
         // C6
         if (mnc6.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnc6), Toast.LENGTH_LONG).show();

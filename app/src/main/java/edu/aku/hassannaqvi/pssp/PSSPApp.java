@@ -17,19 +17,19 @@ import android.view.View;
 public class PSSPApp extends Application {
 
     //public static final String _IP = "192.168.1.10"; // Test NODE server
-    public static final String _IP = "192.168.1.10"; // Test PHP server
-    public static final Integer _PORT = 80; // Port - with colon (:)
+    public static final String _IP = "43.245.131.159"; // Test PHP server
+    public static final Integer _PORT = 8080; // Port - with colon (:)
     public static final String _HOST_URL = "http://" + PSSPApp._IP + ":" + PSSPApp._PORT + "/";
+
 /*
     public static final String _IP = "43.245.131.159"; // Test server
 */
-
-
+public static final Integer MONTHS_LIMIT = 11;
+    public static final Integer DAYS_LIMIT = 29;
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWENTY_MINUTES = 1000 * 60 * 20;
     private static final int TWO_MINUTES = 1000 * 60 * 2;
-
     private static final long MILLIS_IN_SECOND = 1000;
     private static final long SECONDS_IN_MINUTE = 60;
     private static final long MINUTES_IN_HOUR = 60;
@@ -37,8 +37,6 @@ public class PSSPApp extends Application {
     public static final long MILLISECONDS_IN_DAY = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY;
     private static final long DAYS_IN_YEAR = 365;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
-
-
     public static String deviceId;
 
     public static String mna2;
@@ -46,6 +44,7 @@ public class PSSPApp extends Application {
     public static String mnb1 = "TEST";
     public static int chCount = 0;
     public static int chTotal = 0;
+    public static boolean scanned = false;
     public static FormsContract fc;
     public static IMsContract im;
     protected LocationManager locationManager;

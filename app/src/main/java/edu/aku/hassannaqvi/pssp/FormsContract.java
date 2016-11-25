@@ -19,7 +19,7 @@ public class FormsContract {
     private String _ID = "";
     private String UID = "";
     private String mna1 = ""; // Date
-    private String mna2 = ""; // DC name
+    private String mna2 = "0000"; // DC name
     private String mna3 = ""; // District
     private String mna4 = ""; // PSU
     private String mna5 = ""; // HH no.

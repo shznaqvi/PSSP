@@ -139,7 +139,148 @@ public class SectionDActivity extends Activity {
     CheckBox mnd10x;
     @BindView(R.id.mnd10x96)
     EditText mnd10x96;
-
+    @BindView(R.id.txtmnd11)
+    TextView txtmnd11;
+    @BindView(R.id.mnd11)
+    RadioGroup mnd11;
+    @BindView(R.id.mnd11a)
+    RadioButton mnd11a;
+    @BindView(R.id.mnd11b)
+    RadioButton mnd11b;
+    @BindView(R.id.mnd11c)
+    RadioButton mnd11c;
+    @BindView(R.id.fldGrpd12)
+    LinearLayout fldGrpd12;
+    @BindView(R.id.txtmnd12)
+    TextView txtmnd12;
+    @BindView(R.id.mnd12)
+    RadioGroup mnd12;
+    @BindView(R.id.mnd12a)
+    RadioButton mnd12a;
+    @BindView(R.id.mnd12b)
+    RadioButton mnd12b;
+    @BindView(R.id.fldGrpmnd13)
+    LinearLayout fldGrpmnd13;
+    @BindView(R.id.txtmnd13)
+    TextView txtmnd13;
+    @BindView(R.id.mnd13)
+    RadioGroup mnd13;
+    @BindView(R.id.mnd13a)
+    RadioButton mnd13a;
+    @BindView(R.id.mnd13b)
+    RadioButton mnd13b;
+    @BindView(R.id.mnd13c)
+    RadioButton mnd13c;
+    @BindView(R.id.fldGrpmnd14)
+    LinearLayout fldGrpmnd14;
+    @BindView(R.id.txtmnd14)
+    TextView txtmnd14;
+    @BindView(R.id.mnd14d)
+    EditText mnd14d;
+    @BindView(R.id.mnd14m)
+    EditText mnd14m;
+    @BindView(R.id.txtmnd15)
+    TextView txtmnd15;
+    @BindView(R.id.txtmnd15a)
+    TextView txtmnd15a;
+    @BindView(R.id.mnd15a)
+    RadioGroup mnd15a;
+    @BindView(R.id.mnd15a1)
+    RadioButton mnd15a1;
+    @BindView(R.id.mnd15a2)
+    RadioButton mnd15a2;
+    @BindView(R.id.mnd15a99)
+    RadioButton mnd15a99;
+    @BindView(R.id.txtmnd15b)
+    TextView txtmnd15b;
+    @BindView(R.id.mnd15b)
+    RadioGroup mnd15b;
+    @BindView(R.id.mnd15b1)
+    RadioButton mnd15b1;
+    @BindView(R.id.mnd15b2)
+    RadioButton mnd15b2;
+    @BindView(R.id.mnd15b99)
+    RadioButton mnd15b99;
+    @BindView(R.id.txtmnd15c)
+    TextView txtmnd15c;
+    @BindView(R.id.mnd15c)
+    RadioGroup mnd15c;
+    @BindView(R.id.mnd15c1)
+    RadioButton mnd15c1;
+    @BindView(R.id.mnd15c2)
+    RadioButton mnd15c2;
+    @BindView(R.id.mnd15c99)
+    RadioButton mnd15c99;
+    @BindView(R.id.txtmnd15d)
+    TextView txtmnd15d;
+    @BindView(R.id.mnd15d)
+    RadioGroup mnd15d;
+    @BindView(R.id.mnd15d1)
+    RadioButton mnd15d1;
+    @BindView(R.id.mnd15d2)
+    RadioButton mnd15d2;
+    @BindView(R.id.mnd15d99)
+    RadioButton mnd15d99;
+    @BindView(R.id.txtmnd15e)
+    TextView txtmnd15e;
+    @BindView(R.id.mnd15e)
+    RadioGroup mnd15e;
+    @BindView(R.id.mnd15e1)
+    RadioButton mnd15e1;
+    @BindView(R.id.mnd15e2)
+    RadioButton mnd15e2;
+    @BindView(R.id.mnd15e99)
+    RadioButton mnd15e99;
+    @BindView(R.id.txtmnd15f)
+    TextView txtmnd15f;
+    @BindView(R.id.mnd15f)
+    RadioGroup mnd15f;
+    @BindView(R.id.mnd15f1)
+    RadioButton mnd15f1;
+    @BindView(R.id.mnd15f2)
+    RadioButton mnd15f2;
+    @BindView(R.id.mnd15f99)
+    RadioButton mnd15f99;
+    @BindView(R.id.txtmnd15g)
+    TextView txtmnd15g;
+    @BindView(R.id.mnd15g)
+    RadioGroup mnd15g;
+    @BindView(R.id.mnd15g1)
+    RadioButton mnd15g1;
+    @BindView(R.id.mnd15g2)
+    RadioButton mnd15g2;
+    @BindView(R.id.mnd15g99)
+    RadioButton mnd15g99;
+    @BindView(R.id.txtmnd15h)
+    TextView txtmnd15h;
+    @BindView(R.id.mnd15h)
+    RadioGroup mnd15h;
+    @BindView(R.id.mnd15h1)
+    RadioButton mnd15h1;
+    @BindView(R.id.mnd15h2)
+    RadioButton mnd15h2;
+    @BindView(R.id.mnd15h99)
+    RadioButton mnd15h99;
+    @BindView(R.id.txtmnd15i)
+    TextView txtmnd15i;
+    @BindView(R.id.mnd15i)
+    RadioGroup mnd15i;
+    @BindView(R.id.mnd15i1)
+    RadioButton mnd15i1;
+    @BindView(R.id.mnd15i2)
+    RadioButton mnd15i2;
+    @BindView(R.id.mnd15i99)
+    RadioButton mnd15i99;
+    @BindView(R.id.mnd15x)
+    RadioGroup mnd15x;
+    @BindView(R.id.mnd15x1)
+    RadioButton mnd15x1;
+    @BindView(R.id.mnd15x2)
+    RadioButton mnd15x2;
+    @BindView(R.id.mnd15x99)
+    RadioButton mnd15x99;
+    @BindView(R.id.mnd15x96)
+    EditText mnd15x96;
     @BindView(R.id.fldGrpmnd6)
     LinearLayout fldGrpmnd6;
     @BindView(R.id.fldGrpmnd10)
@@ -151,13 +292,11 @@ public class SectionDActivity extends Activity {
         setContentView(R.layout.activity_section_d);
         ButterKnife.bind(this);
 
-
-            txtmnd1.setText(txtmnd1.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnd2.setText(txtmnd2.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnd4.setText(txtmnd4.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnd6.setText(txtmnd6.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-            txtmnd9.setText(txtmnd9.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
-
+        txtmnd1.setText(txtmnd1.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnd2.setText(txtmnd2.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnd4.setText(txtmnd4.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnd6.setText(txtmnd6.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
+        txtmnd9.setText(txtmnd9.getText().toString().replace("(بچے کا نام)", PSSPApp.mnb1));
 
         mnd5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -225,6 +364,49 @@ public class SectionDActivity extends Activity {
             }
         });
 
+        mnd11a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    fldGrpd12.setVisibility(View.VISIBLE);
+                } else {
+                    fldGrpd12.setVisibility(View.GONE);
+                    mnd12.clearCheck();
+                    mnd13.clearCheck();
+                    mnd14d.setText(null);
+                    mnd14m.setText(null);
+
+                }
+            }
+        });
+
+        mnd12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (mnd12a.isChecked()) {
+                    fldGrpmnd13.setVisibility(View.VISIBLE);
+                    fldGrpmnd14.setVisibility(View.GONE);
+                    mnd14d.setText(null);
+                    mnd14m.setText(null);
+                } else if (mnd12b.isChecked()) {
+                    fldGrpmnd14.setVisibility(View.VISIBLE);
+                    fldGrpmnd13.setVisibility(View.GONE);
+                    mnd13.clearCheck();
+                }
+            }
+        });
+
+        mnd15x1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mnd15x96.setVisibility(View.VISIBLE);
+                } else {
+                    mnd15x96.setVisibility(View.GONE);
+                    mnd15x96.setText(null);
+                }
+            }
+        });
     }
 
     public void submitSecD(View v) throws JSONException {
@@ -388,6 +570,23 @@ public class SectionDActivity extends Activity {
         sd.put("mnd10i", mnd10i.isChecked() ? "9" : "");
         sd.put("mnd10x", mnd10x.isChecked() ? "96" : "");
         sd.put("mnd10x96", mnd10x96.getText().toString());
+        sd.put("mnd11", mnd11a.isChecked() ? "1" : mnd11b.isChecked() ? "2" : mnd11c.isChecked() ? "3" : "xxx");
+        sd.put("mnd12", mnd12a.isChecked() ? "1" : mnd12b.isChecked() ? "2" : "xxx");
+        sd.put("mnd13", mnd13a.isChecked() ? "1" : mnd13b.isChecked() ? "2" : mnd13c.isChecked() ? "3" : "xxx");
+        sd.put("mnd14d", mnd14d.getText().toString());
+        sd.put("mnd14m", mnd14m.getText().toString());
+        sd.put("mnd15a", mnd15a1.isChecked() ? "1" : mnd15a2.isChecked() ? "2" : mnd15a99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15b", mnd15b1.isChecked() ? "1" : mnd15b2.isChecked() ? "2" : mnd15b99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15c", mnd15c1.isChecked() ? "1" : mnd15c2.isChecked() ? "2" : mnd15c99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15d", mnd15d1.isChecked() ? "1" : mnd15d2.isChecked() ? "2" : mnd15d99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15e", mnd15e1.isChecked() ? "1" : mnd15e2.isChecked() ? "2" : mnd15e99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15f", mnd15f1.isChecked() ? "1" : mnd15f2.isChecked() ? "2" : mnd15f99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15g", mnd15g1.isChecked() ? "1" : mnd15g2.isChecked() ? "2" : mnd15g99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15h", mnd15h1.isChecked() ? "1" : mnd15h2.isChecked() ? "2" : mnd15h99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15i", mnd15i1.isChecked() ? "1" : mnd15i2.isChecked() ? "2" : mnd15i99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15x", mnd15x1.isChecked() ? "1" : mnd15x2.isChecked() ? "2" : mnd15x99.isChecked() ? "99" : "xxx");
+        sd.put("mnd15x96", mnd15x96.getText().toString());
+
 
         PSSPApp.fc.setsD(String.valueOf(sd));
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
@@ -519,6 +718,154 @@ public class SectionDActivity extends Activity {
             mnd10x96.setError(null);
         }
 
+        // D11
+        if (mnd11.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd11), Toast.LENGTH_LONG).show();
+            mnd11c.setError("This data is Required!");
+            Log.i(TAG, "mnd11: This data is Required!");
+            return false;
+        } else {
+            mnd11c.setError(null);
+        }
+
+        // D12Days
+        if (mnd11a.isChecked()) {
+            if (mnd12.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd12), Toast.LENGTH_LONG).show();
+                mnd12b.setError("This data is Required!");
+                Log.i(TAG, "mnd12: This data is Required!");
+                return false;
+            } else {
+                mnd12b.setError(null);
+            }
+
+            if (mnd12a.isChecked() && mnd13.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd13), Toast.LENGTH_LONG).show();
+                mnd13c.setError("This data is Required!");
+                Log.i(TAG, "mnd13: This data is Required!");
+                return false;
+            } else {
+                mnd13c.setError(null);
+            }
+            if (mnd12b.isChecked() && mnd14d.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd14), Toast.LENGTH_LONG).show();
+                mnd14d.setError("This data is Required!");
+                Log.i(TAG, "mnd14: This data is Required!");
+                return false;
+            } else if (!mnd14d.getText().toString().isEmpty() && Integer.valueOf(mnd14d.getText().toString()) > PSSPApp.MONTHS_LIMIT) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mnd14), Toast.LENGTH_LONG).show();
+                mnd14d.setError("This data is Invalid!");
+                Log.i(TAG, "mnd14d: This data is Invalid!");
+                return false;
+            } else {
+                mnd14d.setError(null);
+            }
+            if (mnd12b.isChecked() && mnd14m.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd14), Toast.LENGTH_LONG).show();
+                mnd14m.setError("This data is Required!");
+                Log.i(TAG, "mnd14m: This data is Required!");
+                return false;
+            } else if (!mnd14m.getText().toString().isEmpty() && Integer.valueOf(mnd14d.getText().toString()) > PSSPApp.MONTHS_LIMIT) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mnd14), Toast.LENGTH_LONG).show();
+                mnd14m.setError("This data is Invalid!");
+                Log.i(TAG, "mnd14m: This data is Invalid!");
+                return false;
+            } else {
+                mnd14m.setError(null);
+            }
+
+        }
+
+        // D15a
+        if (mnd15a.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15a), Toast.LENGTH_LONG).show();
+            mnd15a99.setError("This data is Required!");
+            Log.i(TAG, "mnd15a: This data is Required!");
+            return false;
+        } else {
+            mnd15a99.setError(null);
+        }
+
+        // D15b
+        if (mnd15b.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15b), Toast.LENGTH_LONG).show();
+            mnd15b99.setError("This data is Required!");
+            Log.i(TAG, "mnd15b: This data is Required!");
+            return false;
+        } else {
+            mnd15b99.setError(null);
+        }
+
+        // D15c
+        if (mnd15c.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15c), Toast.LENGTH_LONG).show();
+            mnd15c99.setError("This data is Required!");
+            Log.i(TAG, "mnd15c: This data is Required!");
+            return false;
+        } else {
+            mnd15c99.setError(null);
+        }
+
+        // D15e
+        if (mnd15e.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15e), Toast.LENGTH_LONG).show();
+            mnd15e99.setError("This data is Required!");
+            Log.i(TAG, "mnd15e: This data is Required!");
+            return false;
+        } else {
+            mnd15e99.setError(null);
+        }
+
+        // D15f
+        if (mnd15f.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15f), Toast.LENGTH_LONG).show();
+            mnd15f99.setError("This data is Required!");
+            Log.i(TAG, "mnd15f: This data is Required!");
+            return false;
+        } else {
+            mnd15f99.setError(null);
+        }
+
+        // D15g
+        if (mnd15g.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15g), Toast.LENGTH_LONG).show();
+            mnd15g99.setError("This data is Required!");
+            Log.i(TAG, "mnd15g: This data is Required!");
+            return false;
+        } else {
+            mnd15g99.setError(null);
+        }
+
+        // D15h
+        if (mnd15h.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15h), Toast.LENGTH_LONG).show();
+            mnd15h99.setError("This data is Required!");
+            Log.i(TAG, "mnd15h: This data is Required!");
+            return false;
+        } else {
+            mnd15h99.setError(null);
+        }
+
+        // D15i
+        if (mnd15i.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd15i), Toast.LENGTH_LONG).show();
+            mnd15i99.setError("This data is Required!");
+            Log.i(TAG, "mnd15i: This data is Required!");
+            return false;
+        } else {
+            mnd15i99.setError(null);
+        }
+
+        // D15x
+        if (mnd15x.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnOther), Toast.LENGTH_LONG).show();
+            mnd15x99.setError("This data is Required!");
+            Log.i(TAG, "mnd15x: This data is Required!");
+            return false;
+        } else {
+            mnd15x99.setError(null);
+        }
+        
         return true;
     }
 }
