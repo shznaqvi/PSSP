@@ -4,12 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,7 +36,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +72,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     AutoCompleteTextView mEmailView;
     @BindView(R.id.password)
     EditText mPasswordView;
+    @BindView(R.id.txtinstalldate)
+    TextView txtinstalldate;
     @BindView(R.id.email_sign_in_button)
     Button mEmailSignInButton;
     @BindView(R.id.spUC)
@@ -80,6 +88,28 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        try {
+            long installedOn = this
+                    .getPackageManager()
+                    .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
+                    .lastUpdateTime
+                    ;
+            Integer versionCode = this
+                    .getPackageManager()
+                    .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
+                    .versionCode
+                    ;
+            String versionName = this
+                    .getPackageManager()
+                    .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
+                    .versionName
+                    ;
+            txtinstalldate.setText("Ver. "+versionName+"."+String.valueOf(versionCode)+" \r\n( Last Updated: "+new SimpleDateFormat("dd MMM. yyyy").format(new Date(installedOn))+" )");
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -135,11 +165,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         values.add("31");
         values.add("32");
         values.add("33");
-        values.add("34");
-        values.add("35");
         values.add("41");
         values.add("42");
-        values.add("43");
+        values.add("91");
+        values.add("92");
+        values.add("93");
 
 
         // Polulating 'lables' and 'values' from ucList
@@ -169,11 +199,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("31", "K Zone 1");
         valuesnlabels.put("32", "K Zone 2");
         valuesnlabels.put("33", "K Zone 3");
-        valuesnlabels.put("34", "Sukkur");
-        valuesnlabels.put("35", "Larkhana");
-        valuesnlabels.put("41", "Rawalpindi");
-        valuesnlabels.put("42", "Lahore");
-        valuesnlabels.put("43", "Multan");
+        valuesnlabels.put("41", "Sukkur");
+        valuesnlabels.put("42", "Larkhana");
+        valuesnlabels.put("91", "Rawalpindi");
+        valuesnlabels.put("92", "Lahore");
+        valuesnlabels.put("93", "Multan");
 
 
         // Creating adapter for spinner
@@ -190,7 +220,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         spUC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                PSSPApp.mna3 = position;
+                PSSPApp.mna3 = Integer.valueOf(values.get(position));
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                 Toast.makeText(LoginActivity.this, values.get(position), Toast.LENGTH_SHORT).show();
@@ -407,17 +437,48 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-            DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
-            if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)) {
-                PSSPApp.mna2 = mEmail;
-                Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(iLogin);
 
+            LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
+                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)) {
+                    PSSPApp.mna2 = mEmail;
+                    PSSPApp.admin = mEmail.contains("@");
+
+                    Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(iLogin);
+
+                } else {
+                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    mPasswordView.requestFocus();
+                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
+                }
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-                Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        LoginActivity.this);
+                alertDialogBuilder
+                        .setMessage("GPS is disabled in your device. Enable it?")
+                        .setCancelable(false)
+                        .setPositiveButton("Enable GPS",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        Intent callGPSSettingIntent = new Intent(
+                                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                        startActivity(callGPSSettingIntent);
+                                    }
+                                });
+                alertDialogBuilder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
+
             }
+
         }
 
 

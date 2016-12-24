@@ -133,7 +133,7 @@ public class SectionAActivity extends Activity {
         values.add("42");
         values.add("43");
 
-        txtmna3.setText(getString(R.string.mna3) + ": " + lables.get(PSSPApp.mna3));
+        txtmna3.setText(getString(R.string.mna3) + ": " + lables.get(values.indexOf(String.valueOf(PSSPApp.mna3))));
         mna6.setEnabled(false);
 
 
@@ -181,6 +181,7 @@ public class SectionAActivity extends Activity {
             mna6.setEnabled(false);
         } else {
             mna6.setEnabled(true);
+            PSSPApp.mnb1 = chName;
         }
     }
     public void submitSecA(View v) throws JSONException {
@@ -293,6 +294,9 @@ public class SectionAActivity extends Activity {
                 break;
             case R.id.mna12f:
                 sA.put("mna12", "6");
+                break;
+            case R.id.mna12g:
+                sA.put("mna12", "7");
                 break;
             case R.id.mna12x:
                 sA.put("mna12", "96");
@@ -445,7 +449,7 @@ public class SectionAActivity extends Activity {
         PSSPApp.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
         PSSPApp.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
         PSSPApp.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-        PSSPApp.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+        PSSPApp.fc.setGpsTime(date); // Timestamp is converted to date above
 
         Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
     }

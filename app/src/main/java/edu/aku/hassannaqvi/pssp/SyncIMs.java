@@ -9,21 +9,21 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
 /**
  * Created by hassan.naqvi on 7/26/2016.
  */
-public class SyncIMs extends AsyncTask<Void, Void, String> {
+public class SyncIMs extends AsyncTask<String, Void, String> {
 
-    private static final String TAG = "SyncForms";
+    private static final String TAG = "SyncIms";
     private Context mContext;
     private ProgressDialog pd;
 
@@ -45,89 +45,112 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(mContext);
-        pd.setTitle("Please wait... Processing Forms");
+        pd.setTitle("Please wait... Processing IMs");
         pd.show();
 
     }
 
 
     @Override
-    protected String doInBackground(Void... params) {
-
+    protected String doInBackground(String... urls) {
         String line = "No Response";
-
-        HttpURLConnection connection = null;
         try {
-            String request = PSSPApp._HOST_URL + "pssp/api/ims.php";
-            //String request = "http://10.1.42.30:3000/ims";
-
-            URL url = new URL(request);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setDoInput(true);
-            connection.setInstanceFollowRedirects(false);
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("charset", "utf-8");
-            connection.setUseCaches(false);
-            connection.connect();
-
-
-            JSONArray jsonSync = new JSONArray();
-
-            DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-            DatabaseHelper db = new DatabaseHelper(mContext);
-            Collection<IMsContract> ims = db.getAllIMs();
-            Log.d(TAG, String.valueOf(ims.size()));
-//            pd.setMessage("Total Forms: " );
-            for (IMsContract im : ims) {
-
-                jsonSync.put(im.toJSONObject());
-                //wr.writeBytes(jsonParam.toString().replace("\uFEFF", "") + "\n");
-
-            }
-            wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
-            longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
-            wr.flush();
-            int HttpResult = connection.getResponseCode();
-            if (HttpResult == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        connection.getInputStream(), "utf-8"));
-                StringBuffer sb = new StringBuffer();
-
-                while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                br.close();
-
-                System.out.println("" + sb.toString());
-                return sb.toString();
-            } else {
-                System.out.println(connection.getResponseMessage());
-                return connection.getResponseMessage();
-            }
-        } catch (MalformedURLException e) {
-
-            e.printStackTrace();
+            return downloadUrl(urls[0]);
         } catch (IOException e) {
-
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } finally {
-            if (connection != null)
-                connection.disconnect();
+            return "Unable to upload data. Server may be down.";
         }
-        return line;
+
+
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        Toast.makeText(mContext, "Synced IMs " + result, Toast.LENGTH_SHORT).show();
+        JSONArray json = null;
+        try {
+            json = new JSONArray(result);
+            DatabaseHelper db = new DatabaseHelper(mContext);
+           /* for (int i = 0; i < json.length(); i++) {
+                db.updateIMs(json.getString(i));
+            }*/
+            Toast.makeText(mContext, "Successfully Synced "+ json.length() +" IMs", Toast.LENGTH_SHORT).show();
 
-        pd.setMessage("Server Response: " + result);
-        pd.setTitle("Please wait... Done IMS");
-        pd.show();
+            pd.setMessage(json.length()+" IMs synced.");
+            pd.setTitle("Done uploading IMs data");
+            pd.show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(result);
+            pd.setTitle("Forms Sync Failed");
+            pd.show();
+
+        }
+    }
+
+    private String downloadUrl(String myurl) throws IOException {
+        InputStream is = null;
+        // Only display the first 500 characters of the retrieved
+        // web page content.
+        int len = 500;
+
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setUseCaches(false);
+            // Starts the query
+            conn.connect();
+            JSONArray jsonSync = new JSONArray();
+            try {
+                DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+                DatabaseHelper db = new DatabaseHelper(mContext);
+                Collection<IMsContract> ims = db.getAllIMs();
+                Log.d(TAG, String.valueOf(ims.size()));
+                for (IMsContract im : ims) {
+
+
+                    jsonSync.put(im.toJSONObject());
+
+
+                }
+                wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
+                longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
+                wr.flush();
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            int response = conn.getResponseCode();
+            Log.d(TAG, "The response is: " + response);
+            is = conn.getInputStream();
+
+            // Convert the InputStream into a string
+            String contentAsString = readIt(is, len);
+            return contentAsString;
+
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+        }
+    }
+
+    public String readIt(InputStream stream, int len) throws IOException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[len];
+        reader.read(buffer);
+        return new String(buffer);
     }
 }

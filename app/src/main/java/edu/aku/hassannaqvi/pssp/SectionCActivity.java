@@ -820,4 +820,9 @@ public class SectionCActivity extends Activity {
 
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Back Button NOT Allowed!", Toast.LENGTH_SHORT).show();
+
+    }
 }

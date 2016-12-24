@@ -20,6 +20,7 @@ public class IMsContract {
     }
 
     public IMsContract sync(JSONObject jsonObject) throws JSONException {
+        this._ID = jsonObject.getLong(singleIms._ID);
         this.UID = jsonObject.getString(singleIms.COLUMN_UID);
         this.chid = jsonObject.getString(singleIms.COLUMN_CHID);
         this.im = jsonObject.getString(singleIms.COLUMN_IM);
@@ -28,6 +29,7 @@ public class IMsContract {
     }
 
     public IMsContract hydrate(Cursor cursor) {
+        this._ID = cursor.getLong(cursor.getColumnIndex(singleIms._ID));
         this.UID = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_UID));
         this.chid = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_CHID));
         this.im = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_IM));
@@ -70,10 +72,10 @@ public class IMsContract {
     public JSONObject toJSONObject() throws JSONException {
         JSONObject json = new JSONObject();
 
-        json.put(singleIms._ID, this._ID);
-        json.put(singleIms.COLUMN_UID, this.UID);
-        json.put(singleIms.COLUMN_CHID, this.chid);
-        json.put(singleIms.COLUMN_IM, this.im);
+        json.put(singleIms._ID, this._ID== null?JSONObject.NULL:this._ID);
+        json.put(singleIms.COLUMN_UID, this.UID== null?JSONObject.NULL:this.UID);
+        json.put(singleIms.COLUMN_CHID, this.chid== null?JSONObject.NULL:this.chid);
+        json.put(singleIms.COLUMN_IM, this.im== null?JSONObject.NULL:this.im);
 
         return json;
     }

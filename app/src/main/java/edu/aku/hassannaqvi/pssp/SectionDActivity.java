@@ -570,9 +570,9 @@ public class SectionDActivity extends Activity {
         sd.put("mnd10i", mnd10i.isChecked() ? "9" : "");
         sd.put("mnd10x", mnd10x.isChecked() ? "96" : "");
         sd.put("mnd10x96", mnd10x96.getText().toString());
-        sd.put("mnd11", mnd11a.isChecked() ? "1" : mnd11b.isChecked() ? "2" : mnd11c.isChecked() ? "3" : "xxx");
+        sd.put("mnd11", mnd11a.isChecked() ? "1" : mnd11b.isChecked() ? "2" : mnd11c.isChecked() ? "99" : "xxx");
         sd.put("mnd12", mnd12a.isChecked() ? "1" : mnd12b.isChecked() ? "2" : "xxx");
-        sd.put("mnd13", mnd13a.isChecked() ? "1" : mnd13b.isChecked() ? "2" : mnd13c.isChecked() ? "3" : "xxx");
+        sd.put("mnd13", mnd13a.isChecked() ? "1" : mnd13b.isChecked() ? "2" : mnd13c.isChecked() ? "99" : "xxx");
         sd.put("mnd14d", mnd14d.getText().toString());
         sd.put("mnd14m", mnd14m.getText().toString());
         sd.put("mnd15a", mnd15a1.isChecked() ? "1" : mnd15a2.isChecked() ? "2" : mnd15a99.isChecked() ? "99" : "xxx");
@@ -702,7 +702,7 @@ public class SectionDActivity extends Activity {
         }
 
         // D10
-        if (mnd5a.isChecked() && !(mnd10a.isChecked() || mnd10b.isChecked() || mnd10c.isChecked() || mnd10d.isChecked() || mnd10e.isChecked() || mnd10f.isChecked() || mnd10g.isChecked() || mnd10h.isChecked() || mnd10i.isChecked() || mnd10x.isChecked())) {
+        if (mnd9a.isChecked() && !(mnd10a.isChecked() || mnd10b.isChecked() || mnd10c.isChecked() || mnd10d.isChecked() || mnd10e.isChecked() || mnd10f.isChecked() || mnd10g.isChecked() || mnd10h.isChecked() || mnd10i.isChecked() || mnd10x.isChecked())) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mnd10), Toast.LENGTH_LONG).show();
             mnd10x.setError("This data is Required!");
             Log.i(TAG, "mnd10: This data is Required!");
@@ -867,5 +867,10 @@ public class SectionDActivity extends Activity {
         }
         
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Back Button NOT Allowed!", Toast.LENGTH_SHORT).show();
+
     }
 }

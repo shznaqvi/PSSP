@@ -333,33 +333,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/mne6" />
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/mne6">
 
-
-        <CheckBox
+        <RadioButton
             android:id="@+id/mne6a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne6a" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/mne6b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne6b" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/mne6c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne6c" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/mne6d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mne6d" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/mne6x99"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -367,12 +370,12 @@
 
             />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/mne6x"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mnOther" />
-
+</RadioGroup>
         <EditText
             android:id="@+id/mne6x96"
             android:layout_width="match_parent"
@@ -406,18 +409,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mnNO" />
 
-            <RadioButton
-                android:id="@+id/mne7c"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/mnOther" />
         </RadioGroup>
 
-        <EditText
-            android:id="@+id/mne7x96"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/mnOther" />
 
         <LinearLayout
             android:id="@+id/fldGrpe8"
@@ -993,6 +986,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/mnNO" />
+            <RadioButton
+                android:id="@+id/mne17c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mnDNK" />
 
         </RadioGroup>
 

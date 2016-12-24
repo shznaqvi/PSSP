@@ -201,4 +201,9 @@ public class SectionGActivity extends Activity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Back Button NOT Allowed!", Toast.LENGTH_SHORT).show();
+
+    }
 }

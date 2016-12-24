@@ -308,25 +308,25 @@ public class FormsContract {
 
         JSONObject json = new JSONObject();
 
-        json.put(singleForm._ID, this._ID);
-        json.put(singleForm.COLUMN_UID, this.UID);
-        json.put(singleForm.COLUMN_PROJECT_NAME, this.projectName);
-        json.put(singleForm.COLUMN_SURVEY_TYPE, this.surveyType);
-        json.put(singleForm.COLUMN_DEVICE_ID, this.deviceID);
-        json.put(singleForm.COLUMN_GPS_LAT, this.gpsLat);
-        json.put(singleForm.COLUMN_GPS_LNG, this.gpsLng);
-        json.put(singleForm.COLUMN_GPS_TIME, this.gpsTime);
-        json.put(singleForm.COLUMN_GPS_ACC, this.gpsAcc);
-        json.put(singleForm.COLUMN_SYNCED, this.synced);
-        json.put(singleForm.COLUMN_SYNCED_DATE, this.synced_date);
-        json.put(singleForm.COLUMN_MNA1, this.mna1);
-        json.put(singleForm.COLUMN_MNA2, this.mna2);
-        json.put(singleForm.COLUMN_MNA3, this.mna3);
-        json.put(singleForm.COLUMN_MNA4, this.mna4);
-        json.put(singleForm.COLUMN_MNA5, this.mna5);
-        json.put(singleForm.COLUMN_MNA6, this.mna6);
-        json.put(singleForm.COLUMN_MNA6A, this.mna6a);
-        json.put(singleForm.COLUMN_MNA7, this.mna7);
+        json.put(singleForm._ID, this._ID== null?JSONObject.NULL:this._ID);
+        json.put(singleForm.COLUMN_UID, this.UID== null?JSONObject.NULL:this.UID);
+        json.put(singleForm.COLUMN_PROJECT_NAME, this.projectName== null?JSONObject.NULL:this.projectName);
+        json.put(singleForm.COLUMN_SURVEY_TYPE, this.surveyType== null?JSONObject.NULL:this.surveyType);
+        json.put(singleForm.COLUMN_DEVICE_ID, this.deviceID== null?JSONObject.NULL:this.deviceID);
+        json.put(singleForm.COLUMN_GPS_LAT, this.gpsLat== null?JSONObject.NULL:this.gpsLat);
+        json.put(singleForm.COLUMN_GPS_LNG, this.gpsLng== null?JSONObject.NULL:this.gpsLng);
+        json.put(singleForm.COLUMN_GPS_TIME, this.gpsTime== null?JSONObject.NULL:this.gpsTime);
+        json.put(singleForm.COLUMN_GPS_ACC, this.gpsAcc== null?JSONObject.NULL:this.gpsAcc);
+        json.put(singleForm.COLUMN_SYNCED, this.synced== null?JSONObject.NULL:this.synced);
+        json.put(singleForm.COLUMN_SYNCED_DATE, this.synced_date== null?JSONObject.NULL:this.synced_date);
+        json.put(singleForm.COLUMN_MNA1, this.mna1== null?JSONObject.NULL:this.mna1);
+        json.put(singleForm.COLUMN_MNA2, this.mna2== null?JSONObject.NULL:this.mna2);
+        json.put(singleForm.COLUMN_MNA3, this.mna3== null?JSONObject.NULL:this.mna3);
+        json.put(singleForm.COLUMN_MNA4, this.mna4== null?JSONObject.NULL:this.mna4);
+        json.put(singleForm.COLUMN_MNA5, this.mna5== null?JSONObject.NULL:this.mna5);
+        json.put(singleForm.COLUMN_MNA6, this.mna6== null?JSONObject.NULL:this.mna6);
+        json.put(singleForm.COLUMN_MNA6A, this.mna6a== null?JSONObject.NULL:this.mna6a);
+        json.put(singleForm.COLUMN_MNA7, this.mna7== null?JSONObject.NULL:this.mna7);
 
 
 /*        json = jsonMerge(json, new JSONObject(this.sA));
@@ -337,14 +337,14 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sF));
         json = jsonMerge(json, new JSONObject(this.sG));*/
 
-        json.put(singleForm.COLUMN_SA, this.sA);
-        json.put(singleForm.COLUMN_SB, this.sB);
-        json.put(singleForm.COLUMN_SB, this.sB);
-        json.put(singleForm.COLUMN_SC, this.sC);
-        json.put(singleForm.COLUMN_SD, this.sD);
-        json.put(singleForm.COLUMN_SE, this.sE);
-        json.put(singleForm.COLUMN_SF, this.sF);
-        json.put(singleForm.COLUMN_SG, this.sG);
+        json.put(singleForm.COLUMN_SA, this.sA== null?JSONObject.NULL:this.sA);
+        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
+        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
+        json.put(singleForm.COLUMN_SC, this.sC== null?JSONObject.NULL:this.sC);
+        json.put(singleForm.COLUMN_SD, this.sD== null?JSONObject.NULL:this.sD);
+        json.put(singleForm.COLUMN_SE, this.sE== null?JSONObject.NULL:this.sE);
+        json.put(singleForm.COLUMN_SF, this.sF== null?JSONObject.NULL:this.sF);
+        json.put(singleForm.COLUMN_SG, this.sG== null?JSONObject.NULL:this.sG);
 
         return json;
     }

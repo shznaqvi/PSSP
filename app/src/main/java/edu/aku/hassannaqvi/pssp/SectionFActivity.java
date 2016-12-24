@@ -545,6 +545,7 @@ public class SectionFActivity extends Activity {
         sf.put("mnf9f", mnf9f.getText().toString());
         sf.put("mnf9g", mnf9g.getText().toString());
         sf.put("mnf9gx96", mnf9gx96.getText().toString());
+        sf.put("mnf9h", mnf9h.getText().toString());
         sf.put("mnf9i", mnf9i.getText().toString());
         sf.put("mnf9j", mnf9j.getText().toString());
         sf.put("mnf9k", mnf9k.getText().toString());
@@ -916,5 +917,10 @@ public class SectionFActivity extends Activity {
 
 
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Back Button NOT Allowed!", Toast.LENGTH_SHORT).show();
+
     }
 }

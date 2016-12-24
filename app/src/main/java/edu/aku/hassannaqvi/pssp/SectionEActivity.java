@@ -105,18 +105,20 @@ public class SectionEActivity extends Activity {
     CheckBox mne5x;
     @BindView(R.id.mne5x96)
     EditText mne5x96;
+    @BindView(R.id.mne6)
+    RadioGroup mne6;
     @BindView(R.id.mne6a)
-    CheckBox mne6a;
+    RadioButton mne6a;
     @BindView(R.id.mne6b)
-    CheckBox mne6b;
+    RadioButton mne6b;
     @BindView(R.id.mne6c)
-    CheckBox mne6c;
+    RadioButton mne6c;
     @BindView(R.id.mne6d)
-    CheckBox mne6d;
+    RadioButton mne6d;
     @BindView(R.id.mne6x99)
-    CheckBox mne6x99;
+    RadioButton mne6x99;
     @BindView(R.id.mne6x)
-    CheckBox mne6x;
+    RadioButton mne6x;
     @BindView(R.id.mne6x96)
     EditText mne6x96;
     @BindView(R.id.mne7)
@@ -125,10 +127,6 @@ public class SectionEActivity extends Activity {
     RadioButton mne7a;
     @BindView(R.id.mne7b)
     RadioButton mne7b;
-    @BindView(R.id.mne7c)
-    RadioButton mne7c;
-    @BindView(R.id.mne7x96)
-    EditText mne7x96;
     @BindView(R.id.mne8a)
     CheckBox mne8a;
     @BindView(R.id.mne8b)
@@ -257,6 +255,8 @@ public class SectionEActivity extends Activity {
     RadioButton mne17a;
     @BindView(R.id.mne17b)
     RadioButton mne17b;
+    @BindView(R.id.mne17c)
+    RadioButton mne17c;
     @BindView(R.id.mne18)
     RadioGroup mne18;
     @BindView(R.id.mne18a)
@@ -364,18 +364,6 @@ public class SectionEActivity extends Activity {
             }
         });
 
-        // E7 Others
-        mne7c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mne7x96.setVisibility(View.VISIBLE);
-                } else {
-                    mne7x96.setVisibility(View.GONE);
-                    mne7x96.setText(null);
-                }
-            }
-        });
 
         // E7 Yes skip E8
         mne7.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -486,7 +474,7 @@ public class SectionEActivity extends Activity {
         mne17.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (mne17a.isChecked()) {
+                if (mne17a.isChecked() || mne17c.isChecked()) {
                     fldGrpe18.setVisibility(View.GONE);
                     // clear E18
                     mne18a.setChecked(false);
@@ -590,12 +578,9 @@ public class SectionEActivity extends Activity {
         se.put("mne5x99", mne5x99.isChecked() ? "99" : "");
         se.put("mne5x", mne5x.isChecked() ? "96" : "");
         se.put("mne5x96", mne5x96.getText().toString());
-        se.put("mne6a", mne6a.isChecked() ? "1" : "");
-        se.put("mne6b", mne6b.isChecked() ? "2" : "");
-        se.put("mne6c", mne6c.isChecked() ? "3" : "");
-        se.put("mne6d", mne6d.isChecked() ? "4" : "");
-        se.put("mne6x99", mne6x99.isChecked() ? "99" : "");
-        se.put("mne6x", mne6x.isChecked() ? "96" : "");
+        se.put("mne6a", mne6a.isChecked() ? "1" : mne6b.isChecked() ? "2" : mne6c.isChecked() ? "3"
+                :mne6d.isChecked() ? "4" :mne6x99.isChecked() ? "99" : mne6x.isChecked() ? "96" : "");
+
         se.put("mne6x96", mne6x96.getText().toString());
         switch (mne7.getCheckedRadioButtonId()) {
             case R.id.mne7a:
@@ -604,14 +589,10 @@ public class SectionEActivity extends Activity {
             case R.id.mne7b:
                 se.put("mne7", "2");
                 break;
-            case R.id.mne7c:
-                se.put("mne7", "96");
-                break;
             default:
                 se.put("mne7", "default");
                 break;
         }
-        se.put("mne7x96", mne7x96.getText().toString());
         se.put("mne8a", mne8a.isChecked() ? "1" : "");
         se.put("mne8b", mne8b.isChecked() ? "2" : "");
         se.put("mne8c", mne8c.isChecked() ? "3" : "");
@@ -775,6 +756,9 @@ public class SectionEActivity extends Activity {
             case R.id.mne17b:
                 se.put("mne17", "2");
                 break;
+            case R.id.mne17c:
+                se.put("mne17", "99");
+                break;
             default:
                 se.put("mne17", "default");
                 break;
@@ -858,6 +842,15 @@ public class SectionEActivity extends Activity {
             mne4x.setError(null);
         }
 
+      /*  if (mne4x.isChecked() && (mne4a.isChecked() || mne4b.isChecked() || mne4c.isChecked() || mne4d.isChecked() || mne4e.isChecked() || mne4f.isChecked() || mne4g.isChecked() || mne4h.isChecked() || mne4i.isChecked() )) {
+            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne4), Toast.LENGTH_LONG).show();
+            mne4x96.setError("Others Required!");
+            Log.i(TAG, "mne4x96: Others Required!");
+            return false;
+        } else {
+            mne4x96.setError(null);
+        }*/
+
         // E4x96
         if (mne4x.isChecked() && mne4x96.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne4), Toast.LENGTH_LONG).show();
@@ -889,7 +882,7 @@ public class SectionEActivity extends Activity {
         }
 
         // E6
-        if (!(mne6a.isChecked() || mne6b.isChecked() || mne6c.isChecked() || mne6d.isChecked() || mne6x99.isChecked() || mne6x.isChecked())) {
+        if (mne6.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne6), Toast.LENGTH_LONG).show();
             mne6x.setError("This data is Required!");
             Log.i(TAG, "mne6: This data is Required!");
@@ -911,22 +904,14 @@ public class SectionEActivity extends Activity {
         // E7
         if (mne7.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne7), Toast.LENGTH_LONG).show();
-            mne7c.setError("This data is Required!");
+            mne7b.setError("This data is Required!");
             Log.i(TAG, "mne7: This data is Required!");
             return false;
         } else {
-            mne7c.setError(null);
+            mne7b.setError(null);
         }
 
-        // E7x96
-        if (mne7c.isChecked() && mne7x96.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Others Req.): " + getString(R.string.mne7), Toast.LENGTH_LONG).show();
-            mne7x96.setError("Others Required!");
-            Log.i(TAG, "mne7x96: Others Required!");
-            return false;
-        } else {
-            mne7x96.setError(null);
-        }
+
 
         // E7 Not Yes
         if (!mne7a.isChecked()) {
@@ -1080,14 +1065,14 @@ public class SectionEActivity extends Activity {
             }
         }
 
-        // E15
-        if (mne15.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne15), Toast.LENGTH_LONG).show();
-            mne15b.setError("This data is Required!");
-            Log.i(TAG, "mne15: This data is Required!");
+        // e17
+        if (mne17.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getString(R.string.mne17), Toast.LENGTH_LONG).show();
+            mne17c.setError("This data is Required!");
+            Log.i(TAG, "mne17: This data is Required!");
             return false;
         } else {
-            mne15b.setError(null);
+            mne17c.setError(null);
         }
 
         // E17 Option A
@@ -1115,6 +1100,11 @@ public class SectionEActivity extends Activity {
         }
 
         return true;
+
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Back Button NOT Allowed!", Toast.LENGTH_SHORT).show();
 
     }
 }

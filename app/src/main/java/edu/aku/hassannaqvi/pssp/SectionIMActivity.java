@@ -417,6 +417,9 @@ public class SectionIMActivity extends Activity {
         JSONObject im = new JSONObject();
 
         im.put("ima", ima.getText().toString());
+        im.put("imaf", imaf.getText().toString());
+        im.put("imdt", new Date().getTime());
+        im.put("impsu_hh", PSSPApp.fc.getMna4()+PSSPApp.fc.getMna5());
         im.put("imb", imba.isChecked() ? "1" : imbb.isChecked() ? "2" : "");
         im.put("imc", imca.isChecked() ? "1" : imcb.isChecked() ? "2" : "");
         im.put("imd", DOB);
@@ -880,5 +883,10 @@ public class SectionIMActivity extends Activity {
         }
 
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Back Button NOT Allowed!", Toast.LENGTH_SHORT).show();
+
     }
 }

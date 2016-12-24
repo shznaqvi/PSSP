@@ -27,9 +27,18 @@
             android:textAllCaps="true"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
+            android:id="@+id/recordSummary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/background_grad"
+
+            />
 
         <Button
             android:id="@+id/openForm"
@@ -39,7 +48,47 @@
             android:layout_marginTop="16dp"
             android:onClick="openForm"
             android:text="Open New Form" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
+            <EditText
+                android:id="@+id/clusterNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="PSU No."
+                android:inputType="number" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="CheckCluster"
+                android:text="Check PSU" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/syncServer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:onClick="syncServer"
+            android:text="Upload Data" />
+
+        <Button
+            android:id="@+id/syncDevice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:onClick="syncDevice"
+            android:text="Download Data" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/adminsec">
         <Button
             android:id="@+id/openA"
             android:layout_width="match_parent"
@@ -122,31 +171,16 @@
             android:onClick="openEnd"
             android:text="Section End" />
 
-        <Button
-            android:id="@+id/syncSerer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
-            android:onClick="syncServer"
-            android:text="Upload Data" />
+    <Button
+        android:id="@+id/openDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:onClick="openDB"
+        android:text="Open Database Manager" />
+</LinearLayout>
 
-        <Button
-            android:id="@+id/syncDevice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
-            android:onClick="syncDevice"
-            android:text="Download Data" />
 
-        <Button
-            android:id="@+id/openDB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
-            android:onClick="openDB"
-            android:text="Open Database Manager" />
     </LinearLayout>
 </ScrollView>

@@ -9,6 +9,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.Toast;
+
 
 /**
  * Created by hassan.naqvi on 10/13/2016.
@@ -39,6 +41,7 @@ public static final Integer MONTHS_LIMIT = 11;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
     public static String deviceId;
 
+    public static Boolean admin = false;
     public static String mna2;
     public static int mna3 = -1;
     public static String mnb1 = "TEST";
@@ -48,6 +51,7 @@ public static final Integer MONTHS_LIMIT = 11;
     public static FormsContract fc;
     public static IMsContract im;
     protected LocationManager locationManager;
+    Location location;
 
     @Override
     public void onCreate() {
@@ -57,8 +61,12 @@ public static final Integer MONTHS_LIMIT = 11;
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+
+        //LocationRequest locationRequest = new LocationRequest();
+        //locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 MINIMUM_TIME_BETWEEN_UPDATES,
@@ -66,12 +74,11 @@ public static final Integer MONTHS_LIMIT = 11;
                 new MyLocationListener()
         );
 
-
     }
 
     protected void showCurrentLocation() {
 
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         if (location != null) {
             String message = String.format(
@@ -93,6 +100,7 @@ public static final Integer MONTHS_LIMIT = 11;
     protected boolean isBetterLocation(Location location, Location currentBestLocation) {
         if (currentBestLocation == null) {
             // A new location is always better than no location
+            Toast.makeText(this, "New Location", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -105,9 +113,11 @@ public static final Integer MONTHS_LIMIT = 11;
         // If it's been more than two minutes since the current location, use the new location
         // because the user has likely moved
         if (isSignificantlyNewer) {
+            Toast.makeText(this, "Significantly New Location", Toast.LENGTH_SHORT).show();
             return true;
             // If the new location is more than two minutes older, it must be worse
         } else if (isSignificantlyOlder) {
+            Toast.makeText(this, "Significantly Older Location", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -123,18 +133,19 @@ public static final Integer MONTHS_LIMIT = 11;
 
         // Determine location quality using a combination of timeliness and accuracy
         if (isMoreAccurate) {
+            Toast.makeText(this, "More Accurate Location", Toast.LENGTH_SHORT).show();
             return true;
         } else if (isNewer && !isLessAccurate) {
+            Toast.makeText(this, "Newer Less Accurate Location", Toast.LENGTH_SHORT).show();
             return true;
         } else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider) {
+            Toast.makeText(this, "Newer Significantly Less Accurate Location", Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
     }
 
-    /**
-     * Checks whether two providers are the same
-     */
+    /** Checks whether two providers are the same */
     private boolean isSameProvider(String provider1, String provider2) {
         if (provider1 == null) {
             return provider2 == null;
@@ -145,7 +156,6 @@ public static final Integer MONTHS_LIMIT = 11;
     private class MyLocationListener implements LocationListener {
 
         public void onLocationChanged(Location location) {
-
 
             SharedPreferences sharedPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();

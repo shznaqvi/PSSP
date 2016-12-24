@@ -10,9 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -85,6 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static String DB_FORM_ID;
     public static String DB_IMS_ID;
     private final String TAG = "DatabaseHelper";
+    public String spDateT = new SimpleDateFormat("dd-MM-yy").format(new Date().getTime());
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -182,7 +183,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     ////////////
-    public Collection<FormsContract> getAllForms() throws JSONException {
+    public Collection<FormsContract> getAllForms() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -249,6 +250,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFC;
     }
 
+    public Collection<FormsContract> getTodayForms() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                singleForm._ID,
+                singleForm.COLUMN_MNA4,
+                singleForm.COLUMN_MNA5,
+                singleForm.COLUMN_MNA7,
+        };
+
+        String whereClause = singleForm.COLUMN_MNA1 + " LIKE ?";
+        String[] whereArgs = {spDateT};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                singleForm._ID + " ASC";
+
+        Collection<FormsContract> formList = new ArrayList<FormsContract>();
+        try {
+            c = db.query(
+                    singleForm.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FormsContract fc = new FormsContract();
+                formList.add(fc.hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+
+
+        // return contact list
+        return formList;
+    }
+
     public Collection<IMsContract> getAllIMs() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -304,7 +353,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -324,7 +373,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -343,7 +392,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -362,7 +411,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -380,7 +429,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_SF, PSSPApp.fc.getsF());
 
         // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -399,7 +448,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -418,7 +467,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(PSSPApp.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,

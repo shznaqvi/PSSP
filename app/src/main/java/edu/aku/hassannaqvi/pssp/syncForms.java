@@ -27,7 +27,6 @@ public class SyncForms extends AsyncTask<String, Void, String> {
     private Context mContext;
     private ProgressDialog pd;
 
-
     public SyncForms(Context context) {
         mContext = context;
     }
@@ -39,7 +38,6 @@ public class SyncForms extends AsyncTask<String, Void, String> {
         } else
             Log.i("TAG: ", str);
     }
-
 
     @Override
     protected void onPreExecute() {
@@ -116,41 +114,9 @@ public class SyncForms extends AsyncTask<String, Void, String> {
             DatabaseHelper db = new DatabaseHelper(mContext);
             Collection<FormsContract> forms = db.getAllForms();
             Log.d(TAG, String.valueOf(forms.size()));
-//            pd.setMessage("Total Forms: " );
             for (FormsContract fc : forms) {
 
-                /*JSONObject jsonParam = new JSONObject();
-
-                jsonParam.put("_id", fc.getID());
-                jsonParam.put("_uid", fc.getUID());
-                jsonParam.put("projectname", fc.getProjectName());
-                jsonParam.put("surveytype", fc.getSurveyType());
-                jsonParam.put("mna1", fc.getMna1());
-                jsonParam.put("mna2", fc.getMna2());
-                jsonParam.put("mna3", fc.getMna3());
-                jsonParam.put("mna4", fc.getMna4());
-                jsonParam.put("mna5", fc.getMna5());
-                jsonParam.put("mna6", fc.getMna6());
-                jsonParam.put("mna6a", fc.getMna6a());
-                jsonParam.put("mna7", fc.getMna7());
-                jsonParam.put("sa", fc.getsA());
-                //Log.d(TAG, "doInBackground: sA"+ jsonParam.getJSONObject("sA"));
-                jsonParam.put("sb", fc.getsB());
-                jsonParam.put("sc", fc.getsC());
-                jsonParam.put("sd", fc.getsD());
-                jsonParam.put("se", fc.getsE());
-                jsonParam.put("sf", fc.getsF());
-                jsonParam.put("sg", fc.getsG());
-                jsonParam.put("gpslat", fc.getGpsLat());
-                jsonParam.put("gpslng", fc.getGpsLng());
-                jsonParam.put("gpsacc", fc.getGpsAcc());
-                jsonParam.put("gpstime", DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(fc.getGpsTime())));
-                jsonParam.put("deviceid", fc.getDeviceID());
-
-                longInfo(jsonParam.toString());*/
-                //jsonSync.put(fc.toJSONObject());
                 jsonSync.put(fc.toJSONObject());
-                //wr.writeBytes(jsonParam.toString().replace("\uFEFF", "") + "\n");
 
             }
             wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
@@ -160,8 +126,6 @@ public class SyncForms extends AsyncTask<String, Void, String> {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-
 
             int response = conn.getResponseCode();
             Log.d(TAG, "The response is: " + response);
