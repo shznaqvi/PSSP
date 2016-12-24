@@ -477,9 +477,7 @@ public class SectionEActivity extends Activity {
                 if (mne17a.isChecked() || mne17c.isChecked()) {
                     fldGrpe18.setVisibility(View.GONE);
                     // clear E18
-                    mne18a.setChecked(false);
-                    mne18b.setChecked(false);
-                    mne18x.setChecked(false);
+                    mne18.clearCheck();
                     mne18x96.setText(null);
 
                 } else {
