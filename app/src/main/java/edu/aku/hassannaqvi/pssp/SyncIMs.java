@@ -21,7 +21,7 @@ import java.util.Collection;
 /**
  * Created by hassan.naqvi on 7/26/2016.
  */
-public class SyncIMs extends AsyncTask<String, Void, String> {
+public class SyncIMs extends AsyncTask<Void, Void, String> {
 
     private static final String TAG = "SyncIms";
     private Context mContext;
@@ -52,10 +52,10 @@ public class SyncIMs extends AsyncTask<String, Void, String> {
 
 
     @Override
-    protected String doInBackground(String... urls) {
+    protected String doInBackground(Void... params) {
         String line = "No Response";
         try {
-            return downloadUrl(urls[0]);
+            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/ims.php");
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }
@@ -70,7 +70,7 @@ public class SyncIMs extends AsyncTask<String, Void, String> {
         try {
             json = new JSONArray(result);
             DatabaseHelper db = new DatabaseHelper(mContext);
-           /* for (int i = 0; i < json.length(); i++) {
+            /*for (int i = 0; i < json.length(); i++) {
                 db.updateIMs(json.getString(i));
             }*/
             Toast.makeText(mContext, "Successfully Synced "+ json.length() +" IMs", Toast.LENGTH_SHORT).show();
@@ -83,7 +83,7 @@ public class SyncIMs extends AsyncTask<String, Void, String> {
             Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(result);
-            pd.setTitle("Forms Sync Failed");
+            pd.setTitle("Ims Sync Failed");
             pd.show();
 
         }

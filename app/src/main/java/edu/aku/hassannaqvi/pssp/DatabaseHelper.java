@@ -249,6 +249,72 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
+public Collection<FormsContract> getUnsyncedForms() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                singleForm._ID,
+                singleForm.COLUMN_UID,
+                singleForm.COLUMN_PROJECT_NAME,
+                singleForm.COLUMN_SURVEY_TYPE,
+                singleForm.COLUMN_DEVICE_ID,
+                singleForm.COLUMN_GPS_LAT,
+                singleForm.COLUMN_GPS_LNG,
+                singleForm.COLUMN_GPS_ACC,
+                singleForm.COLUMN_GPS_TIME,
+                singleForm.COLUMN_SYNCED,
+                singleForm.COLUMN_SYNCED_DATE,
+                singleForm.COLUMN_MNA1,
+                singleForm.COLUMN_MNA2,
+                singleForm.COLUMN_MNA3,
+                singleForm.COLUMN_MNA4,
+                singleForm.COLUMN_MNA5,
+                singleForm.COLUMN_MNA6,
+                singleForm.COLUMN_MNA6A,
+                singleForm.COLUMN_MNA7,
+                singleForm.COLUMN_SA,
+                singleForm.COLUMN_SB,
+                singleForm.COLUMN_SC,
+                singleForm.COLUMN_SD,
+                singleForm.COLUMN_SE,
+                singleForm.COLUMN_SF,
+                singleForm.COLUMN_SG,
+
+
+        };
+        String whereClause = singleForm.COLUMN_SYNCED + " <> ?";
+        String[] whereArgs = {"1"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                singleForm._ID + " ASC";
+
+        Collection<FormsContract> allFC = new ArrayList<FormsContract>();
+        try {
+            c = db.query(
+                    singleForm.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FormsContract fc = new FormsContract();
+                allFC.add(fc.hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
 
     public Collection<FormsContract> getTodayForms() {
 

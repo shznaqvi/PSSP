@@ -576,8 +576,12 @@ public class SectionEActivity extends Activity {
         se.put("mne5x99", mne5x99.isChecked() ? "99" : "");
         se.put("mne5x", mne5x.isChecked() ? "96" : "");
         se.put("mne5x96", mne5x96.getText().toString());
-        se.put("mne6a", mne6a.isChecked() ? "1" : mne6b.isChecked() ? "2" : mne6c.isChecked() ? "3"
-                :mne6d.isChecked() ? "4" :mne6x99.isChecked() ? "99" : mne6x.isChecked() ? "96" : "");
+        se.put("mne6a", mne6a.isChecked() ? "1" : "");
+        se.put("mne6b", mne6b.isChecked() ? "2" : "");
+        se.put("mne6c", mne6c.isChecked() ? "3" : "");
+        se.put("mne6d", mne6d.isChecked() ? "4" : "");
+        se.put("mne6x99", mne6x99.isChecked() ? "99" : "");
+        se.put("mne6x", mne6x.isChecked() ? "96" : "");
 
         se.put("mne6x96", mne6x96.getText().toString());
         switch (mne7.getCheckedRadioButtonId()) {

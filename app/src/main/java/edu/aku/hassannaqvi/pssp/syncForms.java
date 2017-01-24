@@ -8,20 +8,24 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
 /**
  * Created by hassan.naqvi on 7/26/2016.
  */
-public class SyncForms extends AsyncTask<String, Void, String> {
+public class SyncForms extends AsyncTask<Void, Void, String> {
 
     private static final String TAG = "SyncForms";
     private Context mContext;
@@ -50,11 +54,11 @@ public class SyncForms extends AsyncTask<String, Void, String> {
 
 
     @Override
-    protected String doInBackground(String... urls) {
+    protected String doInBackground(Void... params) {
 
         String line = "No Response";
         try {
-            return downloadUrl(urls[0]);
+            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/forms.php");
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }
@@ -64,42 +68,50 @@ public class SyncForms extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-
+        int sSynced = 0;
         JSONArray json = null;
         try {
             json = new JSONArray(result);
             DatabaseHelper db = new DatabaseHelper(mContext);
             for (int i = 0; i < json.length(); i++) {
-                db.updateForms(json.getString(i));
+                    JSONObject jsonObject = new JSONObject(json.getString(i));
+                if(jsonObject.getString("status").equals("1")){
+                db.updateForms(jsonObject.getString("id"));
+                    sSynced++;
+                }
             }
-            Toast.makeText(mContext, "Successfully Synced "+ json.length() +" Forms", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, sSynced+" Forms synced." + String.valueOf(json.length()-sSynced) + " Errors.", Toast.LENGTH_SHORT).show();
 
-            pd.setMessage(json.length()+" forms synced.");
-            pd.setTitle("Done uploading forms data");
+            pd.setMessage(sSynced+" Forms synced." + String.valueOf(json.length()-sSynced) + " Errors.");
+            pd.setTitle("Done uploading Forms data");
             pd.show();
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(result);
-            pd.setTitle("Forms Sync Failed");
+            pd.setTitle("Formss Sync Failed");
             pd.show();
+
 
         }
 
     }
 
     private String downloadUrl(String myurl) throws IOException {
-        InputStream is = null;
+        String line = "No Response";
         // Only display the first 500 characters of the retrieved
         // web page content.
-        int len = 500;
-
+        //int len = 500;
+        DatabaseHelper db = new DatabaseHelper(mContext);
+        Collection<FormsContract> forms = db.getUnsyncedForms();
+        Log.d(TAG, String.valueOf(forms.size()));
+        if (forms.size() > 0) {
         try {
             URL url = new URL(myurl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setReadTimeout(20000 /* milliseconds */);
+            conn.setConnectTimeout(30000 /* milliseconds */);
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -111,9 +123,7 @@ public class SyncForms extends AsyncTask<String, Void, String> {
             JSONArray jsonSync = new JSONArray();
             try {
             DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-            DatabaseHelper db = new DatabaseHelper(mContext);
-            Collection<FormsContract> forms = db.getAllForms();
-            Log.d(TAG, String.valueOf(forms.size()));
+
             for (FormsContract fc : forms) {
 
                 jsonSync.put(fc.toJSONObject());
@@ -126,29 +136,41 @@ public class SyncForms extends AsyncTask<String, Void, String> {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+/*===================================================================*/
+            int HttpResult = conn.getResponseCode();
+            if (HttpResult == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        conn.getInputStream(), "utf-8"));
+                StringBuffer sb = new StringBuffer();
 
-            int response = conn.getResponseCode();
-            Log.d(TAG, "The response is: " + response);
-            is = conn.getInputStream();
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
 
-            // Convert the InputStream into a string
-            String contentAsString = readIt(is, len);
-            return contentAsString;
-
-            // Makes sure that the InputStream is closed after the app is
-            // finished using it.
-        } finally {
-            if (is != null) {
-                is.close();
+                System.out.println("" + sb.toString());
+                return sb.toString();
+            } else {
+                System.out.println(conn.getResponseMessage());
+                return conn.getResponseMessage();
             }
-        }
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }} else {return  "No new records to sync";}
+        return line;
+            /*===================================================================*/
+
     }
 
-    public String readIt(InputStream stream, int len) throws IOException {
+   /* public String readIt(InputStream stream) throws IOException {
         Reader reader = null;
         reader = new InputStreamReader(stream, "UTF-8");
         char[] buffer = new char[len];
         reader.read(buffer);
         return new String(buffer);
-    }
+    }*/
 }
