@@ -72,8 +72,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     AutoCompleteTextView mEmailView;
     @BindView(R.id.password)
     EditText mPasswordView;
-    @BindView(R.id.txtinstalldate)
-    TextView txtinstalldate;
+        @BindView(R.id.txtinstalldate)
+        TextView txtinstalldate;
     @BindView(R.id.email_sign_in_button)
     Button mEmailSignInButton;
     @BindView(R.id.spUC)

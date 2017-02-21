@@ -430,7 +430,7 @@ public class SectionDActivity extends Activity {
         }
     }
 
-    private boolean UpdateDB() {
+    private boolean     UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 
         int updcount = db.updateSD();
