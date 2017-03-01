@@ -282,8 +282,8 @@ public Collection<FormsContract> getUnsyncedForms() {
 
 
         };
-        String whereClause = singleForm.COLUMN_SYNCED + " <> ?";
-        String[] whereArgs = {"1"};
+    String whereClause = singleForm.COLUMN_SYNCED + " is null";
+    String[] whereArgs = null;
         String groupBy = null;
         String having = null;
 
