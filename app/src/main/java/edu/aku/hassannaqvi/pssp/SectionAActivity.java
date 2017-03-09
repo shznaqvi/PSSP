@@ -201,8 +201,8 @@ public class SectionAActivity extends Activity {
 
     public void endForm(View v) throws JSONException {
         Toast.makeText(this, "Processing Section A", Toast.LENGTH_SHORT).show();
-        if (formValidation()) {
-            SaveDraft();
+
+        SaveDraft();
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Closing Section", Toast.LENGTH_SHORT).show();
                 Intent endSec = new Intent(this, EndingActivity.class);
@@ -211,7 +211,7 @@ public class SectionAActivity extends Activity {
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+
     }
 
     private boolean UpdateDB() {

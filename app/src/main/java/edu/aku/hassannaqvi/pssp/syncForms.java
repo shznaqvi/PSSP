@@ -10,13 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -35,13 +32,13 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         mContext = context;
     }
 
-    public static void longInfo(String str) {
+    /*public static void longInfo(String str) {
         if (str.length() > 4000) {
             Log.i("TAG: ", str.substring(0, 4000));
             longInfo(str.substring(4000));
         } else
             Log.i("TAG: ", str);
-    }
+    }*/
 
     @Override
     protected void onPreExecute() {
@@ -130,7 +127,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
             }
             wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
-            longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
+                //longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
             wr.flush();
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
