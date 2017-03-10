@@ -51,7 +51,7 @@ public class GetChildren extends AsyncTask<String, String, String> {
         StringBuilder result = new StringBuilder();
 
         try {
-            URL url = new URL(PSSPApp._HOST_URL + "pssp/api/children.php");
+            URL url = new URL(PSSPApp._HOST_URL + "pssp/api/children.php?dc="+PSSPApp.mna3);
             urlConnection = (HttpURLConnection) url.openConnection();
 
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());

@@ -33,8 +33,8 @@ public class MainActivity extends Activity {
     LinearLayout adminsec;
     @BindView(R.id.recordSummary)
     TextView recordSummary;
-    @BindView(R.id.clusterNo)
-    EditText clusterNo;
+    @BindView(R.id.psuNo)
+    EditText psuNo;
 
 
     @Override
@@ -64,11 +64,11 @@ public class MainActivity extends Activity {
         rSumText += "TODAY'S RECORDS SUMMARY\r\n";
         rSumText += "=======================";
         rSumText += "\r\n\r\n";
-        rSumText += "Total Forms Today: "+todaysForms.size();
+        rSumText += "Total Forms Today: " + todaysForms.size();
         rSumText += "\r\n";
         rSumText += "    Forms List: \r\n";
         String iStatus = "";
-        for(FormsContract fc : todaysForms){
+        for (FormsContract fc : todaysForms) {
 
             switch (fc.getMna7()) {
                 case "1":
@@ -102,6 +102,20 @@ public class MainActivity extends Activity {
         recordSummary.setText(rSumText);
 
 
+    }
+
+    public void CheckPSU(View v) {
+        if (!psuNo.getText().toString().isEmpty()) {
+
+            psuNo.setError(null);
+
+            Intent Flist = new Intent(this, FormsList.class);
+            Flist.putExtra("psu_no", psuNo.getText().toString());
+            startActivity(Flist);
+        } else {
+            Toast.makeText(this, "Error(Empty): Data Required", Toast.LENGTH_SHORT).show();
+            psuNo.setError("Error(Empty): Data Required");
+        }
     }
 
     public void openForm(View v) {
@@ -158,6 +172,7 @@ public class MainActivity extends Activity {
         Intent dbmanager = new Intent(getApplicationContext(), AndroidDatabaseManager.class);
         startActivity(dbmanager);
     }
+
     /*public void CheckCluster(View v) {
         Intent cluster_list = new Intent(getApplicationContext(), FormsList.class);
         cluster_list.putExtra("clusterno", clusterNo.getText().toString());

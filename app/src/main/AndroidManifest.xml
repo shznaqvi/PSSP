@@ -37,6 +37,9 @@
         <activity android:name=".SectionEActivity" />
         <activity android:name=".SectionFActivity" />
         <activity android:name=".SectionGActivity" />
+        <activity android:name=".FormsList"
+            android:theme="@android:style/Theme.Holo.Light"
+            />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"

@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import edu.aku.hassannaqvi.pssp.FormsContract.singleForm;
 import edu.aku.hassannaqvi.pssp.IMsContract.singleIms;
@@ -249,7 +250,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
-public Collection<FormsContract> getUnsyncedForms() {
+
+    public Collection<FormsContract> getUnsyncedForms() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -282,8 +284,8 @@ public Collection<FormsContract> getUnsyncedForms() {
 
 
         };
-    String whereClause = singleForm.COLUMN_SYNCED + " is null OR " + singleForm.COLUMN_SYNCED + " = ''";
-    String[] whereArgs = null;
+        String whereClause = singleForm.COLUMN_SYNCED + " is null OR " + singleForm.COLUMN_SYNCED + " = ''";
+        String[] whereArgs = null;
         String groupBy = null;
         String having = null;
 
@@ -646,6 +648,32 @@ public Collection<FormsContract> getUnsyncedForms() {
 
         } catch (Exception e) {
         }
+    }
+
+    public List<FormsContract> getFormsByPSU(String psu) {
+        List<FormsContract> formList = new ArrayList<FormsContract>();
+        // Select All Unsynced Query
+        String selectQuery = "SELECT * FROM " + singleForm.TABLE_NAME + " WHERE " + singleForm.COLUMN_MNA4 + "='" + psu + "' ORDER BY " + singleForm._ID + " desc";
+        //String selectQuery = "SELECT  * FROM " + singleForm.TABLE_NAME;
+        Log.d(TAG, selectQuery);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                FormsContract form = new FormsContract();
+                form.setMna1(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA1)));
+                form.setMna5(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA5)));
+                form.setMna7(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA7)));
+
+                // Adding contact to list
+                formList.add(form);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return formList;
     }
 
 

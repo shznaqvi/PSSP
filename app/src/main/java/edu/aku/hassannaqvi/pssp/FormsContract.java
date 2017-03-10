@@ -45,6 +45,12 @@ public class FormsContract {
     public FormsContract() {
     }
 
+    public FormsContract(String mna1, String mna5, String mna7) {
+        this.mna1 = mna1;
+        this.mna5 = mna5;
+        this.mna7 = mna7;
+    }
+
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
         this._ID = jsonObject.getString(singleForm._ID);
         this.UID = jsonObject.getString(singleForm.COLUMN_UID);

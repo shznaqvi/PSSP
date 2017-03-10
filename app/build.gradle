@@ -52,6 +52,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.google.maps.android:android-maps-utils:+'
+
+    compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.android.support:recyclerview-v7:24.1.0'
 }
 //compile 'com.android.support:support-v4:25.0.1'
 //compile 'com.google.maps.android:android-maps-utils:0.4'
