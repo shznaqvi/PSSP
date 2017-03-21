@@ -709,7 +709,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (!cursor.isLast()) {
                 while (cursor.moveToNext()) {
                     child = new PSUsContract(cursor);
-                    return child.getChild_name();
+                    return child.getChild_name() + "|"+child.getLUID();
 
                 }
             } else {

@@ -176,12 +176,14 @@ public class SectionAActivity extends Activity {
     public void checkChild(View v) {
         DatabaseHelper db = new DatabaseHelper(SectionAActivity.this);
         String chName = db.getChildByHH(mna5.getText().toString(), mna4.getText().toString());
+
         child_name.setText(chName);
         if (chName.equals("No Child Found")) {
             mna6.setEnabled(false);
         } else {
             mna6.setEnabled(true);
-            PSSPApp.mnb1 = chName;
+            PSSPApp.mnb1 = chName.split("|")[0];
+            PSSPApp.mna06a = chName.split("|")[1];
         }
     }
     public void submitSecA(View v) throws JSONException {
@@ -247,6 +249,10 @@ public class SectionAActivity extends Activity {
         PSSPApp.fc.setMna4(mna4.getText().toString());
         PSSPApp.fc.setMna5(mna5.getText().toString());
         PSSPApp.fc.setMna6(mna6.isChecked() ? "1" : "2");
+
+        PSSPApp.fc.setMna6a(PSSPApp.mna06a);
+
+        PSSPApp.mna06a = "";
 
         JSONObject sA = new JSONObject();
 

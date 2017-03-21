@@ -50,6 +50,7 @@ public static final Integer MONTHS_LIMIT = 11;
     public static boolean scanned = false;
     public static FormsContract fc;
     public static IMsContract im;
+    public static String mna06a = "";
     protected LocationManager locationManager;
     Location location;
 
