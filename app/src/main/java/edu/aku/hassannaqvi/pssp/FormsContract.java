@@ -42,6 +42,8 @@ public class FormsContract {
     private String synced = "";
     private String synced_date = "";
 
+    public String Round = "2";
+
     public FormsContract() {
     }
 
@@ -76,6 +78,7 @@ public class FormsContract {
         this.deviceID = jsonObject.getString(singleForm.COLUMN_DEVICE_ID);
         this.synced = jsonObject.getString(singleForm.COLUMN_SYNCED);
         this.synced_date = jsonObject.getString(singleForm.COLUMN_SYNCED_DATE);
+        this.Round = jsonObject.getString(singleForm.COLUMN_NAME_ROUND);
 
         return this;
     }
@@ -105,6 +108,7 @@ public class FormsContract {
         this.deviceID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_DEVICE_ID));
         this.synced = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SYNCED));
         this.synced_date = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SYNCED_DATE));
+        this.Round = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_NAME_ROUND));
 
         return this;
     }
@@ -310,6 +314,14 @@ public class FormsContract {
         this.synced_date = synced_date;
     }
 
+    public String getRound() {
+        return Round;
+    }
+
+    public void setRound(String round) {
+        Round = round;
+    }
+
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
@@ -351,6 +363,8 @@ public class FormsContract {
         json.put(singleForm.COLUMN_SE, this.sE== null?JSONObject.NULL:this.sE);
         json.put(singleForm.COLUMN_SF, this.sF== null?JSONObject.NULL:this.sF);
         json.put(singleForm.COLUMN_SG, this.sG== null?JSONObject.NULL:this.sG);
+
+        json.put(singleForm.COLUMN_NAME_ROUND, this.Round);
 
         return json;
     }
@@ -406,6 +420,8 @@ public class FormsContract {
         public static final String COLUMN_SE = "se";
         public static final String COLUMN_SF = "sf";
         public static final String COLUMN_SG = "sg";
+
+        public static final String COLUMN_NAME_ROUND = "round";
     }
 }
 

@@ -54,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleForm.COLUMN_DEVICE_ID + " TEXT,"
             + singleForm.COLUMN_PROJECT_NAME + " TEXT,"
             + singleForm.COLUMN_SURVEY_TYPE + " TEXT,"
+            + singleForm.COLUMN_NAME_ROUND + " TEXT,"
             + singleForm.COLUMN_GPS_ACC + " TEXT,"
             + singleForm.COLUMN_GPS_LAT + " TEXT,"
             + singleForm.COLUMN_GPS_LNG + " TEXT,"
@@ -126,6 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_GPS_LAT, fc.getGpsLat());
         values.put(singleForm.COLUMN_GPS_LNG, fc.getGpsLng());
         values.put(singleForm.COLUMN_GPS_TIME, fc.getGpsTime());
+        values.put(singleForm.COLUMN_NAME_ROUND, fc.getRound());
         values.put(singleForm.COLUMN_MNA1, fc.getMna1());
         values.put(singleForm.COLUMN_MNA2, fc.getMna2());
         values.put(singleForm.COLUMN_MNA3, fc.getMna3());
@@ -197,6 +199,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_GPS_LNG,
                 singleForm.COLUMN_GPS_ACC,
                 singleForm.COLUMN_GPS_TIME,
+                singleForm.COLUMN_NAME_ROUND,
                 singleForm.COLUMN_SYNCED,
                 singleForm.COLUMN_SYNCED_DATE,
                 singleForm.COLUMN_MNA1,
@@ -264,6 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_GPS_LNG,
                 singleForm.COLUMN_GPS_ACC,
                 singleForm.COLUMN_GPS_TIME,
+                singleForm.COLUMN_NAME_ROUND,
                 singleForm.COLUMN_SYNCED,
                 singleForm.COLUMN_SYNCED_DATE,
                 singleForm.COLUMN_MNA1,
