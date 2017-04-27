@@ -102,6 +102,20 @@ public class SectionAActivity extends Activity {
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 
         lables = new ArrayList<String>();
+//        lables.add("K. Abdullah");
+//        lables.add("Quetta");
+//        lables.add("Pishin");
+//        lables.add("J & Bara");
+//        lables.add("Town 1 & 2");
+//        lables.add("Town 3 & 4");
+//        lables.add("K Zone 1");
+//        lables.add("K Zone 2");
+//        lables.add("K Zone 3");
+//        lables.add("Sukkur");
+//        lables.add("Larkhana");
+//        lables.add("Rawalpindi");
+//        lables.add("Lahore");
+//        lables.add("Multan");
         lables.add("K. Abdullah");
         lables.add("Quetta");
         lables.add("Pishin");
@@ -118,6 +132,20 @@ public class SectionAActivity extends Activity {
         lables.add("Multan");
 
         values = new ArrayList<String>();
+//        values.add("11");
+//        values.add("12");
+//        values.add("13");
+//        values.add("21");
+//        values.add("22");
+//        values.add("23");
+//        values.add("31");
+//        values.add("32");
+//        values.add("33");
+//        values.add("34");
+//        values.add("35");
+//        values.add("41");
+//        values.add("42");
+//        values.add("43");
         values.add("11");
         values.add("12");
         values.add("13");
@@ -127,11 +155,11 @@ public class SectionAActivity extends Activity {
         values.add("31");
         values.add("32");
         values.add("33");
-        values.add("34");
-        values.add("35");
         values.add("41");
         values.add("42");
-        values.add("43");
+        values.add("91");
+        values.add("92");
+        values.add("93");
 
         txtmna3.setText(getString(R.string.mna3) + ": " + lables.get(values.indexOf(String.valueOf(PSSPApp.mna3))));
         mna6.setEnabled(false);
