@@ -119,7 +119,7 @@ public class SectionAActivity extends Activity {
         lables.add("K. Abdullah");
         lables.add("Quetta");
         lables.add("Pishin");
-        lables.add("J & Bara");
+        lables.add("Mardan/Swabi");
         lables.add("Town 1 & 2");
         lables.add("Town 3 & 4");
         lables.add("K Zone 1");
