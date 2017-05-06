@@ -143,7 +143,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("K. Abdullah");
         lables.add("Quetta");
         lables.add("Pishin");
-        lables.add("J & Bara");
+        lables.add("Mardan/Swabi");
         lables.add("Town 1 & 2");
         lables.add("Town 3 & 4");
         lables.add("K Zone 1");
@@ -193,7 +193,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("11", "K. Abdullah");
         valuesnlabels.put("12", "Quetta");
         valuesnlabels.put("13", "Pishin");
-        valuesnlabels.put("21", "J & Bara");
+        valuesnlabels.put("21", "Mardan/Swabi");
         valuesnlabels.put("22", "Town 1 & 2");
         valuesnlabels.put("23", "Town 3 & 4");
         valuesnlabels.put("31", "K Zone 1");
