@@ -45,7 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleUser._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + singleUser.ROW_USERNAME + " TEXT,"
             + singleUser.ROW_PASSWORD + " TEXT );";
-    private static final String DATABASE_NAME = "sero.db";
+    public static final String DATABASE_NAME = "sero.db";
+    public static final String DB_NAME = "sero_copy.db";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_FORMS = "CREATE TABLE "
             + singleForm.TABLE_NAME + "("

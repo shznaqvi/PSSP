@@ -228,6 +228,7 @@ public class MainActivity extends Activity {
             editor.putString("LastSyncDevice ", dtToday);
 
             editor.apply();
+
         }
     }
 
@@ -262,4 +263,7 @@ public class MainActivity extends Activity {
 
         }
     }
+
+
+
 }
