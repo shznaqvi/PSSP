@@ -28,20 +28,18 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
 import edu.aku.hassannaqvi.pssp.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
-import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
-import edu.aku.hassannaqvi.pssp.others.FormsList;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
 import edu.aku.hassannaqvi.pssp.get.GetChildren;
 import edu.aku.hassannaqvi.pssp.get.GetUsers;
-import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.others.FormsList;
 import edu.aku.hassannaqvi.pssp.sync.SyncForms;
 import edu.aku.hassannaqvi.pssp.sync.SyncIMs;
 
 public class MainActivity extends Activity {
-
-    private String rSumText = "";
 
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
     @BindView(R.id.adminsec)
@@ -50,11 +48,11 @@ public class MainActivity extends Activity {
     TextView recordSummary;
     @BindView(R.id.psuNo)
     EditText psuNo;
-
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     AlertDialog.Builder builder;
     String m_Text = "";
+    private String rSumText = "";
     private Boolean exit = false;
 
     @Override

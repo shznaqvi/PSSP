@@ -10,12 +10,11 @@ import org.json.JSONObject;
 public class IMsContract {
 
     private static final String TAG = "IM_CONTRACT";
-
+    public String tagId;
     private Long _ID;
     private String UID;
     private String chid;
     private String im;
-    public String tagId;
 
     public IMsContract() {
     }
@@ -86,7 +85,9 @@ public class IMsContract {
         json.put(singleIms._ID, this._ID== null?JSONObject.NULL:this._ID);
         json.put(singleIms.COLUMN_UID, this.UID== null?JSONObject.NULL:this.UID);
         json.put(singleIms.COLUMN_CHID, this.chid== null?JSONObject.NULL:this.chid);
-        json.put(singleIms.COLUMN_IM, this.im== null?JSONObject.NULL:this.im);
+        if (!this.im.equals("")) {
+            json.put(singleIms.COLUMN_IM, this.im == null ? JSONObject.NULL : new JSONObject(this.im));
+        }
         json.put(singleIms.COLUMN_TAGID, this.tagId== null?JSONObject.NULL:this.tagId);
 
         return json;
