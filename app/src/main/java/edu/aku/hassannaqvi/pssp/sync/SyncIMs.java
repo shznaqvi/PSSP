@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -71,20 +72,24 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         int sSynced = 0;
+        String sSyncedError = "";
         JSONArray json = null;
         try {
             json = new JSONArray(result);
             DatabaseHelper db = new DatabaseHelper(mContext);
-            /*for (int i = 0; i < json.length(); i++) {
+            for (int i = 0; i < json.length(); i++) {
                 JSONObject jsonObject = new JSONObject(json.getString(i));
-                if (jsonObject.getString("status").equals("1")) {
-                    db.updateIMs(json.getString(i));
+                if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
+//                    db.updateIMs(jsonObject.getString("id"));
                     sSynced++;
+                } else {
+                    sSyncedError += "\nError: " + jsonObject.getString("message").toString();
                 }
-            }*/ Toast.makeText(mContext, sSynced+" IMs synced." + String.valueOf(json.length()-sSynced) + " Errors.", Toast.LENGTH_SHORT).show();
-            Toast.makeText(mContext, "Successfully Synced "+ json.length() +" IMs", Toast.LENGTH_SHORT).show();
+            }
 
-            pd.setMessage(json.length()+" IMs synced.");
+            Toast.makeText(mContext, sSynced + " IMs synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(sSynced + " IMs synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
             pd.setTitle("Done uploading IMs data");
             pd.show();
         } catch (JSONException e) {
