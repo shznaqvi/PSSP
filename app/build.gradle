@@ -3,7 +3,7 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.3'
 
     def versionPropsFile = file('version.properties')
 
@@ -19,7 +19,7 @@ android {
 
         defaultConfig {
             applicationId "edu.aku.hassannaqvi.pssp"
-            minSdkVersion 19
+            minSdkVersion 22
             targetSdkVersion 22
             versionCode code
             versionName "1.5"
@@ -47,11 +47,11 @@ dependencies {
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     //compile 'com.android.support:appcompat-v7:24.2.1'
     //compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.google.android.gms:play-services:5.+'
+    //compile 'com.google.android.gms:play-services:11.0.4'
     //compile 'com.android.support:recyclerview-v7:+'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.google.maps.android:android-maps-utils:+'
+    //compile 'com.google.maps.android:android-maps-utils:11.0.4'
 
     compile 'com.android.support:recyclerview-v7:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.0'

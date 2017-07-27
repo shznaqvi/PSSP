@@ -16,6 +16,8 @@ public class FormsContract {
 
     private final String projectName = "Sero 2016-17";
     private final String surveyType = "SN";
+    public String Round = "2";
+    public String tagId = "";
     private String _ID = "";
     private String UID = "";
     private String mna1 = ""; // Date
@@ -33,7 +35,6 @@ public class FormsContract {
     private String sE = "";
     private String sF = "";
     private String sG = "";
-
     private String gpsLat = "";
     private String gpsLng = "";
     private String gpsTime = "";
@@ -41,9 +42,6 @@ public class FormsContract {
     private String deviceID = "";
     private String synced = "";
     private String synced_date = "";
-
-    public String Round = "2";
-    public String tagId = "";
 
     public FormsContract() {
     }
@@ -366,15 +364,27 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sE));
         json = jsonMerge(json, new JSONObject(this.sF));
         json = jsonMerge(json, new JSONObject(this.sG));*/
-
-        json.put(singleForm.COLUMN_SA, this.sA== null?JSONObject.NULL:this.sA);
-        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
-        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
-        json.put(singleForm.COLUMN_SC, this.sC== null?JSONObject.NULL:this.sC);
-        json.put(singleForm.COLUMN_SD, this.sD== null?JSONObject.NULL:this.sD);
-        json.put(singleForm.COLUMN_SE, this.sE== null?JSONObject.NULL:this.sE);
-        json.put(singleForm.COLUMN_SF, this.sF== null?JSONObject.NULL:this.sF);
-        json.put(singleForm.COLUMN_SG, this.sG== null?JSONObject.NULL:this.sG);
+        if (!this.sA.equals("")) {
+            json.put(singleForm.COLUMN_SA, this.sA == null ? JSONObject.NULL : new JSONObject(this.sA));
+        }
+        if (!this.sB.equals("")) {
+            json.put(singleForm.COLUMN_SB, this.sB == null ? JSONObject.NULL : new JSONObject(this.sB));
+        }
+        if (!this.sC.equals("")) {
+            json.put(singleForm.COLUMN_SC, this.sC == null ? JSONObject.NULL : new JSONObject(this.sC));
+        }
+        if (!this.sD.equals("")) {
+            json.put(singleForm.COLUMN_SD, this.sD == null ? JSONObject.NULL : new JSONObject(this.sD));
+        }
+        if (!this.sE.equals("")) {
+            json.put(singleForm.COLUMN_SE, this.sE == null ? JSONObject.NULL : new JSONObject(this.sE));
+        }
+        if (!this.sF.equals("")) {
+            json.put(singleForm.COLUMN_SF, this.sF == null ? JSONObject.NULL : new JSONObject(this.sF));
+        }
+        if (!this.sG.equals("")) {
+            json.put(singleForm.COLUMN_SG, this.sG == null ? JSONObject.NULL : new JSONObject(this.sG));
+        }
 
         json.put(singleForm.COLUMN_NAME_ROUND, this.Round);
 
