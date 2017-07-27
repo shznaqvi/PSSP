@@ -21,7 +21,7 @@ import java.util.List;
 import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
 import edu.aku.hassannaqvi.pssp.contracts.FormsContract.singleForm;
 import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
-import edu.aku.hassannaqvi.pssp.contracts.IMsContract.singleIms;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract.IMsTable;
 import edu.aku.hassannaqvi.pssp.contracts.PSUsContract;
 import edu.aku.hassannaqvi.pssp.contracts.PSUsContract.singleChild;
 import edu.aku.hassannaqvi.pssp.contracts.UsersContract;
@@ -40,12 +40,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleChild.COLUMN_HH03 + " TEXT,"
             + singleChild.COLUMN_HH07 + " TEXT,"
             + singleChild.COLUMN_CHILD_NAME + " TEXT );";
-    public static final String SQL_CREATE_IMS = "CREATE TABLE " + singleIms.TABLE_NAME + "("
-            + singleIms._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + singleIms.COLUMN_TAGID + " TEXT,"
-            + singleIms.COLUMN_CHID + " TEXT,"
-            + singleIms.COLUMN_UID + " TEXT,"
-            + singleIms.COLUMN_IM + " TEXT );";
+    public static final String SQL_CREATE_IMS = "CREATE TABLE " + IMsTable.TABLE_NAME + "("
+            + IMsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + IMsTable.COLUMN_APPVER + " TEXT,"
+            + IMsTable.COLUMN_CHID + " TEXT,"
+            + IMsTable.COLUMN_DEVICEID + " TEXT,"
+            + IMsTable.COLUMN_FORMDATE + " TEXT,"
+            + IMsTable.COLUMN_IM + " TEXT,"
+            + IMsTable.COLUMN_SYNCED + " TEXT,"
+            + IMsTable.COLUMN_SYNCEDDATE + " TEXT,"
+            + IMsTable.COLUMN_TAGID + " TEXT,"
+            + IMsTable.COLUMN_UID + " TEXT,"
+            + IMsTable.COLUMN_USER + " TEXT,"
+            + IMsTable.COLUMN_UUID + " TEXT"
+            + " );";
     public static final String SQL_CREATE_USERS = "CREATE TABLE " + singleUser.TABLE_NAME + "("
             + singleUser._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + singleUser.ROW_USERNAME + " TEXT,"
@@ -86,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " );";
     private static final java.lang.String SQL_DELETE_FORMS = "DROP TABLE IF EXISTS " + singleForm.TABLE_NAME;
     private static final String SQL_DELETE_IMS =
-            "DROP TABLE IF EXISTS " + singleIms.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + IMsTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + singleUser.TABLE_NAME;
     private static final String SQL_DELETE_PSUS =
@@ -157,7 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public void updateForms(String id) {
+    public void updateSyncedForms(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
@@ -176,24 +184,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public long addIM(IMsContract imscontract) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void updateSyncedIMs(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
-
+// New value for one column
         ContentValues values = new ContentValues();
-        values.put(singleIms.COLUMN_UID, imscontract.getUID());
-        values.put(singleIms.COLUMN_CHID, imscontract.getChid());
-        values.put(singleIms.COLUMN_IM, imscontract.getIM());
-        values.put(singleIms.COLUMN_TAGID, imscontract.getTagId());
+        values.put(singleForm.COLUMN_SYNCED, true);
+        values.put(singleForm.COLUMN_SYNCED_DATE, new Date().toString());
 
+// Which row to update, based on the title
+        String where = singleForm._ID + " LIKE ?";
+        String[] whereArgs = {id};
 
-        // Inserting Row
-        long rowId = db.insert(singleIms.TABLE_NAME, null, values);
-        db.close(); // Closing database connection
-        DB_IMS_ID = String.valueOf(rowId);
-        return rowId;
+        int count = db.update(
+                singleForm.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
     }
 
+    public Long addIMs(IMsContract imc) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(IMsTable._ID, imc.get_ID());
+        values.put(IMsTable.COLUMN_APPVER, imc.getAppVer());
+        values.put(IMsTable.COLUMN_CHID, imc.getChid());
+        values.put(IMsTable.COLUMN_DEVICEID, imc.getDeviceId());
+        values.put(IMsTable.COLUMN_FORMDATE, imc.getFormDate());
+        values.put(IMsTable.COLUMN_IM, imc.getIm());
+        values.put(IMsTable.COLUMN_TAGID, imc.getTagId());
+        values.put(IMsTable.COLUMN_UID, imc.getUID());
+        values.put(IMsTable.COLUMN_USER, imc.getUser());
+        values.put(IMsTable.COLUMN_UUID, imc.getUUID());
+
+
+        /* * * * * NO NEED TO USE THESE IN 'INSERT' * * * * */
+        /*
+        values.put(IMsTable.COLUMN_SYNCED, imc.getSynced());
+        values.put(IMsTable.COLUMN_SYNCED_DATE, imc.getSynced_date());
+        */
+
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                IMsTable.TABLE_NAME,
+                IMsTable.COLUMN_NAME_NULLABLE,
+                values);
+        db.close();
+        return newRowId;
+    }
     ////////////
     public Collection<FormsContract> getAllForms() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -381,11 +425,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                singleIms._ID,
-                singleIms.COLUMN_UID,
-                singleIms.COLUMN_CHID,
-                singleIms.COLUMN_IM,
-                singleIms.COLUMN_TAGID
+                IMsTable._ID,
+                IMsTable.COLUMN_APPVER,
+                IMsTable.COLUMN_CHID,
+                IMsTable.COLUMN_DEVICEID,
+                IMsTable.COLUMN_FORMDATE,
+                IMsTable.COLUMN_IM,
+                IMsTable.COLUMN_SYNCED,
+                IMsTable.COLUMN_SYNCEDDATE,
+                IMsTable.COLUMN_TAGID,
+                IMsTable.COLUMN_UID,
+                IMsTable.COLUMN_USER,
+                IMsTable.COLUMN_UUID
+
 
         };
         String whereClause = null;
@@ -394,12 +446,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String having = null;
 
         String orderBy =
-                singleIms._ID + " ASC";
+                IMsTable._ID + " ASC";
 
         Collection<IMsContract> allIM = new ArrayList<IMsContract>();
         try {
             c = db.query(
-                    singleIms.TABLE_NAME,  // The table to query
+                    IMsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                IMsContract ims = new IMsContract();
+                allIM.add(ims.hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allIM;
+    }
+
+    public Collection<IMsContract> getUnsyncedIMs() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                IMsTable._ID,
+                IMsTable.COLUMN_APPVER,
+                IMsTable.COLUMN_CHID,
+                IMsTable.COLUMN_DEVICEID,
+                IMsTable.COLUMN_FORMDATE,
+                IMsTable.COLUMN_IM,
+                IMsTable.COLUMN_SYNCED,
+                IMsTable.COLUMN_SYNCEDDATE,
+                IMsTable.COLUMN_TAGID,
+                IMsTable.COLUMN_UID,
+                IMsTable.COLUMN_USER,
+                IMsTable.COLUMN_UUID
+
+
+        };
+        String whereClause = IMsTable.COLUMN_SYNCED + " is null OR " + IMsTable.COLUMN_SYNCED + " = ''";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                IMsTable._ID + " ASC";
+
+        Collection<IMsContract> allIM = new ArrayList<IMsContract>();
+        try {
+            c = db.query(
+                    IMsTable.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
                     whereClause,               // The columns for the WHERE clause
                     whereArgs,                 // The values for the WHERE clause
@@ -422,6 +527,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allIM;
     }
 //////////////////////////////
+
+    public void updateIMsUID() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(IMsTable.COLUMN_UID, PSSPApp.im.getUID());
+
+// Which row to update, based on the title
+        String where = IMsTable._ID + " = ?";
+        String[] whereArgs = {PSSPApp.im.get_ID().toString()};
+
+        int count = db.update(
+                IMsTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
 
     public int updateSB() {
         SQLiteDatabase db = this.getReadableDatabase();

@@ -19,9 +19,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
 
 /**
  * Created by hassan.naqvi on 7/26/2016.
@@ -77,7 +77,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             for (int i = 0; i < json.length(); i++) {
                     JSONObject jsonObject = new JSONObject(json.getString(i));
                 if(jsonObject.getString("status").equals("1")){
-                db.updateForms(jsonObject.getString("id"));
+                    db.updateSyncedForms(jsonObject.getString("id"));
                     sSynced++;
                 }
             }
