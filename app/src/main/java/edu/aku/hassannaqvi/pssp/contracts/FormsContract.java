@@ -42,6 +42,7 @@ public class FormsContract {
     private String deviceID = "";
     private String synced = "";
     private String synced_date = "";
+    private String appVer = "";
 
     public FormsContract() {
     }
@@ -75,10 +76,9 @@ public class FormsContract {
         this.gpsTime = jsonObject.getString(singleForm.COLUMN_GPS_TIME);
         this.gpsAcc = jsonObject.getString(singleForm.COLUMN_GPS_ACC);
         this.deviceID = jsonObject.getString(singleForm.COLUMN_DEVICE_ID);
-        this.synced = jsonObject.getString(singleForm.COLUMN_SYNCED);
-        this.synced_date = jsonObject.getString(singleForm.COLUMN_SYNCED_DATE);
         this.Round = jsonObject.getString(singleForm.COLUMN_NAME_ROUND);
         this.tagId = jsonObject.getString(singleForm.COLUMN_TAGID);
+        this.appVer = jsonObject.getString(singleForm.COLUMN_APPVER);
 
         return this;
     }
@@ -106,10 +106,9 @@ public class FormsContract {
         this.gpsTime = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPS_TIME));
         this.gpsAcc = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPS_ACC));
         this.deviceID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_DEVICE_ID));
-        this.synced = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SYNCED));
-        this.synced_date = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SYNCED_DATE));
         this.Round = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_NAME_ROUND));
         this.tagId = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_TAGID));
+        this.appVer = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_APPVER));
 
         return this;
     }
@@ -331,6 +330,30 @@ public class FormsContract {
         this.tagId = tagId;
     }
 
+    public String get_ID() {
+        return _ID;
+    }
+
+    public void set_ID(String _ID) {
+        this._ID = _ID;
+    }
+
+    public String getSynced_date() {
+        return synced_date;
+    }
+
+    public void setSynced_date(String synced_date) {
+        this.synced_date = synced_date;
+    }
+
+    public String getAppVer() {
+        return appVer;
+    }
+
+    public void setAppVer(String appVer) {
+        this.appVer = appVer;
+    }
+
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
@@ -345,8 +368,8 @@ public class FormsContract {
         json.put(singleForm.COLUMN_GPS_TIME, this.gpsTime== null?JSONObject.NULL:this.gpsTime);
         json.put(singleForm.COLUMN_GPS_ACC, this.gpsAcc== null?JSONObject.NULL:this.gpsAcc);
         json.put(singleForm.COLUMN_TAGID, this.tagId== null?JSONObject.NULL:this.tagId);
-        json.put(singleForm.COLUMN_SYNCED, this.synced== null?JSONObject.NULL:this.synced);
-        json.put(singleForm.COLUMN_SYNCED_DATE, this.synced_date== null?JSONObject.NULL:this.synced_date);
+        json.put(singleForm.COLUMN_APPVER, this.appVer == null ? JSONObject.NULL : this.appVer);
+
         json.put(singleForm.COLUMN_MNA1, this.mna1== null?JSONObject.NULL:this.mna1);
         json.put(singleForm.COLUMN_MNA2, this.mna2== null?JSONObject.NULL:this.mna2);
         json.put(singleForm.COLUMN_MNA3, this.mna3== null?JSONObject.NULL:this.mna3);
@@ -416,7 +439,6 @@ public class FormsContract {
 
         public static final String TABLE_NAME = "forms";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String _ID = "_id";
         public static final String COLUMN_UID = "uid";
         public static final String COLUMN_PROJECT_NAME = "projectname";
         public static final String COLUMN_SURVEY_TYPE = "surveytype";
@@ -443,6 +465,7 @@ public class FormsContract {
         public static final String COLUMN_SF = "sf";
         public static final String COLUMN_SG = "sg";
         public static final String COLUMN_TAGID = "tagId";
+        public static final String COLUMN_APPVER = "appver";
 
         public static final String COLUMN_NAME_ROUND = "round";
     }

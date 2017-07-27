@@ -67,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleForm.COLUMN_UID + " TEXT,"
             + singleForm.COLUMN_DEVICE_ID + " TEXT,"
             + singleForm.COLUMN_TAGID + " TEXT,"
+            + singleForm.COLUMN_APPVER + " TEXT,"
             + singleForm.COLUMN_PROJECT_NAME + " TEXT,"
             + singleForm.COLUMN_SURVEY_TYPE + " TEXT,"
             + singleForm.COLUMN_NAME_ROUND + " TEXT,"
@@ -153,6 +154,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_MNA7, fc.getMna7());
         values.put(singleForm.COLUMN_SA, fc.getsA());
         values.put(singleForm.COLUMN_TAGID, fc.getTagId());
+        values.put(singleForm.COLUMN_APPVER, fc.getAppVer());
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -270,6 +272,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_SE,
                 singleForm.COLUMN_SF,
                 singleForm.COLUMN_SG,
+                singleForm.COLUMN_APPVER,
                 singleForm.COLUMN_TAGID
         };
         String whereClause = null;
@@ -337,6 +340,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_SE,
                 singleForm.COLUMN_SF,
                 singleForm.COLUMN_SG,
+                singleForm.COLUMN_APPVER,
                 singleForm.COLUMN_TAGID
         };
         String whereClause = singleForm.COLUMN_SYNCED + " is null OR " + singleForm.COLUMN_SYNCED + " = ''";
