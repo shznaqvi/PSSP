@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 
 import android.app.Activity;
@@ -20,6 +20,9 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
+import edu.aku.hassannaqvi.pssp.R;
 
 public class SectionCActivity extends Activity {
     private static final String TAG = SectionCActivity.class.getSimpleName();

@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.others;
 
 import android.content.Context;
 import android.graphics.Typeface;

@@ -1,14 +1,19 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +28,16 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.core.AndroidDatabaseManager;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.others.FormsList;
+import edu.aku.hassannaqvi.pssp.get.GetChildren;
+import edu.aku.hassannaqvi.pssp.get.GetUsers;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
+import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.sync.SyncForms;
+import edu.aku.hassannaqvi.pssp.sync.SyncIMs;
 
 public class MainActivity extends Activity {
 
@@ -36,6 +51,11 @@ public class MainActivity extends Activity {
     @BindView(R.id.psuNo)
     EditText psuNo;
 
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+    AlertDialog.Builder builder;
+    String m_Text = "";
+    private Boolean exit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +74,42 @@ public class MainActivity extends Activity {
         } else {
             adminsec.setVisibility(View.GONE);
         }
+
+        /*TagID Start*/
+        sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        builder = new AlertDialog.Builder(MainActivity.this);
+        ImageView img = new ImageView(getApplicationContext());
+        img.setImageResource(R.drawable.tagimg);
+        img.setPadding(0,15,0,15);
+        builder.setCustomTitle(img);
+
+        final EditText input = new EditText(MainActivity.this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                m_Text = input.getText().toString();
+                if (!m_Text.equals("")) {
+                    editor.putString("tagName", m_Text);
+                    editor.commit();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        if (sharedPref.getString("tagName", null) == "" || sharedPref.getString("tagName", null) == null) {
+            builder.show();
+        }
+        /*TagID End*/
 
 
         DatabaseHelper db = new DatabaseHelper(this);
@@ -119,8 +175,43 @@ public class MainActivity extends Activity {
     }
 
     public void openForm(View v) {
-        Intent oF = new Intent(this, SectionAActivity.class);
-        startActivity(oF);
+        if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null) {
+            Intent oF = new Intent(MainActivity.this, SectionAActivity.class);
+            startActivity(oF);
+        } else {
+
+            builder = new AlertDialog.Builder(MainActivity.this);
+            ImageView img = new ImageView(getApplicationContext());
+            img.setImageResource(R.drawable.tagimg);
+            img.setPadding(0,15,0,15);
+            builder.setCustomTitle(img);
+
+            final EditText input = new EditText(MainActivity.this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    m_Text = input.getText().toString();
+                    if (!m_Text.equals("")) {
+                        editor.putString("tagName", m_Text);
+                        editor.commit();
+
+                        Intent oF = new Intent(MainActivity.this, SectionAActivity.class);
+                        startActivity(oF);
+                    }
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            builder.show();
+        }
     }
 
     public void openA(View v) {
@@ -265,5 +356,25 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        if (exit) {
+            finish(); // finish activity
+
+            startActivity(new Intent(this, LoginActivity.class));
+
+        } else {
+            Toast.makeText(this, "Press Back again to Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
+        }
+    }
 
 }

@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+
+import edu.aku.hassannaqvi.pssp.R;
 
 
 /**

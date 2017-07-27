@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.core;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
+
+import edu.aku.hassannaqvi.pssp.others.TypefaceUtil;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
 
 
 /**

@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.contracts;
 
 
 import android.database.Cursor;
@@ -15,6 +15,7 @@ public class IMsContract {
     private String UID;
     private String chid;
     private String im;
+    public String tagId;
 
     public IMsContract() {
     }
@@ -24,6 +25,7 @@ public class IMsContract {
         this.UID = jsonObject.getString(singleIms.COLUMN_UID);
         this.chid = jsonObject.getString(singleIms.COLUMN_CHID);
         this.im = jsonObject.getString(singleIms.COLUMN_IM);
+        this.tagId = jsonObject.getString(singleIms.COLUMN_TAGID);
 
         return this;
     }
@@ -33,6 +35,7 @@ public class IMsContract {
         this.UID = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_UID));
         this.chid = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_CHID));
         this.im = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_IM));
+        this.tagId = cursor.getString(cursor.getColumnIndex(singleIms.COLUMN_TAGID));
 
         return this;
     }
@@ -69,6 +72,14 @@ public class IMsContract {
         this.UID = frmno;
     }
 
+    public String getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
+    }
+
     public JSONObject toJSONObject() throws JSONException {
         JSONObject json = new JSONObject();
 
@@ -76,6 +87,7 @@ public class IMsContract {
         json.put(singleIms.COLUMN_UID, this.UID== null?JSONObject.NULL:this.UID);
         json.put(singleIms.COLUMN_CHID, this.chid== null?JSONObject.NULL:this.chid);
         json.put(singleIms.COLUMN_IM, this.im== null?JSONObject.NULL:this.im);
+        json.put(singleIms.COLUMN_TAGID, this.tagId== null?JSONObject.NULL:this.tagId);
 
         return json;
     }
@@ -87,6 +99,7 @@ public class IMsContract {
         public static final String COLUMN_CHID = "CHID";
         public static final String COLUMN_UID = "UID";
         public static final String COLUMN_IM = "IM";
+        public static final String COLUMN_TAGID = "tagId";
 
     }
 

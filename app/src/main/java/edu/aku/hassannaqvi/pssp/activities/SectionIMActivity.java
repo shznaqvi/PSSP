@@ -1,7 +1,8 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,10 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
+import edu.aku.hassannaqvi.pssp.R;
 
 public class SectionIMActivity extends Activity {
 
@@ -410,6 +415,9 @@ public class SectionIMActivity extends Activity {
         String DOB = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(imd.getCalendarView().getDate());
 
         PSSPApp.im = new IMsContract();
+
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+        PSSPApp.im.setTagId(sharedPref.getString("tagName", null));
 
         PSSPApp.im.setUID(PSSPApp.fc.getUID());
         PSSPApp.im.setChid(PSSPApp.fc.getUID() + String.format("%02d", PSSPApp.chCount));

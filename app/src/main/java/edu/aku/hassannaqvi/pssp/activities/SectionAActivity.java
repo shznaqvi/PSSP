@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,6 +27,11 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
+import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.others.TypefaceUtil;
 
 public class SectionAActivity extends Activity {
 
@@ -268,7 +273,9 @@ public class SectionAActivity extends Activity {
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         PSSPApp.fc = new FormsContract();
+        PSSPApp.fc.setTagId(sharedPref.getString("tagName", null));
         PSSPApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         PSSPApp.fc.setMna1(dtToday);

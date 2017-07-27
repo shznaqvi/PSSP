@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.core;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,10 +18,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import edu.aku.hassannaqvi.pssp.FormsContract.singleForm;
-import edu.aku.hassannaqvi.pssp.IMsContract.singleIms;
-import edu.aku.hassannaqvi.pssp.PSUsContract.singleChild;
-import edu.aku.hassannaqvi.pssp.UsersContract.singleUser;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract.singleForm;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract.singleIms;
+import edu.aku.hassannaqvi.pssp.contracts.PSUsContract;
+import edu.aku.hassannaqvi.pssp.contracts.PSUsContract.singleChild;
+import edu.aku.hassannaqvi.pssp.contracts.UsersContract;
+import edu.aku.hassannaqvi.pssp.contracts.UsersContract.singleUser;
 
 /**
  * Created by hassan.naqvi on 10/29/2016.
@@ -38,6 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleChild.COLUMN_CHILD_NAME + " TEXT );";
     public static final String SQL_CREATE_IMS = "CREATE TABLE " + singleIms.TABLE_NAME + "("
             + singleIms._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + singleIms.COLUMN_TAGID + " TEXT,"
             + singleIms.COLUMN_CHID + " TEXT,"
             + singleIms.COLUMN_UID + " TEXT,"
             + singleIms.COLUMN_IM + " TEXT );";
@@ -53,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleForm._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + singleForm.COLUMN_UID + " TEXT,"
             + singleForm.COLUMN_DEVICE_ID + " TEXT,"
+            + singleForm.COLUMN_TAGID + " TEXT,"
             + singleForm.COLUMN_PROJECT_NAME + " TEXT,"
             + singleForm.COLUMN_SURVEY_TYPE + " TEXT,"
             + singleForm.COLUMN_NAME_ROUND + " TEXT,"
@@ -138,6 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_MNA6A, fc.getMna6a());
         values.put(singleForm.COLUMN_MNA7, fc.getMna7());
         values.put(singleForm.COLUMN_SA, fc.getsA());
+        values.put(singleForm.COLUMN_TAGID, fc.getTagId());
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -177,6 +184,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleIms.COLUMN_UID, imscontract.getUID());
         values.put(singleIms.COLUMN_CHID, imscontract.getChid());
         values.put(singleIms.COLUMN_IM, imscontract.getIM());
+        values.put(singleIms.COLUMN_TAGID, imscontract.getTagId());
 
 
         // Inserting Row
@@ -218,8 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_SE,
                 singleForm.COLUMN_SF,
                 singleForm.COLUMN_SG,
-
-
+                singleForm.COLUMN_TAGID
         };
         String whereClause = null;
         String[] whereArgs = null;
@@ -286,8 +293,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_SE,
                 singleForm.COLUMN_SF,
                 singleForm.COLUMN_SG,
-
-
+                singleForm.COLUMN_TAGID
         };
         String whereClause = singleForm.COLUMN_SYNCED + " is null OR " + singleForm.COLUMN_SYNCED + " = ''";
         String[] whereArgs = null;
@@ -379,6 +385,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleIms.COLUMN_UID,
                 singleIms.COLUMN_CHID,
                 singleIms.COLUMN_IM,
+                singleIms.COLUMN_TAGID
 
         };
         String whereClause = null;

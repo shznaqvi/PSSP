@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.get;
 
 /**
  * Created by hassan.naqvi on 11/5/2016.
@@ -21,17 +21,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
+import edu.aku.hassannaqvi.pssp.contracts.PSUsContract;
+
 /**
  * Created by hassan.naqvi on 4/28/2016.
  */
-public class GetUsers extends AsyncTask<String, String, String> {
+public class GetChildren extends AsyncTask<String, String, String> {
 
-    private final String TAG = "GetUsers()";
+    private final String TAG = "GetChildren()";
     HttpURLConnection urlConnection;
     private Context mContext;
     private ProgressDialog pd;
 
-    public GetUsers(Context context) {
+    public GetChildren(Context context) {
         mContext = context;
     }
 
@@ -39,7 +43,7 @@ public class GetUsers extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(mContext);
-        pd.setTitle("Syncing Users");
+        pd.setTitle("Syncing Children");
         pd.setMessage("Getting connected to server...");
         pd.show();
 
@@ -51,19 +55,19 @@ public class GetUsers extends AsyncTask<String, String, String> {
         StringBuilder result = new StringBuilder();
 
         try {
-            URL url = new URL(PSSPApp._HOST_URL + "pssp/api/users_login.php");
+            URL url = new URL(PSSPApp._HOST_URL + "pssp/api/children.php?dc="+PSSPApp.mna3);
             urlConnection = (HttpURLConnection) url.openConnection();
-            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    Log.i(TAG, "User In: " + line);
-                    result.append(line);
-                }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Log.i(TAG, "Children In: " + line);
+                result.append(line);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -85,19 +89,19 @@ public class GetUsers extends AsyncTask<String, String, String> {
         //json = json.replaceAll("\\[", "").replaceAll("\\]","");
         Log.d(TAG, result);
         if (json.length() > 0) {
-            ArrayList<UsersContract> userArrayList;
+            ArrayList<PSUsContract> psuArrayList;
             DatabaseHelper db = new DatabaseHelper(mContext);
             try {
-                userArrayList = new ArrayList<UsersContract>();
+                psuArrayList = new ArrayList<PSUsContract>();
                 //JSONObject jsonObject = new JSONObject(json);
                 JSONArray jsonArray = new JSONArray(json);
-                db.syncUser(jsonArray);
+                db.syncChild(jsonArray);
                 pd.setMessage("Received: " + jsonArray.length());
                 pd.show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            db.getAllUsers();
+            db.getAllChildren();
         } else {
             pd.setMessage("Received: " + json.length() + "");
             pd.show();
