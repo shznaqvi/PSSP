@@ -59,7 +59,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
         String line = "No Response";
         try {
-            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/forms.php");
+            return downloadUrl(PSSPApp._HOST_URL + FormsContract.singleForm._URL);
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }
@@ -78,7 +78,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             for (int i = 0; i < json.length(); i++) {
                 JSONObject jsonObject = new JSONObject(json.getString(i));
                 if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
-                    db.updateForms(jsonObject.getString("id"));
+                    db.updateSyncedForms(jsonObject.getString("id"));
                     sSynced++;
                 } else {
                     sSyncedError += "\nError: " + jsonObject.getString("message").toString();

@@ -11,7 +11,7 @@ public class IMsContract {
 
     private static final String TAG = "IM_CONTRACT";
     public String tagId;
-    private Long _ID;
+    private String  _ID;
     private String UID;
     private String UUID;
     private String chid;
@@ -26,7 +26,7 @@ public class IMsContract {
     }
 
     public IMsContract sync(JSONObject jsonObject) throws JSONException {
-        this._ID = jsonObject.getLong(IMsTable._ID);
+        this._ID = jsonObject.getString(IMsTable._ID);
         this.appVer = jsonObject.getString(IMsTable.COLUMN_APPVER);
         this.chid = jsonObject.getString(IMsTable.COLUMN_CHID);
         this.deviceId = jsonObject.getString(IMsTable.COLUMN_DEVICEID);
@@ -43,7 +43,7 @@ public class IMsContract {
     }
 
     public IMsContract hydrate(Cursor cursor) {
-        this._ID = cursor.getLong(cursor.getColumnIndex(IMsTable._ID));
+        this._ID = cursor.getString(cursor.getColumnIndex(IMsTable._ID));
         this.appVer = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_APPVER));
         this.chid = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_CHID));
         this.deviceId = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_DEVICEID));
@@ -67,11 +67,11 @@ public class IMsContract {
         this.tagId = tagId;
     }
 
-    public Long get_ID() {
+    public String get_ID() {
         return _ID;
     }
 
-    public void set_ID(Long _ID) {
+    public void set_ID(String _ID) {
         this._ID = _ID;
     }
 

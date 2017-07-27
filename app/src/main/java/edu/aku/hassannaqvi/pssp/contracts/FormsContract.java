@@ -20,8 +20,8 @@ public class FormsContract {
     public String tagId = "";
     private String _ID = "";
     private String UID = "";
-    private String mna1 = ""; // Date
-    private String mna2 = "0000"; // DC name
+    private String formDate = ""; // Date
+    private String user = ""; // USER name
     private String mna3 = ""; // District
     private String mna4 = ""; // PSU
     private String mna5 = ""; // HH no.
@@ -48,7 +48,7 @@ public class FormsContract {
     }
 
     public FormsContract(String mna1, String mna5, String mna7) {
-        this.mna1 = mna1;
+        this.formDate = mna1;
         this.mna5 = mna5;
         this.mna7 = mna7;
     }
@@ -56,8 +56,8 @@ public class FormsContract {
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
         this._ID = jsonObject.getString(singleForm._ID);
         this.UID = jsonObject.getString(singleForm.COLUMN_UID);
-        this.mna1 = jsonObject.getString(singleForm.COLUMN_MNA1);
-        this.mna2 = jsonObject.getString(singleForm.COLUMN_MNA2);
+        this.formDate = jsonObject.getString(singleForm.COLUMN_FORM_DATE);
+        this.user = jsonObject.getString(singleForm.COLUMN_USER);
         this.mna3 = jsonObject.getString(singleForm.COLUMN_MNA3);
         this.mna4 = jsonObject.getString(singleForm.COLUMN_MNA4);
         this.mna5 = jsonObject.getString(singleForm.COLUMN_MNA5);
@@ -86,8 +86,8 @@ public class FormsContract {
     public FormsContract hydrate(Cursor cursor) {
         this._ID = cursor.getString(cursor.getColumnIndex(singleForm._ID));
         this.UID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_UID));
-        this.mna1 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA1));
-        this.mna2 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA2));
+        this.formDate = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORM_DATE));
+        this.user = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_USER));
         this.mna3 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA3));
         this.mna4 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA4));
         this.mna5 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA5));
@@ -137,20 +137,20 @@ public class FormsContract {
         return surveyType;
     }
 
-    public String getMna1() {
-        return mna1;
+    public String getFormDate() {
+        return formDate;
     }
 
-    public void setMna1(String mna1) {
-        this.mna1 = mna1;
+    public void setFormDate(String formDate) {
+        this.formDate = formDate;
     }
 
-    public String getMna2() {
-        return mna2;
+    public String getUser() {
+        return user;
     }
 
-    public void setMna2(String mna2) {
-        this.mna2 = mna2;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getMna3() {
@@ -370,8 +370,8 @@ public class FormsContract {
         json.put(singleForm.COLUMN_TAGID, this.tagId== null?JSONObject.NULL:this.tagId);
         json.put(singleForm.COLUMN_APPVER, this.appVer == null ? JSONObject.NULL : this.appVer);
 
-        json.put(singleForm.COLUMN_MNA1, this.mna1== null?JSONObject.NULL:this.mna1);
-        json.put(singleForm.COLUMN_MNA2, this.mna2== null?JSONObject.NULL:this.mna2);
+        json.put(singleForm.COLUMN_FORM_DATE, this.formDate == null?JSONObject.NULL:this.formDate);
+        json.put(singleForm.COLUMN_USER, this.user == null?JSONObject.NULL:this.user);
         json.put(singleForm.COLUMN_MNA3, this.mna3== null?JSONObject.NULL:this.mna3);
         json.put(singleForm.COLUMN_MNA4, this.mna4== null?JSONObject.NULL:this.mna4);
         json.put(singleForm.COLUMN_MNA5, this.mna5== null?JSONObject.NULL:this.mna5);
@@ -449,8 +449,8 @@ public class FormsContract {
         public static final String COLUMN_GPS_TIME = "gpstime";
         public static final String COLUMN_SYNCED = "sync";
         public static final String COLUMN_SYNCED_DATE = "sync_date";
-        public static final String COLUMN_MNA1 = "mna1";
-        public static final String COLUMN_MNA2 = "mna2";
+        public static final String COLUMN_FORM_DATE = "formDate";
+        public static final String COLUMN_USER = "user";
         public static final String COLUMN_MNA3 = "mna3";
         public static final String COLUMN_MNA4 = "mna4";
         public static final String COLUMN_MNA5 = "mna5";
@@ -468,6 +468,8 @@ public class FormsContract {
         public static final String COLUMN_APPVER = "appver";
 
         public static final String COLUMN_NAME_ROUND = "round";
+
+        public static String _URL = "pssp/api/forms.php";
     }
 }
 

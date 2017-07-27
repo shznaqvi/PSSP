@@ -48,7 +48,7 @@ public class FormsAdapter extends RecyclerView.Adapter<FormsAdapter.ViewHolder> 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        holder.date.setText(fc.get(position).getMna1().toString());
+        holder.date.setText(fc.get(position).getFormDate().toString());
         holder.cluster.setText(fc.get(position).getMna5().toString());
 
         String iStatus = "Status  Unknown";

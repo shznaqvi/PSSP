@@ -278,8 +278,9 @@ public class SectionAActivity extends Activity {
         PSSPApp.fc.setTagId(sharedPref.getString("tagName", null));
         PSSPApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-        PSSPApp.fc.setMna1(dtToday);
-        PSSPApp.fc.setMna2(PSSPApp.mna2);
+        PSSPApp.fc.setFormDate(dtToday);
+        PSSPApp.fc.setUser(PSSPApp.username);
+        PSSPApp.fc.setAppVer(PSSPApp.versionName + "." + PSSPApp.versionCode);
         PSSPApp.fc.setMna3(String.valueOf(PSSPApp.mna3));
         PSSPApp.fc.setMna4(mna4.getText().toString());
         PSSPApp.fc.setMna5(mna5.getText().toString());

@@ -106,22 +106,22 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         ButterKnife.bind(this);
 
         try {
-            long installedOn = this
+            PSSPApp.installedOn = this
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
                     .lastUpdateTime
                     ;
-            Integer versionCode = this
+            PSSPApp.versionCode = this
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
                     .versionCode
                     ;
-            String versionName = this
+            PSSPApp.versionName = this
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
                     .versionName
                     ;
-            txtinstalldate.setText("Ver. "+versionName+"."+String.valueOf(versionCode)+" \r\n( Last Updated: "+new SimpleDateFormat("dd MMM. yyyy").format(new Date(installedOn))+" )");
+            txtinstalldate.setText("Ver. "+PSSPApp.versionName+"."+String.valueOf(PSSPApp.versionCode)+" \r\n( Last Updated: "+new SimpleDateFormat("dd MMM. yyyy").format(new Date(PSSPApp.installedOn))+" )");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -534,7 +534,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
                 if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)
                         || (mEmail.equals("test1234") && mPassword.equals("test1234"))) {
-                    PSSPApp.mna2 = mEmail;
+                    PSSPApp.username = mEmail;
                     PSSPApp.admin = mEmail.contains("@");
                     finish();
                     Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);

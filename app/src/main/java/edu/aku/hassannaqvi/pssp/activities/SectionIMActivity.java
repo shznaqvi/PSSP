@@ -372,7 +372,7 @@ public class SectionIMActivity extends Activity {
         Toast.makeText(this, "Processing Section IM", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             SaveDraft();
-            if (UpdateDG()) {
+            if (UpdateIM()) {
                 Intent secE;
                 if (PSSPApp.chCount < PSSPApp.chTotal) {
                     Toast.makeText(this, "Starting Section IM", Toast.LENGTH_SHORT).show();
@@ -388,19 +388,17 @@ public class SectionIMActivity extends Activity {
         }
     }
 
-    private boolean UpdateDG() {
-        Long rowId;
+    private boolean UpdateIM() {
         DatabaseHelper db = new DatabaseHelper(this);
+        Long updcount = db.addIMs(PSSPApp.im);
+        PSSPApp.im.set_ID(String.valueOf(updcount));
 
-        rowId = null;
-        rowId = db.addIM(PSSPApp.im);
-
-        PSSPApp.im.setId(String.valueOf(rowId));
-
-        if (rowId != null) {
+        if (updcount != -1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Current Form UID: " + PSSPApp.fc.getUID(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Current IM UID: " + PSSPApp.im.getUID(), Toast.LENGTH_SHORT).show();
+
+            PSSPApp.im.setUID(
+                    (PSSPApp.fc.getDeviceID() + PSSPApp.im.get_ID()));
+            db.updateIMsUID();
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
@@ -419,8 +417,13 @@ public class SectionIMActivity extends Activity {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         PSSPApp.im.setTagId(sharedPref.getString("tagName", null));
 
-        PSSPApp.im.setUID(PSSPApp.fc.getUID());
+        PSSPApp.im.setUUID(PSSPApp.fc.getUID());
         PSSPApp.im.setChid(PSSPApp.fc.getUID() + String.format("%02d", PSSPApp.chCount));
+
+        PSSPApp.im.setFormDate(PSSPApp.fc.getFormDate());
+        PSSPApp.im.setDeviceId(PSSPApp.fc.getDeviceID());
+        PSSPApp.im.setUser(PSSPApp.fc.getUser());
+        PSSPApp.im.setAppVer(PSSPApp.versionName + "." + PSSPApp.versionCode);
 
         JSONObject im = new JSONObject();
 
@@ -484,8 +487,7 @@ public class SectionIMActivity extends Activity {
         im.put("ari", imaria.isChecked() ? "1" : imarib.isChecked() ? "2" : "");
 
 
-        PSSPApp.im.setIM(String.valueOf(im));
-        PSSPApp.im.setUID(PSSPApp.fc.getDeviceID() + PSSPApp.fc.getID());
+        PSSPApp.im.setIm(String.valueOf(im));
 
         Toast.makeText(this, "Saving Draft... Successful!", Toast.LENGTH_SHORT).show();
 

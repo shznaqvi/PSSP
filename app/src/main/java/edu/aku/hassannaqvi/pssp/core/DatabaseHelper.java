@@ -77,8 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleForm.COLUMN_GPS_TIME + " TEXT,"
             + singleForm.COLUMN_SYNCED + " TEXT,"
             + singleForm.COLUMN_SYNCED_DATE + " TEXT,"
-            + singleForm.COLUMN_MNA1 + " TEXT,"
-            + singleForm.COLUMN_MNA2 + " TEXT,"
+            + singleForm.COLUMN_FORM_DATE + " TEXT,"
+            + singleForm.COLUMN_USER + " TEXT,"
             + singleForm.COLUMN_MNA3 + " TEXT,"
             + singleForm.COLUMN_MNA4 + " TEXT,"
             + singleForm.COLUMN_MNA5 + " TEXT,"
@@ -144,8 +144,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_GPS_LNG, fc.getGpsLng());
         values.put(singleForm.COLUMN_GPS_TIME, fc.getGpsTime());
         values.put(singleForm.COLUMN_NAME_ROUND, fc.getRound());
-        values.put(singleForm.COLUMN_MNA1, fc.getMna1());
-        values.put(singleForm.COLUMN_MNA2, fc.getMna2());
+        values.put(singleForm.COLUMN_FORM_DATE, fc.getFormDate());
+        values.put(singleForm.COLUMN_USER, fc.getUser());
         values.put(singleForm.COLUMN_MNA3, fc.getMna3());
         values.put(singleForm.COLUMN_MNA4, fc.getMna4());
         values.put(singleForm.COLUMN_MNA5, fc.getMna5());
@@ -257,8 +257,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_NAME_ROUND,
                 singleForm.COLUMN_SYNCED,
                 singleForm.COLUMN_SYNCED_DATE,
-                singleForm.COLUMN_MNA1,
-                singleForm.COLUMN_MNA2,
+                singleForm.COLUMN_FORM_DATE,
+                singleForm.COLUMN_USER,
                 singleForm.COLUMN_MNA3,
                 singleForm.COLUMN_MNA4,
                 singleForm.COLUMN_MNA5,
@@ -325,8 +325,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_NAME_ROUND,
                 singleForm.COLUMN_SYNCED,
                 singleForm.COLUMN_SYNCED_DATE,
-                singleForm.COLUMN_MNA1,
-                singleForm.COLUMN_MNA2,
+                singleForm.COLUMN_FORM_DATE,
+                singleForm.COLUMN_USER,
                 singleForm.COLUMN_MNA3,
                 singleForm.COLUMN_MNA4,
                 singleForm.COLUMN_MNA5,
@@ -388,7 +388,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_MNA7,
         };
 
-        String whereClause = singleForm.COLUMN_MNA1 + " LIKE ?";
+        String whereClause = singleForm.COLUMN_FORM_DATE + " LIKE ?";
         String[] whereArgs = {spDateT};
         String groupBy = null;
         String having = null;
@@ -802,7 +802,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 FormsContract form = new FormsContract();
-                form.setMna1(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA1)));
+                form.setFormDate(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORM_DATE)));
                 form.setMna5(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA5)));
                 form.setMna7(cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA7)));
 
