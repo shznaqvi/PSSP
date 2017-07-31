@@ -19,32 +19,31 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract.IMsTable;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
 
 /**
  * Created by hassan.naqvi on 7/26/2016.
  */
 public class SyncIMs extends AsyncTask<Void, Void, String> {
 
-    private static final String TAG = "SyncIms";
+    private static final String TAG = "SyncIMs";
     private Context mContext;
     private ProgressDialog pd;
-
 
     public SyncIMs(Context context) {
         mContext = context;
     }
 
-    public static void longInfo(String str) {
+    /*public static void longInfo(String str) {
         if (str.length() > 4000) {
             Log.i("TAG: ", str.substring(0, 4000));
             longInfo(str.substring(4000));
         } else
             Log.i("TAG: ", str);
-    }
-
+    }*/
 
     @Override
     protected void onPreExecute() {
@@ -58,13 +57,13 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
+
         String line = "No Response";
         try {
-            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/ims.php");
+            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + IMsTable._URL);
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }
-
 
     }
 
@@ -80,13 +79,12 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
             for (int i = 0; i < json.length(); i++) {
                 JSONObject jsonObject = new JSONObject(json.getString(i));
                 if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
-//                    db.updateIMs(jsonObject.getString("id"));
+                    db.updateSyncedIMs(jsonObject.getString("id"));
                     sSynced++;
                 } else {
                     sSyncedError += "\nError: " + jsonObject.getString("message").toString();
                 }
             }
-
             Toast.makeText(mContext, sSynced + " IMs synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(sSynced + " IMs synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
@@ -97,8 +95,9 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
             Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(result);
-            pd.setTitle("Ims Sync Failed");
+            pd.setTitle("IMs Sync Failed");
             pd.show();
+
 
         }
     }
@@ -109,9 +108,9 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
         // web page content.
         //int len = 500;
         DatabaseHelper db = new DatabaseHelper(mContext);
-        Collection<IMsContract> ims = db.getAllIMs();
-        Log.d(TAG, String.valueOf(ims.size()));
-        if (ims.size() > 0) {
+        Collection<IMsContract> IMs = db.getUnsyncedIMs();
+        Log.d(TAG, String.valueOf(IMs.size()));
+        if (IMs.size() > 0) {
             try {
                 URL url = new URL(myurl);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -129,15 +128,13 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
                 try {
                     DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
 
-                    for (IMsContract im : ims) {
+                    for (IMsContract fc : IMs) {
 
-
-                        jsonSync.put(im.toJSONObject());
-
+                        jsonSync.put(fc.toJSONObject());
 
                     }
                     wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
-                    longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
+                    //longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
                     wr.flush();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -146,7 +143,6 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
 
 /*===================================================================*/
                 int HttpResult = conn.getResponseCode();
-
                 if (HttpResult == HttpURLConnection.HTTP_OK) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(
                             conn.getInputStream(), "utf-8"));
@@ -156,6 +152,7 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
                         sb.append(line + "\n");
                     }
                     br.close();
+
                     System.out.println("" + sb.toString());
                     return sb.toString();
                 } else {
@@ -173,11 +170,11 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
             return "No new records to sync";
         }
         return line;
+            /*===================================================================*/
+
     }
 
-    /*=======================================================*/
-
-    /*public String readIt(InputStream stream, int len) throws IOException {
+   /* public String readIt(InputStream stream) throws IOException {
         Reader reader = null;
         reader = new InputStreamReader(stream, "UTF-8");
         char[] buffer = new char[len];

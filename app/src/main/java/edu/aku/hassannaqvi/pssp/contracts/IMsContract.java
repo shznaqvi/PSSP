@@ -166,8 +166,6 @@ public class IMsContract {
         if (!this.im.equals("")) {
             json.put(IMsTable.COLUMN_IM, this.im == null ? JSONObject.NULL : new JSONObject(this.im));
         }
-        json.put(IMsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
-        json.put(IMsTable.COLUMN_SYNCEDDATE, this.syncedDate == null ? JSONObject.NULL : this.syncedDate);
         json.put(IMsTable.COLUMN_TAGID, this.tagId == null ? JSONObject.NULL : this.tagId);
         json.put(IMsTable.COLUMN_UID, this.UID == null ? JSONObject.NULL : this.UID);
         json.put(IMsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
@@ -186,7 +184,7 @@ public class IMsContract {
     public static abstract class IMsTable implements BaseColumns {
 
         public static final String TABLE_NAME = "Ims";
-        public static final String URL = "ims.php";
+        public static final String _URL = "ims.php";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
 
         public static final String COLUMN_APPVER = "appver";
@@ -195,7 +193,7 @@ public class IMsContract {
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_IM = "im";
         public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCEDDATE = "synceddate";
+        public static final String COLUMN_SYNCED_DATE = "synceddate";
         public static final String COLUMN_TAGID = "tagid";
         public static final String COLUMN_UID = "uid";
         public static final String COLUMN_USER = "user";

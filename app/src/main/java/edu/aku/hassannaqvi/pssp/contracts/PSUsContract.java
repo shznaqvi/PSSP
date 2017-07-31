@@ -127,6 +127,7 @@ public class PSUsContract {
         public static final String COLUMN_HH = "hh";
         public static final String COLUMN_CHILD_NAME = "child_name";
 
+        public static final String _URl = "children.php";
     }
 
 }

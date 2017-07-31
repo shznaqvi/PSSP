@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.Collection;
 
 import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract.singleForm;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
 
@@ -59,7 +60,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
         String line = "No Response";
         try {
-            return downloadUrl(PSSPApp._HOST_URL + FormsContract.singleForm._URL);
+            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + singleForm._URL);
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }

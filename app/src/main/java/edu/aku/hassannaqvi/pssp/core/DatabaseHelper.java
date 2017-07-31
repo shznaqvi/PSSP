@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + IMsTable.COLUMN_FORMDATE + " TEXT,"
             + IMsTable.COLUMN_IM + " TEXT,"
             + IMsTable.COLUMN_SYNCED + " TEXT,"
-            + IMsTable.COLUMN_SYNCEDDATE + " TEXT,"
+            + IMsTable.COLUMN_SYNCED_DATE + " TEXT,"
             + IMsTable.COLUMN_TAGID + " TEXT,"
             + IMsTable.COLUMN_UID + " TEXT,"
             + IMsTable.COLUMN_USER + " TEXT,"
@@ -191,15 +191,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SYNCED, true);
-        values.put(singleForm.COLUMN_SYNCED_DATE, new Date().toString());
+        values.put(IMsTable.COLUMN_SYNCED, true);
+        values.put(IMsTable.COLUMN_SYNCED_DATE, new Date().toString());
 
 // Which row to update, based on the title
-        String where = singleForm._ID + " LIKE ?";
+        String where = IMsTable._ID + " LIKE ?";
         String[] whereArgs = {id};
 
         int count = db.update(
-                singleForm.TABLE_NAME,
+                IMsTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
@@ -436,7 +436,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 IMsTable.COLUMN_FORMDATE,
                 IMsTable.COLUMN_IM,
                 IMsTable.COLUMN_SYNCED,
-                IMsTable.COLUMN_SYNCEDDATE,
+                IMsTable.COLUMN_SYNCED_DATE,
                 IMsTable.COLUMN_TAGID,
                 IMsTable.COLUMN_UID,
                 IMsTable.COLUMN_USER,
@@ -489,7 +489,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 IMsTable.COLUMN_FORMDATE,
                 IMsTable.COLUMN_IM,
                 IMsTable.COLUMN_SYNCED,
-                IMsTable.COLUMN_SYNCEDDATE,
+                IMsTable.COLUMN_SYNCED_DATE,
                 IMsTable.COLUMN_TAGID,
                 IMsTable.COLUMN_UID,
                 IMsTable.COLUMN_USER,
@@ -757,7 +757,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public void syncChild(JSONArray childlist) {
+    public void syncChildren(JSONArray childlist) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(PSUsContract.singleChild.TABLE_NAME, null, null);
         Log.d(TAG, "PSU table deleted!");
