@@ -355,14 +355,35 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sF));
         json = jsonMerge(json, new JSONObject(this.sG));*/
 
-        json.put(singleForm.COLUMN_SA, this.sA== null?JSONObject.NULL:this.sA);
-        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
+        if (!this.sA.equals("")) {
+            json.put(singleForm.COLUMN_SA, new JSONObject(this.sA));
+        }
+        if (!this.sB.equals("")) {
+            json.put(singleForm.COLUMN_SB, new JSONObject(this.sB));
+        }
+        if (!this.sC.equals("")) {
+            json.put(singleForm.COLUMN_SC, new JSONObject(this.sC));
+        }
+        if (!this.sD.equals("")) {
+            json.put(singleForm.COLUMN_SD, new JSONObject(this.sD));
+        }
+        if (!this.sE.equals("")) {
+            json.put(singleForm.COLUMN_SE, new JSONObject(this.sE));
+        }
+        if (!this.sF.equals("")) {
+            json.put(singleForm.COLUMN_SF, new JSONObject(this.sF));
+        }
+        if (!this.sG.equals("")) {
+            json.put(singleForm.COLUMN_SG, new JSONObject(this.sG));
+        }
+
+/*      json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
         json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
         json.put(singleForm.COLUMN_SC, this.sC== null?JSONObject.NULL:this.sC);
         json.put(singleForm.COLUMN_SD, this.sD== null?JSONObject.NULL:this.sD);
         json.put(singleForm.COLUMN_SE, this.sE== null?JSONObject.NULL:this.sE);
         json.put(singleForm.COLUMN_SF, this.sF== null?JSONObject.NULL:this.sF);
-        json.put(singleForm.COLUMN_SG, this.sG== null?JSONObject.NULL:this.sG);
+        json.put(singleForm.COLUMN_SG, this.sG== null?JSONObject.NULL:this.sG);*/
 
         json.put(singleForm.COLUMN_NAME_ROUND, this.Round);
 
