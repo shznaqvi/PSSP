@@ -88,6 +88,7 @@ public class IMsContract {
         public static final String COLUMN_UID = "UID";
         public static final String COLUMN_IM = "IM";
 
+        public static String _URL = "pssp/api/ims.php";
     }
 
 }
