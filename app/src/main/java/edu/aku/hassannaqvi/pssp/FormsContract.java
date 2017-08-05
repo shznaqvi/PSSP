@@ -326,25 +326,25 @@ public class FormsContract {
 
         JSONObject json = new JSONObject();
 
-        json.put(singleForm._ID, this._ID== null?JSONObject.NULL:this._ID);
-        json.put(singleForm.COLUMN_UID, this.UID== null?JSONObject.NULL:this.UID);
-        json.put(singleForm.COLUMN_PROJECT_NAME, this.projectName== null?JSONObject.NULL:this.projectName);
-        json.put(singleForm.COLUMN_SURVEY_TYPE, this.surveyType== null?JSONObject.NULL:this.surveyType);
-        json.put(singleForm.COLUMN_DEVICE_ID, this.deviceID== null?JSONObject.NULL:this.deviceID);
-        json.put(singleForm.COLUMN_GPS_LAT, this.gpsLat== null?JSONObject.NULL:this.gpsLat);
-        json.put(singleForm.COLUMN_GPS_LNG, this.gpsLng== null?JSONObject.NULL:this.gpsLng);
-        json.put(singleForm.COLUMN_GPS_TIME, this.gpsTime== null?JSONObject.NULL:this.gpsTime);
-        json.put(singleForm.COLUMN_GPS_ACC, this.gpsAcc== null?JSONObject.NULL:this.gpsAcc);
-        json.put(singleForm.COLUMN_SYNCED, this.synced== null?JSONObject.NULL:this.synced);
-        json.put(singleForm.COLUMN_SYNCED_DATE, this.synced_date== null?JSONObject.NULL:this.synced_date);
-        json.put(singleForm.COLUMN_MNA1, this.mna1== null?JSONObject.NULL:this.mna1);
-        json.put(singleForm.COLUMN_MNA2, this.mna2== null?JSONObject.NULL:this.mna2);
-        json.put(singleForm.COLUMN_MNA3, this.mna3== null?JSONObject.NULL:this.mna3);
-        json.put(singleForm.COLUMN_MNA4, this.mna4== null?JSONObject.NULL:this.mna4);
-        json.put(singleForm.COLUMN_MNA5, this.mna5== null?JSONObject.NULL:this.mna5);
-        json.put(singleForm.COLUMN_MNA6, this.mna6== null?JSONObject.NULL:this.mna6);
-        json.put(singleForm.COLUMN_MNA6A, this.mna6a== null?JSONObject.NULL:this.mna6a);
-        json.put(singleForm.COLUMN_MNA7, this.mna7== null?JSONObject.NULL:this.mna7);
+        json.put(singleForm._ID, this._ID == null ? JSONObject.NULL : this._ID);
+        json.put(singleForm.COLUMN_UID, this.UID == null ? JSONObject.NULL : this.UID);
+        json.put(singleForm.COLUMN_PROJECT_NAME, this.projectName == null ? JSONObject.NULL : this.projectName);
+        json.put(singleForm.COLUMN_SURVEY_TYPE, this.surveyType == null ? JSONObject.NULL : this.surveyType);
+        json.put(singleForm.COLUMN_DEVICE_ID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
+        json.put(singleForm.COLUMN_GPS_LAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
+        json.put(singleForm.COLUMN_GPS_LNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
+        json.put(singleForm.COLUMN_GPS_TIME, this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
+        json.put(singleForm.COLUMN_GPS_ACC, this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
+        json.put(singleForm.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
+        json.put(singleForm.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
+        json.put(singleForm.COLUMN_MNA1, this.mna1 == null ? JSONObject.NULL : this.mna1);
+        json.put(singleForm.COLUMN_MNA2, this.mna2 == null ? JSONObject.NULL : this.mna2);
+        json.put(singleForm.COLUMN_MNA3, this.mna3 == null ? JSONObject.NULL : this.mna3);
+        json.put(singleForm.COLUMN_MNA4, this.mna4 == null ? JSONObject.NULL : this.mna4);
+        json.put(singleForm.COLUMN_MNA5, this.mna5 == null ? JSONObject.NULL : this.mna5);
+        json.put(singleForm.COLUMN_MNA6, this.mna6 == null ? JSONObject.NULL : this.mna6);
+        json.put(singleForm.COLUMN_MNA6A, this.mna6a == null ? JSONObject.NULL : this.mna6a);
+        json.put(singleForm.COLUMN_MNA7, this.mna7 == null ? JSONObject.NULL : this.mna7);
 
 
 /*        json = jsonMerge(json, new JSONObject(this.sA));
@@ -355,27 +355,41 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sF));
         json = jsonMerge(json, new JSONObject(this.sG));*/
 
-        if (!this.sA.equals("")) {
-            json.put(singleForm.COLUMN_SA, new JSONObject(this.sA));
-        }
-        if (!this.sB.equals("")) {
-            json.put(singleForm.COLUMN_SB, new JSONObject(this.sB));
-        }
-        if (!this.sC.equals("")) {
-            json.put(singleForm.COLUMN_SC, new JSONObject(this.sC));
-        }
-        if (!this.sD.equals("")) {
-            json.put(singleForm.COLUMN_SD, new JSONObject(this.sD));
-        }
-        if (!this.sE.equals("")) {
-            json.put(singleForm.COLUMN_SE, new JSONObject(this.sE));
-        }
-        if (!this.sF.equals("")) {
-            json.put(singleForm.COLUMN_SF, new JSONObject(this.sF));
-        }
-        if (!this.sG.equals("")) {
-            json.put(singleForm.COLUMN_SG, new JSONObject(this.sG));
-        }
+        try {
+            if (!this.sA.equals("")) {
+                json.put(singleForm.COLUMN_SA, new JSONObject(this.sA));
+            }
+        } catch (Exception e) {}
+        try {
+            if (!this.sB.equals("")) {
+                json.put(singleForm.COLUMN_SB, new JSONObject(this.sB));
+            }
+        } catch (Exception e) {}
+        try {
+            if (!this.sC.equals("")) {
+                json.put(singleForm.COLUMN_SC, new JSONObject(this.sC));
+            }
+        } catch (Exception e) {}
+        try {
+            if (!this.sD.equals("")) {
+                json.put(singleForm.COLUMN_SD, new JSONObject(this.sD));
+            }
+        } catch (Exception e) {}
+        try {
+            if (!this.sE.equals("")) {
+                json.put(singleForm.COLUMN_SE, new JSONObject(this.sE));
+            }
+        } catch (Exception e) {}
+        try {
+            if (!this.sF.equals("")) {
+                json.put(singleForm.COLUMN_SF, new JSONObject(this.sF));
+            }
+        } catch (Exception e) {}
+        try {
+            if (!this.sG.equals("")) {
+                json.put(singleForm.COLUMN_SG, new JSONObject(this.sG));
+            }
+        } catch (Exception e) {}
 
 /*      json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
         json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
@@ -411,6 +425,7 @@ public class FormsContract {
 
         return mergedObj;
     }
+
     public static abstract class singleForm implements BaseColumns {
 
         public static final String TABLE_NAME = "forms";

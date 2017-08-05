@@ -77,9 +77,11 @@ public class IMsContract {
         json.put(singleIms.COLUMN_CHID, this.chid== null?JSONObject.NULL:this.chid);
 //        json.put(singleIms.COLUMN_IM, this.im== null?JSONObject.NULL:this.im);
 
-        if (!this.im.equals("")) {
-            json.put(singleIms.COLUMN_IM, new JSONObject(this.im));
-        }
+        try {
+            if (!this.im.equals("")) {
+                json.put(singleIms.COLUMN_IM, new JSONObject(this.im));
+            }
+        }catch (Exception e){}
 
         return json;
     }
