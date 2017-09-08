@@ -354,7 +354,6 @@ public class SectionCActivity extends Activity {
         sc.put("mnc5ipv1", mnc5ipv1.getText().toString());
         sc.put("mnc5ipv2", mnc5ipv2.getText().toString());
         sc.put("mnc5ipv3", mnc5ipv3.getText().toString());
-        sc.put("mnc5ipv3", mnc5pcv2.getText().toString());
         sc.put("mnc5p1", mnc5p1.getText().toString());
         sc.put("mnc5p2", mnc5p2.getText().toString());
         sc.put("mnc5p3", mnc5p3.getText().toString());
