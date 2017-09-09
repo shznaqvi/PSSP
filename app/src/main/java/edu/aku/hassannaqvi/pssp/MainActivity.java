@@ -26,8 +26,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends Activity {
 
-    private String rSumText = "";
-
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
     @BindView(R.id.adminsec)
     LinearLayout adminsec;
@@ -35,7 +33,7 @@ public class MainActivity extends Activity {
     TextView recordSummary;
     @BindView(R.id.psuNo)
     EditText psuNo;
-
+    private String rSumText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -265,5 +263,11 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+        Intent lI = new Intent(this, LoginActivity.class);
+        startActivity(lI);
+
+    }
 }
