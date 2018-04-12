@@ -14,9 +14,9 @@ import java.util.Iterator;
 
 public class FormsContract {
 
-    private final String projectName = "Sero 2016-17";
-    private final String surveyType = "SN";
-    public String Round = "2";
+    private final String projectName = "Sero 2018";
+    private final String surveyType = "Round 3";
+    public String Round = "3";
     public String tagId = "";
     private String _ID = "";
     private String UID = "";
@@ -469,7 +469,7 @@ public class FormsContract {
 
         public static final String COLUMN_NAME_ROUND = "round";
 
-        public static String _URL = "pssp/api/forms.php";
+        public static String _URL = "forms.php";
     }
 }
 

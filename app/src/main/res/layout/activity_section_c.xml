@@ -713,7 +713,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:digits="201567"
+                    android:digits="20154678"
                     android:hint="@string/mnc10yy"
                     android:inputType="number"
                     android:maxLength="4"

@@ -27,10 +27,10 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
-import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
-import edu.aku.hassannaqvi.pssp.core.PSSPApp;
 import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
 import edu.aku.hassannaqvi.pssp.others.TypefaceUtil;
 
 public class SectionAActivity extends Activity {
@@ -132,9 +132,11 @@ public class SectionAActivity extends Activity {
         lables.add("K Zone 3");
         lables.add("Sukkur");
         lables.add("Larkhana");
+        lables.add("Rahim Yar Khan");
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
+
 
         values = new ArrayList<String>();
 //        values.add("11");
@@ -162,6 +164,7 @@ public class SectionAActivity extends Activity {
         values.add("33");
         values.add("41");
         values.add("42");
+        values.add("51");
         values.add("91");
         values.add("92");
         values.add("93");

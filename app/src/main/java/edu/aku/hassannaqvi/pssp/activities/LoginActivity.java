@@ -53,9 +53,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.R;
 
 
 /**
@@ -127,10 +127,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         }
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -180,6 +180,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("K Zone 3");
         lables.add("Sukkur");
         lables.add("Larkhana");
+        lables.add("Rahim Yar Khan");
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
@@ -196,6 +197,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         values.add("33");
         values.add("41");
         values.add("42");
+        values.add("51");
         values.add("91");
         values.add("92");
         values.add("93");
@@ -230,6 +232,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("33", "K Zone 3");
         valuesnlabels.put("41", "Sukkur");
         valuesnlabels.put("42", "Larkhana");
+        valuesnlabels.put("51", "Rahim Yar Khan");
         valuesnlabels.put("91", "Rawalpindi");
         valuesnlabels.put("92", "Lahore");
         valuesnlabels.put("93", "Multan");
