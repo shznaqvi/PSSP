@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.core;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
+
+import edu.aku.hassannaqvi.pssp.others.TypefaceUtil;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.contracts.IMsContract;
 
 
 /**
@@ -42,7 +46,7 @@ public static final Integer MONTHS_LIMIT = 11;
     public static String deviceId;
 
     public static Boolean admin = false;
-    public static String mna2;
+    public static String username;
     public static int mna3 = -1;
     public static String mnb1 = "TEST";
     public static int chCount = 0;
@@ -50,8 +54,12 @@ public static final Integer MONTHS_LIMIT = 11;
     public static boolean scanned = false;
     public static FormsContract fc;
     public static IMsContract im;
+    public static String mna06a = "";
     protected LocationManager locationManager;
     Location location;
+    public static long installedOn;
+    public static int versionCode;
+    public static String versionName;
 
     @Override
     public void onCreate() {

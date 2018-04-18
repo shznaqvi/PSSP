@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="72dp"
-    tools:context="edu.aku.hassannaqvi.pssp.SectionCActivity">
+    tools:context="edu.aku.hassannaqvi.pssp.activities.SectionCActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -713,7 +713,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:digits="20156"
+                    android:digits="20154678"
                     android:hint="@string/mnc10yy"
                     android:inputType="number"
                     android:maxLength="4"

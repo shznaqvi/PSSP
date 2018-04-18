@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -11,6 +11,7 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.LocationManager;
@@ -18,8 +19,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +39,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +53,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
 
 
 /**
@@ -72,8 +83,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     AutoCompleteTextView mEmailView;
     @BindView(R.id.password)
     EditText mPasswordView;
-    @BindView(R.id.txtinstalldate)
-    TextView txtinstalldate;
+        @BindView(R.id.txtinstalldate)
+        TextView txtinstalldate;
     @BindView(R.id.email_sign_in_button)
     Button mEmailSignInButton;
     @BindView(R.id.spUC)
@@ -83,6 +94,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
      */
     private UserLoginTask mAuthTask = null;
 
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+
+    String DirectoryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,31 +106,31 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         ButterKnife.bind(this);
 
         try {
-            long installedOn = this
+            PSSPApp.installedOn = this
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
                     .lastUpdateTime
                     ;
-            Integer versionCode = this
+            PSSPApp.versionCode = this
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
                     .versionCode
                     ;
-            String versionName = this
+            PSSPApp.versionName = this
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.pssp", 0)
                     .versionName
                     ;
-            txtinstalldate.setText("Ver. "+versionName+"."+String.valueOf(versionCode)+" \r\n( Last Updated: "+new SimpleDateFormat("dd MMM. yyyy").format(new Date(installedOn))+" )");
+            txtinstalldate.setText("Ver. "+PSSPApp.versionName+"."+String.valueOf(PSSPApp.versionCode)+" \r\n( Last Updated: "+new SimpleDateFormat("dd MMM. yyyy").format(new Date(PSSPApp.installedOn))+" )");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -126,10 +142,23 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
+
+        dbBackup();
+
+
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+
+                if (!sharedPref.getBoolean("flag", false)){
+                    editor.putBoolean("flag", true);
+                    editor.commit();
+
+                    dbBackup();
+
+                }
+
             }
         });
 
@@ -143,7 +172,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("K. Abdullah");
         lables.add("Quetta");
         lables.add("Pishin");
-        lables.add("J & Bara");
+        lables.add("Mardan/Swabi");
         lables.add("Town 1 & 2");
         lables.add("Town 3 & 4");
         lables.add("K Zone 1");
@@ -151,6 +180,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("K Zone 3");
         lables.add("Sukkur");
         lables.add("Larkhana");
+        lables.add("Rahim Yar Khan");
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
@@ -167,6 +197,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         values.add("33");
         values.add("41");
         values.add("42");
+        values.add("51");
         values.add("91");
         values.add("92");
         values.add("93");
@@ -193,7 +224,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("11", "K. Abdullah");
         valuesnlabels.put("12", "Quetta");
         valuesnlabels.put("13", "Pishin");
-        valuesnlabels.put("21", "J & Bara");
+        valuesnlabels.put("21", "Mardan/Swabi");
         valuesnlabels.put("22", "Town 1 & 2");
         valuesnlabels.put("23", "Town 3 & 4");
         valuesnlabels.put("31", "K Zone 1");
@@ -201,6 +232,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("33", "K Zone 3");
         valuesnlabels.put("41", "Sukkur");
         valuesnlabels.put("42", "Larkhana");
+        valuesnlabels.put("51", "Rahim Yar Khan");
         valuesnlabels.put("91", "Rawalpindi");
         valuesnlabels.put("92", "Lahore");
         valuesnlabels.put("93", "Multan");
@@ -232,6 +264,68 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
         });
 
+
+    }
+
+    public void dbBackup() {
+
+        sharedPref = getSharedPreferences("psspdatacollection", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        if (sharedPref.getBoolean("flag", false)) {
+
+            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+
+            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date()).toString()) {
+                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+
+                editor.commit();
+            }
+
+            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-PSSPDATACOLLECTION");
+            boolean success = true;
+            if (!folder.exists()) {
+                success = folder.mkdirs();
+            }
+            if (success) {
+
+                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
+                folder = new File(DirectoryName);
+                if (!folder.exists()) {
+                    success = folder.mkdirs();
+                }
+                if (success) {
+
+                    try {
+                        File dbFile = new File(this.getDatabasePath(DatabaseHelper.DATABASE_NAME).getPath());
+                        FileInputStream fis = new FileInputStream(dbFile);
+
+                        String outFileName = DirectoryName + File.separator +
+                                DatabaseHelper.DB_NAME;
+
+                        // Open the empty db as the output stream
+                        OutputStream output = new FileOutputStream(outFileName);
+
+                        // Transfer bytes from the inputfile to the outputfile
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = fis.read(buffer)) > 0) {
+                            output.write(buffer, 0, length);
+                        }
+                        // Close the streams
+                        output.flush();
+                        output.close();
+                        fis.close();
+                    } catch (IOException e) {
+                        Log.e("dbBackup:", e.getMessage());
+                    }
+
+                }
+
+            } else {
+                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
+            }
+        }
 
     }
 
@@ -441,10 +535,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
-                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)) {
-                    PSSPApp.mna2 = mEmail;
+                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) || db.Login(mEmail, mPassword)
+                        || (mEmail.equals("test1234") && mPassword.equals("test1234"))) {
+                    PSSPApp.username = mEmail;
                     PSSPApp.admin = mEmail.contains("@");
-
+                    finish();
                     Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(iLogin);
 

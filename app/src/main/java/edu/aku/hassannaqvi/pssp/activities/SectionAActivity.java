@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,6 +27,11 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
+import edu.aku.hassannaqvi.pssp.others.TypefaceUtil;
 
 public class SectionAActivity extends Activity {
 
@@ -102,10 +107,24 @@ public class SectionAActivity extends Activity {
         TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 
         lables = new ArrayList<String>();
+//        lables.add("K. Abdullah");
+//        lables.add("Quetta");
+//        lables.add("Pishin");
+//        lables.add("J & Bara");
+//        lables.add("Town 1 & 2");
+//        lables.add("Town 3 & 4");
+//        lables.add("K Zone 1");
+//        lables.add("K Zone 2");
+//        lables.add("K Zone 3");
+//        lables.add("Sukkur");
+//        lables.add("Larkhana");
+//        lables.add("Rawalpindi");
+//        lables.add("Lahore");
+//        lables.add("Multan");
         lables.add("K. Abdullah");
         lables.add("Quetta");
         lables.add("Pishin");
-        lables.add("J & Bara");
+        lables.add("Mardan/Swabi");
         lables.add("Town 1 & 2");
         lables.add("Town 3 & 4");
         lables.add("K Zone 1");
@@ -113,11 +132,27 @@ public class SectionAActivity extends Activity {
         lables.add("K Zone 3");
         lables.add("Sukkur");
         lables.add("Larkhana");
+        lables.add("Rahim Yar Khan");
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
 
+
         values = new ArrayList<String>();
+//        values.add("11");
+//        values.add("12");
+//        values.add("13");
+//        values.add("21");
+//        values.add("22");
+//        values.add("23");
+//        values.add("31");
+//        values.add("32");
+//        values.add("33");
+//        values.add("34");
+//        values.add("35");
+//        values.add("41");
+//        values.add("42");
+//        values.add("43");
         values.add("11");
         values.add("12");
         values.add("13");
@@ -127,11 +162,12 @@ public class SectionAActivity extends Activity {
         values.add("31");
         values.add("32");
         values.add("33");
-        values.add("34");
-        values.add("35");
         values.add("41");
         values.add("42");
-        values.add("43");
+        values.add("51");
+        values.add("91");
+        values.add("92");
+        values.add("93");
 
         txtmna3.setText(getString(R.string.mna3) + ": " + lables.get(values.indexOf(String.valueOf(PSSPApp.mna3))));
         mna6.setEnabled(false);
@@ -176,12 +212,14 @@ public class SectionAActivity extends Activity {
     public void checkChild(View v) {
         DatabaseHelper db = new DatabaseHelper(SectionAActivity.this);
         String chName = db.getChildByHH(mna5.getText().toString(), mna4.getText().toString());
+
         child_name.setText(chName);
         if (chName.equals("No Child Found")) {
             mna6.setEnabled(false);
         } else {
             mna6.setEnabled(true);
-            PSSPApp.mnb1 = chName;
+            PSSPApp.mnb1 = chName.split("|")[0];
+            PSSPApp.mna06a = chName.split("|")[1];
         }
     }
     public void submitSecA(View v) throws JSONException {
@@ -201,8 +239,8 @@ public class SectionAActivity extends Activity {
 
     public void endForm(View v) throws JSONException {
         Toast.makeText(this, "Processing Section A", Toast.LENGTH_SHORT).show();
-        if (formValidation()) {
-            SaveDraft();
+
+        SaveDraft();
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Closing Section", Toast.LENGTH_SHORT).show();
                 Intent endSec = new Intent(this, EndingActivity.class);
@@ -211,7 +249,7 @@ public class SectionAActivity extends Activity {
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+
     }
 
     private boolean UpdateDB() {
@@ -238,15 +276,22 @@ public class SectionAActivity extends Activity {
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         PSSPApp.fc = new FormsContract();
+        PSSPApp.fc.setTagId(sharedPref.getString("tagName", null));
         PSSPApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-        PSSPApp.fc.setMna1(dtToday);
-        PSSPApp.fc.setMna2(PSSPApp.mna2);
+        PSSPApp.fc.setFormDate(dtToday);
+        PSSPApp.fc.setUser(PSSPApp.username);
+        PSSPApp.fc.setAppVer(PSSPApp.versionName + "." + PSSPApp.versionCode);
         PSSPApp.fc.setMna3(String.valueOf(PSSPApp.mna3));
         PSSPApp.fc.setMna4(mna4.getText().toString());
         PSSPApp.fc.setMna5(mna5.getText().toString());
         PSSPApp.fc.setMna6(mna6.isChecked() ? "1" : "2");
+
+        PSSPApp.fc.setMna6a(PSSPApp.mna06a);
+
+        PSSPApp.mna06a = "";
 
         JSONObject sA = new JSONObject();
 

@@ -1,14 +1,12 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 27
 
     def versionPropsFile = file('version.properties')
 
     if (versionPropsFile.canRead()) {
-        def Properties versionProps = new Properties()
+        Properties versionProps = new Properties()
 
         versionProps.load(new FileInputStream(versionPropsFile))
 
@@ -19,10 +17,10 @@ android {
 
         defaultConfig {
             applicationId "edu.aku.hassannaqvi.pssp"
-            minSdkVersion 19
-            targetSdkVersion 19
+            minSdkVersion 22
+            targetSdkVersion 22
             versionCode code
-            versionName "1.5"
+            versionName "3.1"
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         }
     }
@@ -43,15 +41,17 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.jakewharton:butterknife:8.4.0'
-    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
     //compile 'com.android.support:appcompat-v7:24.2.1'
     //compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.google.android.gms:play-services:5.+'
+    //compile 'com.google.android.gms:play-services:11.0.4'
     //compile 'com.android.support:recyclerview-v7:+'
     testCompile 'junit:junit:4.12'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.google.maps.android:android-maps-utils:+'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //compile 'com.google.maps.android:android-maps-utils:11.0.4'
+
+    compile 'com.android.support:recyclerview-v7:27.1.0'
 }
 //compile 'com.android.support:support-v4:25.0.1'
 //compile 'com.google.maps.android:android-maps-utils:0.4'

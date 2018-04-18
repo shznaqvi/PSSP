@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.contracts;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
@@ -14,12 +14,14 @@ import java.util.Iterator;
 
 public class FormsContract {
 
-    private final String projectName = "Sero 2016-17";
-    private final String surveyType = "SN";
+    private final String projectName = "Sero 2018";
+    private final String surveyType = "Round 3";
+    public String Round = "3";
+    public String tagId = "";
     private String _ID = "";
     private String UID = "";
-    private String mna1 = ""; // Date
-    private String mna2 = "0000"; // DC name
+    private String formDate = ""; // Date
+    private String user = ""; // USER name
     private String mna3 = ""; // District
     private String mna4 = ""; // PSU
     private String mna5 = ""; // HH no.
@@ -33,7 +35,6 @@ public class FormsContract {
     private String sE = "";
     private String sF = "";
     private String sG = "";
-
     private String gpsLat = "";
     private String gpsLng = "";
     private String gpsTime = "";
@@ -41,15 +42,22 @@ public class FormsContract {
     private String deviceID = "";
     private String synced = "";
     private String synced_date = "";
+    private String appVer = "";
 
     public FormsContract() {
+    }
+
+    public FormsContract(String mna1, String mna5, String mna7) {
+        this.formDate = mna1;
+        this.mna5 = mna5;
+        this.mna7 = mna7;
     }
 
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
         this._ID = jsonObject.getString(singleForm._ID);
         this.UID = jsonObject.getString(singleForm.COLUMN_UID);
-        this.mna1 = jsonObject.getString(singleForm.COLUMN_MNA1);
-        this.mna2 = jsonObject.getString(singleForm.COLUMN_MNA2);
+        this.formDate = jsonObject.getString(singleForm.COLUMN_FORM_DATE);
+        this.user = jsonObject.getString(singleForm.COLUMN_USER);
         this.mna3 = jsonObject.getString(singleForm.COLUMN_MNA3);
         this.mna4 = jsonObject.getString(singleForm.COLUMN_MNA4);
         this.mna5 = jsonObject.getString(singleForm.COLUMN_MNA5);
@@ -68,8 +76,9 @@ public class FormsContract {
         this.gpsTime = jsonObject.getString(singleForm.COLUMN_GPS_TIME);
         this.gpsAcc = jsonObject.getString(singleForm.COLUMN_GPS_ACC);
         this.deviceID = jsonObject.getString(singleForm.COLUMN_DEVICE_ID);
-        this.synced = jsonObject.getString(singleForm.COLUMN_SYNCED);
-        this.synced_date = jsonObject.getString(singleForm.COLUMN_SYNCED_DATE);
+        this.Round = jsonObject.getString(singleForm.COLUMN_NAME_ROUND);
+        this.tagId = jsonObject.getString(singleForm.COLUMN_TAGID);
+        this.appVer = jsonObject.getString(singleForm.COLUMN_APPVER);
 
         return this;
     }
@@ -77,8 +86,8 @@ public class FormsContract {
     public FormsContract hydrate(Cursor cursor) {
         this._ID = cursor.getString(cursor.getColumnIndex(singleForm._ID));
         this.UID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_UID));
-        this.mna1 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA1));
-        this.mna2 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA2));
+        this.formDate = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORM_DATE));
+        this.user = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_USER));
         this.mna3 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA3));
         this.mna4 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA4));
         this.mna5 = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MNA5));
@@ -97,8 +106,9 @@ public class FormsContract {
         this.gpsTime = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPS_TIME));
         this.gpsAcc = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPS_ACC));
         this.deviceID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_DEVICE_ID));
-        this.synced = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SYNCED));
-        this.synced_date = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SYNCED_DATE));
+        this.Round = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_NAME_ROUND));
+        this.tagId = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_TAGID));
+        this.appVer = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_APPVER));
 
         return this;
     }
@@ -127,20 +137,20 @@ public class FormsContract {
         return surveyType;
     }
 
-    public String getMna1() {
-        return mna1;
+    public String getFormDate() {
+        return formDate;
     }
 
-    public void setMna1(String mna1) {
-        this.mna1 = mna1;
+    public void setFormDate(String formDate) {
+        this.formDate = formDate;
     }
 
-    public String getMna2() {
-        return mna2;
+    public String getUser() {
+        return user;
     }
 
-    public void setMna2(String mna2) {
-        this.mna2 = mna2;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getMna3() {
@@ -304,6 +314,46 @@ public class FormsContract {
         this.synced_date = synced_date;
     }
 
+    public String getRound() {
+        return Round;
+    }
+
+    public void setRound(String round) {
+        Round = round;
+    }
+
+    public String getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
+    }
+
+    public String get_ID() {
+        return _ID;
+    }
+
+    public void set_ID(String _ID) {
+        this._ID = _ID;
+    }
+
+    public String getSynced_date() {
+        return synced_date;
+    }
+
+    public void setSynced_date(String synced_date) {
+        this.synced_date = synced_date;
+    }
+
+    public String getAppVer() {
+        return appVer;
+    }
+
+    public void setAppVer(String appVer) {
+        this.appVer = appVer;
+    }
+
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
@@ -317,10 +367,11 @@ public class FormsContract {
         json.put(singleForm.COLUMN_GPS_LNG, this.gpsLng== null?JSONObject.NULL:this.gpsLng);
         json.put(singleForm.COLUMN_GPS_TIME, this.gpsTime== null?JSONObject.NULL:this.gpsTime);
         json.put(singleForm.COLUMN_GPS_ACC, this.gpsAcc== null?JSONObject.NULL:this.gpsAcc);
-        json.put(singleForm.COLUMN_SYNCED, this.synced== null?JSONObject.NULL:this.synced);
-        json.put(singleForm.COLUMN_SYNCED_DATE, this.synced_date== null?JSONObject.NULL:this.synced_date);
-        json.put(singleForm.COLUMN_MNA1, this.mna1== null?JSONObject.NULL:this.mna1);
-        json.put(singleForm.COLUMN_MNA2, this.mna2== null?JSONObject.NULL:this.mna2);
+        json.put(singleForm.COLUMN_TAGID, this.tagId== null?JSONObject.NULL:this.tagId);
+        json.put(singleForm.COLUMN_APPVER, this.appVer == null ? JSONObject.NULL : this.appVer);
+
+        json.put(singleForm.COLUMN_FORM_DATE, this.formDate == null?JSONObject.NULL:this.formDate);
+        json.put(singleForm.COLUMN_USER, this.user == null?JSONObject.NULL:this.user);
         json.put(singleForm.COLUMN_MNA3, this.mna3== null?JSONObject.NULL:this.mna3);
         json.put(singleForm.COLUMN_MNA4, this.mna4== null?JSONObject.NULL:this.mna4);
         json.put(singleForm.COLUMN_MNA5, this.mna5== null?JSONObject.NULL:this.mna5);
@@ -336,15 +387,29 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sE));
         json = jsonMerge(json, new JSONObject(this.sF));
         json = jsonMerge(json, new JSONObject(this.sG));*/
+        if (!this.sA.equals("")) {
+            json.put(singleForm.COLUMN_SA, this.sA == null ? JSONObject.NULL : new JSONObject(this.sA));
+        }
+        if (!this.sB.equals("")) {
+            json.put(singleForm.COLUMN_SB, this.sB == null ? JSONObject.NULL : new JSONObject(this.sB));
+        }
+        if (!this.sC.equals("")) {
+            json.put(singleForm.COLUMN_SC, this.sC == null ? JSONObject.NULL : new JSONObject(this.sC));
+        }
+        if (!this.sD.equals("")) {
+            json.put(singleForm.COLUMN_SD, this.sD == null ? JSONObject.NULL : new JSONObject(this.sD));
+        }
+        if (!this.sE.equals("")) {
+            json.put(singleForm.COLUMN_SE, this.sE == null ? JSONObject.NULL : new JSONObject(this.sE));
+        }
+        if (!this.sF.equals("")) {
+            json.put(singleForm.COLUMN_SF, this.sF == null ? JSONObject.NULL : new JSONObject(this.sF));
+        }
+        if (!this.sG.equals("")) {
+            json.put(singleForm.COLUMN_SG, this.sG == null ? JSONObject.NULL : new JSONObject(this.sG));
+        }
 
-        json.put(singleForm.COLUMN_SA, this.sA== null?JSONObject.NULL:this.sA);
-        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
-        json.put(singleForm.COLUMN_SB, this.sB== null?JSONObject.NULL:this.sB);
-        json.put(singleForm.COLUMN_SC, this.sC== null?JSONObject.NULL:this.sC);
-        json.put(singleForm.COLUMN_SD, this.sD== null?JSONObject.NULL:this.sD);
-        json.put(singleForm.COLUMN_SE, this.sE== null?JSONObject.NULL:this.sE);
-        json.put(singleForm.COLUMN_SF, this.sF== null?JSONObject.NULL:this.sF);
-        json.put(singleForm.COLUMN_SG, this.sG== null?JSONObject.NULL:this.sG);
+        json.put(singleForm.COLUMN_NAME_ROUND, this.Round);
 
         return json;
     }
@@ -374,7 +439,6 @@ public class FormsContract {
 
         public static final String TABLE_NAME = "forms";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String _ID = "_id";
         public static final String COLUMN_UID = "uid";
         public static final String COLUMN_PROJECT_NAME = "projectname";
         public static final String COLUMN_SURVEY_TYPE = "surveytype";
@@ -385,8 +449,8 @@ public class FormsContract {
         public static final String COLUMN_GPS_TIME = "gpstime";
         public static final String COLUMN_SYNCED = "sync";
         public static final String COLUMN_SYNCED_DATE = "sync_date";
-        public static final String COLUMN_MNA1 = "mna1";
-        public static final String COLUMN_MNA2 = "mna2";
+        public static final String COLUMN_FORM_DATE = "formDate";
+        public static final String COLUMN_USER = "user";
         public static final String COLUMN_MNA3 = "mna3";
         public static final String COLUMN_MNA4 = "mna4";
         public static final String COLUMN_MNA5 = "mna5";
@@ -400,6 +464,12 @@ public class FormsContract {
         public static final String COLUMN_SE = "se";
         public static final String COLUMN_SF = "sf";
         public static final String COLUMN_SG = "sg";
+        public static final String COLUMN_TAGID = "tagId";
+        public static final String COLUMN_APPVER = "appver";
+
+        public static final String COLUMN_NAME_ROUND = "round";
+
+        public static String _URL = "forms.php";
     }
 }
 

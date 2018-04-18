@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.pssp;
+package edu.aku.hassannaqvi.pssp.sync;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,17 +10,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
+
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract;
+import edu.aku.hassannaqvi.pssp.contracts.FormsContract.singleForm;
+import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
+import edu.aku.hassannaqvi.pssp.core.PSSPApp;
 
 /**
  * Created by hassan.naqvi on 7/26/2016.
@@ -35,13 +37,13 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         mContext = context;
     }
 
-    public static void longInfo(String str) {
+    /*public static void longInfo(String str) {
         if (str.length() > 4000) {
             Log.i("TAG: ", str.substring(0, 4000));
             longInfo(str.substring(4000));
         } else
             Log.i("TAG: ", str);
-    }
+    }*/
 
     @Override
     protected void onPreExecute() {
@@ -58,7 +60,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
         String line = "No Response";
         try {
-            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/forms.php");
+            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + singleForm._URL);
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }
@@ -69,20 +71,23 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         int sSynced = 0;
+        String sSyncedError = "";
         JSONArray json = null;
         try {
             json = new JSONArray(result);
             DatabaseHelper db = new DatabaseHelper(mContext);
             for (int i = 0; i < json.length(); i++) {
-                    JSONObject jsonObject = new JSONObject(json.getString(i));
-                if(jsonObject.getString("status").equals("1")){
-                db.updateForms(jsonObject.getString("id"));
+                JSONObject jsonObject = new JSONObject(json.getString(i));
+                if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
+                    db.updateSyncedForms(jsonObject.getString("id"));
                     sSynced++;
+                } else {
+                    sSyncedError += "\nError: " + jsonObject.getString("message").toString();
                 }
             }
-            Toast.makeText(mContext, sSynced+" Forms synced." + String.valueOf(json.length()-sSynced) + " Errors.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
 
-            pd.setMessage(sSynced+" Forms synced." + String.valueOf(json.length()-sSynced) + " Errors.");
+            pd.setMessage(sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
             pd.setTitle("Done uploading Forms data");
             pd.show();
         } catch (JSONException e) {
@@ -90,12 +95,11 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(result);
-            pd.setTitle("Formss Sync Failed");
+            pd.setTitle("Forms Sync Failed");
             pd.show();
 
 
         }
-
     }
 
     private String downloadUrl(String myurl) throws IOException {
@@ -130,7 +134,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
             }
             wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
-            longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
+                //longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
             wr.flush();
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
