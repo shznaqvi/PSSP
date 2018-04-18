@@ -57,11 +57,9 @@ public class SyncIMs extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        try {
-            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + IMsContract.IMsTable._URL);
-        } catch (IOException e) {
-            return "Unable to upload data. Server may be down.";
-        }
+
+        return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + IMsContract.IMsTable._URL);
+
     }
 
     private String downloadUrl(String myurl) {
