@@ -40,19 +40,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.jakewharton:butterknife:8.8.1'
-    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
-    //compile 'com.android.support:appcompat-v7:24.2.1'
-    //compile 'com.android.support:support-v4:24.2.1'
-    //compile 'com.google.android.gms:play-services:11.0.4'
-    //compile 'com.android.support:recyclerview-v7:+'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
+    //implementation 'com.android.support:appcompat-v7:24.2.1'
+    //implementation 'com.android.support:support-v4:24.2.1'
+    //implementation 'com.google.android.gms:play-services:11.0.4'
+    //implementation 'com.android.support:recyclerview-v7:+'
+    testImplementation 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //compile 'com.google.maps.android:android-maps-utils:11.0.4'
 
-    compile 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
 }
-//compile 'com.android.support:support-v4:25.0.1'
+//implementation 'com.android.support:support-v4:25.0.1'
 //compile 'com.google.maps.android:android-maps-utils:0.4'
 // compile 'com.android.support:design:25.0.1'

@@ -53,6 +53,9 @@ public class IMsContract {
         this.UID = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_UID));
         this.user = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_USER));
         this.UUID = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_UUID));
+        this.synced = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_SYNCED));
+        this.syncedDate = cursor.getString(cursor.getColumnIndex(IMsTable.COLUMN_SYNCED_DATE));
+
 
 
 
