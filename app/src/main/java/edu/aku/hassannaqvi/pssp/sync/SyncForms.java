@@ -93,7 +93,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             }
             Toast.makeText(mContext, " Forms synced: " + sSynced + "\r\n\r\n Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
 
-            pd.setMessage(" Froms synced: " + sSynced + "\r\n\r\n Duplicates: " + sDuplicate + "\r\n\r\n Errors: " + sSyncedError);
+            pd.setMessage(" Forms synced: " + sSynced + "\r\n\r\n Duplicates: " + sDuplicate + "\r\n\r\n Errors: " + sSyncedError);
             pd.setTitle("Done uploading Forms data");
             pd.show();
         } catch (JSONException e) {
