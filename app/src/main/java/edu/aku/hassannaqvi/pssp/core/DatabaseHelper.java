@@ -153,6 +153,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_MNA6A, fc.getMna6a());
         values.put(singleForm.COLUMN_MNA7, fc.getMna7());
         values.put(singleForm.COLUMN_SA, fc.getsA());
+        values.put(singleForm.COLUMN_SB, fc.getsB());
+        values.put(singleForm.COLUMN_SC, fc.getsC());
+        values.put(singleForm.COLUMN_SD, fc.getsD());
+        values.put(singleForm.COLUMN_SE, fc.getsE());
+        values.put(singleForm.COLUMN_SF, fc.getsF());
+        values.put(singleForm.COLUMN_SG, fc.getsG());
         values.put(singleForm.COLUMN_TAGID, fc.getTagId());
         values.put(singleForm.COLUMN_APPVER, fc.getAppVer());
 
@@ -315,16 +321,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 singleForm._ID,
                 singleForm.COLUMN_UID,
-                singleForm.COLUMN_PROJECT_NAME,
-                singleForm.COLUMN_SURVEY_TYPE,
+                //singleForm.COLUMN_PROJECT_NAME,
+                //singleForm.COLUMN_SURVEY_TYPE,
                 singleForm.COLUMN_DEVICE_ID,
                 singleForm.COLUMN_GPS_LAT,
                 singleForm.COLUMN_GPS_LNG,
                 singleForm.COLUMN_GPS_ACC,
                 singleForm.COLUMN_GPS_TIME,
                 singleForm.COLUMN_NAME_ROUND,
-                singleForm.COLUMN_SYNCED,
-                singleForm.COLUMN_SYNCED_DATE,
+                //singleForm.COLUMN_SYNCED,
+                //singleForm.COLUMN_SYNCED_DATE,
                 singleForm.COLUMN_FORM_DATE,
                 singleForm.COLUMN_USER,
                 singleForm.COLUMN_MNA3,

@@ -387,29 +387,62 @@ public class FormsContract {
         json = jsonMerge(json, new JSONObject(this.sE));
         json = jsonMerge(json, new JSONObject(this.sF));
         json = jsonMerge(json, new JSONObject(this.sG));*/
-        if (!this.sA.equals("")) {
-            json.put(singleForm.COLUMN_SA, this.sA == null ? JSONObject.NULL : new JSONObject(this.sA));
-        }
-        if (!this.sB.equals("")) {
-            json.put(singleForm.COLUMN_SB, this.sB == null ? JSONObject.NULL : new JSONObject(this.sB));
-        }
-        if (!this.sC.equals("")) {
-            json.put(singleForm.COLUMN_SC, this.sC == null ? JSONObject.NULL : new JSONObject(this.sC));
-        }
-        if (!this.sD.equals("")) {
-            json.put(singleForm.COLUMN_SD, this.sD == null ? JSONObject.NULL : new JSONObject(this.sD));
-        }
-        if (!this.sE.equals("")) {
-            json.put(singleForm.COLUMN_SE, this.sE == null ? JSONObject.NULL : new JSONObject(this.sE));
-        }
-        if (!this.sF.equals("")) {
-            json.put(singleForm.COLUMN_SF, this.sF == null ? JSONObject.NULL : new JSONObject(this.sF));
-        }
-        if (!this.sG.equals("")) {
-            json.put(singleForm.COLUMN_SG, this.sG == null ? JSONObject.NULL : new JSONObject(this.sG));
+
+        try {
+            if (!this.sA.equals("")) {
+                json.put(singleForm.COLUMN_SA, this.sA.equals("") ? JSONObject.NULL : new JSONObject(this.sA));
+            }
+
+        } catch (Exception e) {
         }
 
-        json.put(singleForm.COLUMN_NAME_ROUND, this.Round);
+
+        try {
+            if (!this.sB.equals("")) {
+                json.put(singleForm.COLUMN_SB, this.sB.equals("") ? JSONObject.NULL : new JSONObject(this.sB));
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (!this.sC.equals("")) {
+                json.put(singleForm.COLUMN_SC, this.sC.equals("") ? JSONObject.NULL : new JSONObject(this.sC));
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (!this.sD.equals("")) {
+                json.put(singleForm.COLUMN_SD, this.sD.equals("") ? JSONObject.NULL : new JSONObject(this.sD));
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (!this.sE.equals("")) {
+                json.put(singleForm.COLUMN_SE, this.sE.equals("") ? JSONObject.NULL : new JSONObject(this.sE));
+            }
+        } catch (Exception e) {
+        }
+
+
+        try {
+            if (!this.sF.equals("")) {
+                json.put(singleForm.COLUMN_SF, this.sF.equals("") ? JSONObject.NULL : new JSONObject(this.sF));
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (!this.sG.equals("")) {
+                json.put(singleForm.COLUMN_SG, this.sG.equals("") ? JSONObject.NULL : new JSONObject(this.sG));
+            }
+        } catch (Exception e) {
+        }
+
+
+        json.put(singleForm.COLUMN_NAME_ROUND, this.Round == null ? JSONObject.NULL : this.Round);
+        //json.put(singleForm.COLUMN_NAME_ROUND, this.Round);
 
         return json;
     }

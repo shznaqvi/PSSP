@@ -71,23 +71,29 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         int sSynced = 0;
+        int sDuplicate = 0;
         String sSyncedError = "";
         JSONArray json = null;
         try {
             json = new JSONArray(result);
-            DatabaseHelper db = new DatabaseHelper(mContext);
+
+            DatabaseHelper db = new DatabaseHelper(mContext); // Database Helper
             for (int i = 0; i < json.length(); i++) {
                 JSONObject jsonObject = new JSONObject(json.getString(i));
                 if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
-                    db.updateSyncedForms(jsonObject.getString("id"));
+
+                    db.updateSyncedForms(jsonObject.getString("id"));  // UPDATE SYNCED
                     sSynced++;
+                } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
+                    db.updateSyncedIMs(jsonObject.getString("id")); // UPDATE DUPLICATES
+                    sDuplicate++;
                 } else {
-                    sSyncedError += "\nError: " + jsonObject.getString("message").toString();
+                    sSyncedError += "\nError: " + jsonObject.getString("message");
                 }
             }
-            Toast.makeText(mContext, sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, " Forms synced: " + sSynced + "\r\n\r\n Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
 
-            pd.setMessage(sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
+            pd.setMessage(" Froms synced: " + sSynced + "\r\n\r\n Duplicates: " + sDuplicate + "\r\n\r\n Errors: " + sSyncedError);
             pd.setTitle("Done uploading Forms data");
             pd.show();
         } catch (JSONException e) {
@@ -100,75 +106,92 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
 
         }
+
     }
 
-    private String downloadUrl(String myurl) throws IOException {
+    private String downloadUrl(String myurl) {
         String line = "No Response";
-        // Only display the first 500 characters of the retrieved
-        // web page content.
-        //int len = 500;
+
         DatabaseHelper db = new DatabaseHelper(mContext);
-        Collection<FormsContract> forms = db.getUnsyncedForms();
+        Collection<FormsContract> forms;
+        //if (flag) {
+        forms = db.getUnsyncedForms();
+        //} else {
+        //forms = db.getImsSg();
+        //}
         Log.d(TAG, String.valueOf(forms.size()));
+
         if (forms.size() > 0) {
-        try {
-            URL url = new URL(myurl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(20000 /* milliseconds */);
-            conn.setConnectTimeout(30000 /* milliseconds */);
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setUseCaches(false);
-            // Starts the query
-            conn.connect();
-            JSONArray jsonSync = new JSONArray();
+
+            HttpURLConnection connection = null;
             try {
-            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+                String request = myurl;
+                //String request = "http://10.1.42.30:3000/Ims";
 
-            for (FormsContract fc : forms) {
+                URL url = new URL(request);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                int HttpResult = connection.getResponseCode();
+                if (HttpResult == HttpURLConnection.HTTP_OK) {
+                    JSONArray jsonSync = new JSONArray();
+                    connection = (HttpURLConnection) url.openConnection();
 
-                jsonSync.put(fc.toJSONObject());
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+                    connection.setInstanceFollowRedirects(false);
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    connection.setRequestProperty("charset", "utf-8");
+                    connection.setUseCaches(false);
+                    connection.connect();
 
-            }
-            wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
-                //longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
-            wr.flush();
+
+                    DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+
+//            pd.setMessage("Total forms: " );
+
+                    for (FormsContract fc : forms) {
+                        //if (fc.getIstatus().equals("1")) {
+                        jsonSync.put(fc.toJSONObject());
+                        //}
+                    }
+                    wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
+//                    longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");
+                    wr.flush();
+
+
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            connection.getInputStream(), "utf-8"));
+                    StringBuffer sb = new StringBuffer();
+
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+
+                    System.out.println("" + sb.toString());
+                    return sb.toString();
+                } else {
+                    System.out.println(connection.getResponseMessage());
+                    return connection.getResponseMessage();
+                }
+            } catch (MalformedURLException e) {
+
+                e.printStackTrace();
+            } catch (IOException e) {
+
+                e.printStackTrace();
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+            } finally {
+                if (connection != null)
+                    connection.disconnect();
             }
-
-/*===================================================================*/
-            int HttpResult = conn.getResponseCode();
-            if (HttpResult == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        conn.getInputStream(), "utf-8"));
-                StringBuffer sb = new StringBuffer();
-
-                while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                br.close();
-
-                System.out.println("" + sb.toString());
-                return sb.toString();
-            } else {
-                System.out.println(conn.getResponseMessage());
-                return conn.getResponseMessage();
-            }
-        } catch (MalformedURLException e) {
-
-            e.printStackTrace();
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }} else {return  "No new records to sync";}
+        } else {
+            return "No new records to sync";
+        }
         return line;
-            /*===================================================================*/
-
     }
 
    /* public String readIt(InputStream stream) throws IOException {
