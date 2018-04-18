@@ -488,8 +488,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 IMsTable.COLUMN_DEVICEID,
                 IMsTable.COLUMN_FORMDATE,
                 IMsTable.COLUMN_IM,
-                IMsTable.COLUMN_SYNCED,
-                IMsTable.COLUMN_SYNCED_DATE,
                 IMsTable.COLUMN_TAGID,
                 IMsTable.COLUMN_UID,
                 IMsTable.COLUMN_USER,
@@ -750,9 +748,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor mCursor = db.rawQuery("SELECT * FROM " + singleUser.TABLE_NAME + " WHERE " + singleUser.ROW_USERNAME + "=? AND " + singleUser.ROW_PASSWORD + "=?", new String[]{username, password});
         if (mCursor != null) {
-            if (mCursor.getCount() > 0) {
-                return true;
-            }
+            return mCursor.getCount() > 0;
         }
         return false;
     }

@@ -24,9 +24,9 @@ import java.text.SimpleDateFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.R;
 
 public class SectionBActivity extends Activity {
 
@@ -162,7 +162,6 @@ public class SectionBActivity extends Activity {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
-
     }
 
     private void SaveDraft() throws JSONException {

@@ -171,13 +171,6 @@ public class IMsContract {
         json.put(IMsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(IMsTable.COLUMN_UUID, this.UUID == null ? JSONObject.NULL : this.UUID);
 
-
-
-        if (!this.im.equals("")) {
-            json.put(IMsTable.COLUMN_IM, this.im == null ? JSONObject.NULL : new JSONObject(this.im));
-        }
-        json.put(IMsTable.COLUMN_TAGID, this.tagId == null ? JSONObject.NULL : this.tagId);
-
         return json;
     }
 

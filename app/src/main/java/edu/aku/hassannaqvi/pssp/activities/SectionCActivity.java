@@ -20,9 +20,9 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.R;
 
 public class SectionCActivity extends Activity {
     private static final String TAG = SectionCActivity.class.getSimpleName();
@@ -770,7 +770,7 @@ public class SectionCActivity extends Activity {
             } else {
                 mnc10mm.setError(null);
             }
-            if (!mnc10yy.getText().toString().equals("2015") && !mnc10yy.getText().toString().equals("2016") && !mnc10yy.getText().toString().equals("2017")) {
+            if (!mnc10yy.getText().toString().equals("2015") && !mnc10yy.getText().toString().equals("2016") && !mnc10yy.getText().toString().equals("2017") && !mnc10yy.getText().toString().equals("2018")) {
                 Toast.makeText(this, "ERROR(invalid year): " + getString(R.string.mnc10), Toast.LENGTH_LONG).show();
                 mnc10yy.setError("Invalid data");
                 Log.i(TAG, "mnc10: Not selected");
