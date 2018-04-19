@@ -20,9 +20,9 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.pssp.R;
 import edu.aku.hassannaqvi.pssp.core.DatabaseHelper;
 import edu.aku.hassannaqvi.pssp.core.PSSPApp;
-import edu.aku.hassannaqvi.pssp.R;
 
 public class SectionDActivity extends Activity {
 
@@ -433,7 +433,7 @@ public class SectionDActivity extends Activity {
         }
     }
 
-    private boolean     UpdateDB() {
+    private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 
         int updcount = db.updateSD();
