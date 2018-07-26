@@ -20,7 +20,7 @@ android {
             minSdkVersion 22
             targetSdkVersion 22
             versionCode code
-            versionName "3.1"
+            versionName "3.5"
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         }
     }
@@ -51,8 +51,16 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //compile 'com.google.maps.android:android-maps-utils:11.0.4'
 
-    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+
+
+
+    implementation 'com.android.support:support-fragment:27.1.1'
+    implementation 'com.android.support:support-media-compat:27.1.1'
 }
+
+
 //implementation 'com.android.support:support-v4:25.0.1'
 //compile 'com.google.maps.android:android-maps-utils:0.4'
 // compile 'com.android.support:design:25.0.1'
