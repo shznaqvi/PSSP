@@ -184,6 +184,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
+        lables.add("Khyber");
 
         values = new ArrayList<String>();
         values.add("11");
@@ -201,6 +202,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         values.add("91");
         values.add("92");
         values.add("93");
+        values.add("24");
 
 
         // Polulating 'lables' and 'values' from ucList
@@ -236,6 +238,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("91", "Rawalpindi");
         valuesnlabels.put("92", "Lahore");
         valuesnlabels.put("93", "Multan");
+        valuesnlabels.put("24", "Khyber");
 
 
         // Creating adapter for spinner

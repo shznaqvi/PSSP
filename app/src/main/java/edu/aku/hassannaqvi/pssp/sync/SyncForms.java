@@ -15,7 +15,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
@@ -59,11 +58,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
 
         String line = "No Response";
-        try {
-            return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + singleForm._URL);
-        } catch (IOException e) {
-            return "Unable to upload data. Server may be down.";
-        }
+        return downloadUrl(PSSPApp._HOST_URL + "pssp/api/" + singleForm._URL);
 
     }
 
@@ -72,7 +67,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         super.onPostExecute(result);
         int sSynced = 0;
         int sDuplicate = 0;
-        String sSyncedError = "";
+        StringBuilder sSyncedError = new StringBuilder();
         JSONArray json = null;
         try {
             json = new JSONArray(result);
@@ -88,7 +83,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
                     db.updateSyncedIMs(jsonObject.getString("id")); // UPDATE DUPLICATES
                     sDuplicate++;
                 } else {
-                    sSyncedError += "\nError: " + jsonObject.getString("message");
+                    sSyncedError.append("\nError: ").append(jsonObject.getString("message"));
                 }
             }
             Toast.makeText(mContext, " Forms synced: " + sSynced + "\r\n\r\n Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
@@ -125,10 +120,9 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
             HttpURLConnection connection = null;
             try {
-                String request = myurl;
                 //String request = "http://10.1.42.30:3000/Ims";
 
-                URL url = new URL(request);
+                URL url = new URL(myurl);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.connect();
                 int HttpResult = connection.getResponseCode();
@@ -165,7 +159,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
                     StringBuffer sb = new StringBuffer();
 
                     while ((line = br.readLine()) != null) {
-                        sb.append(line + "\n");
+                        sb.append(line).append("\n");
                     }
                     br.close();
 
@@ -175,14 +169,8 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
                     System.out.println(connection.getResponseMessage());
                     return connection.getResponseMessage();
                 }
-            } catch (MalformedURLException e) {
+            } catch (IOException | JSONException e) {
 
-                e.printStackTrace();
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } finally {
                 if (connection != null)
