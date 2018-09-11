@@ -172,37 +172,51 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("K. Abdullah");
         lables.add("Quetta");
         lables.add("Pishin");
+        lables.add("Jafarabad");
+        lables.add("Musakhel");
+        lables.add("Derabugti I Kohlu");
+        lables.add("Nasirabad");
+        lables.add("Barkhan");
         lables.add("Mardan/Swabi");
         lables.add("Town 1 & 2");
         lables.add("Town 3 & 4");
+        lables.add("Khyber");
         lables.add("K Zone 1");
         lables.add("K Zone 2");
         lables.add("K Zone 3");
         lables.add("Sukkur");
         lables.add("Larkhana");
         lables.add("Rahim Yar Khan");
+        lables.add("RajanPur");
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
-        lables.add("Khyber");
+
 
         values = new ArrayList<String>();
         values.add("11");
         values.add("12");
         values.add("13");
+        values.add("14");
+        values.add("15");
+        values.add("16");
+        values.add("17");
+        values.add("18");
         values.add("21");
         values.add("22");
         values.add("23");
+        values.add("24");
         values.add("31");
         values.add("32");
         values.add("33");
         values.add("41");
         values.add("42");
         values.add("51");
+        values.add("52");
         values.add("91");
         values.add("92");
         values.add("93");
-        values.add("24");
+
 
 
         // Polulating 'lables' and 'values' from ucList
@@ -239,6 +253,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("92", "Lahore");
         valuesnlabels.put("93", "Multan");
         valuesnlabels.put("24", "Khyber");
+        valuesnlabels.put("14", "Jafarabad");
+        valuesnlabels.put("15", "Musakhel");
+        valuesnlabels.put("16", "Derabugti I Kohlu");
+        valuesnlabels.put("17", "Nasirabad");
+        valuesnlabels.put("18", "Barkhan");
+        valuesnlabels.put("52", "RajanPur");
+
 
 
         // Creating adapter for spinner

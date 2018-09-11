@@ -80,7 +80,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
                     db.updateSyncedForms(jsonObject.getString("id"));  // UPDATE SYNCED
                     sSynced++;
                 } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
-                    db.updateSyncedIMs(jsonObject.getString("id")); // UPDATE DUPLICATES
+                    db.updateSyncedForms(jsonObject.getString("id")); // UPDATE DUPLICATES
                     sDuplicate++;
                 } else {
                     sSyncedError.append("\nError: ").append(jsonObject.getString("message"));
