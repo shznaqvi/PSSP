@@ -191,6 +191,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
+        lables.add("DIK");
+        lables.add("Tang");
 
 
         values = new ArrayList<String>();
@@ -216,7 +218,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         values.add("91");
         values.add("92");
         values.add("93");
-
+        values.add("25");
+        values.add("26");
 
 
         // Polulating 'lables' and 'values' from ucList
@@ -246,6 +249,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("31", "K Zone 1");
         valuesnlabels.put("32", "K Zone 2");
         valuesnlabels.put("33", "K Zone 3");
+        valuesnlabels.put("25", "DIK");
+        valuesnlabels.put("26", "Tang");
         valuesnlabels.put("41", "Sukkur");
         valuesnlabels.put("42", "Larkhana");
         valuesnlabels.put("51", "Rahim Yar Khan");
@@ -298,10 +303,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         if (sharedPref.getBoolean("flag", false)) {
 
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
-            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date()).toString()) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
+                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
                 editor.commit();
             }

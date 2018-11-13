@@ -129,6 +129,8 @@ public class SectionAActivity extends Activity {
         lables.add("Rawalpindi");
         lables.add("Lahore");
         lables.add("Multan");
+        lables.add("DIK");
+        lables.add("Tang");
 
         values = new ArrayList<String>();
         values.add("11");
@@ -153,6 +155,8 @@ public class SectionAActivity extends Activity {
         values.add("91");
         values.add("92");
         values.add("93");
+        values.add("25");
+        values.add("26");
 
         txtmna3.setText(getString(R.string.mna3) + ": " + lables.get(values.indexOf(String.valueOf(PSSPApp.mna3))));
         mna6.setEnabled(false);
