@@ -200,10 +200,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         values.add("12");
         values.add("13");
         values.add("14");
-        values.add("15");
         values.add("16");
-        values.add("17");
         values.add("18");
+        values.add("17");
+        values.add("15");
         values.add("21");
         values.add("22");
         values.add("23");
